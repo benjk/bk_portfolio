@@ -1,0 +1,197 @@
+:root {
+    /****************** COLORS ******************/
+    --primary: #383131;
+    --secondary: #fff;
+    --light-primary: #F7FCD1;
+    --light-secondary: #6b70b3;
+    --color-on-primary: #fff;
+    --color-light-on-primary: grey;
+    --color-on-secondary: black;
+    --color-light-on-secondary: grey;
+
+    /****************** GLOBAL ******************/
+    --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-header-smooth: 0 8px 14px 0 rgba(0, 0, 0, .04);
+
+    /****************** SIZES ******************/
+    --header-height: 3rem;
+
+    /****************** SPACING ******************/
+    --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
+    --margin-s: clamp(0.8rem, 0.657rem + 0.381vw, 1rem);
+    --margin-m: clamp(1rem, 0.429rem + 1.524vw, 1.8rem);
+    --margin-l: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+}
+
+/**
+* More sensible default box-sizing:
+* css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+*/
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/**
+* reset of default margins and paddings.
+*/
+* {
+    padding: 0;
+    margin: 0;
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+h1,h2,h3,h4,h5,p,img, span, div {
+    caret-color: transparent;
+}
+
+/****************** GLOBAL ******************/
+html, body {
+  height: 100%;
+  background-color: var(--primary);
+}
+
+.header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--secondary);
+  border-bottom: var(--smooth-border);
+  box-shadow: var(--shadow-header-smooth);
+  display: flex;
+  align-items: center;
+  padding: var(--margin-s) var(--margin-l);
+}
+
+.header #logo {
+  font-size: 2em;
+  color: var(--color-on-secondary);
+}
+
+main {
+  margin-top: var(--header-height);
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+}
+
+/****************** SPLIDE ******************/
+.projects-container{
+  max-height: calc(100vh - var(--header-height));
+  max-width: 85vw;
+  padding: 0 var(--margin-l);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.splide-container {
+  max-width: 60%;
+  max-height: 100%;
+  background-color: var(--light-secondary);
+  padding: var(--margin-xs);
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-s);
+  align-items: center;
+}
+
+.project-legend-container {
+  width: 40%;
+  background-color: pink;
+}
+
+.thumbnail-carousel .splide__list li {
+  flex: 0 0 auto;
+}
+
+.thumbnail-carousel .splide__list {
+  justify-content: center;
+}
+
+.thumbnail-carousel .splide__list.overflow {
+  justify-content: flex-start;
+}
+
+.main-carousel {
+  height: 79%;
+  max-height: 80%;
+}
+
+.thumbnail-carousel {
+  height: 19%;
+}
+
+@media screen and (max-width: 778px) {
+  .projects-container{
+    max-width: 100vw;
+    max-height: 200vh;
+    flex-direction: column;
+    padding: 0 var(--margin-xs);
+  }
+
+  .splide-container {
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(100vh - var(--header-height));
+    height: calc(70vh - var(--header-height));
+    gap: var(--margin-xs);
+  }
+
+  .project-legend-container {
+    width: 100%;
+    height: 60vh;
+  }
+}
+
+.splide {
+  display: flex;
+  justify-content: center;
+}
+
+.splide__slide img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+}
+
+.main-carousel .splide__slide img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+.splide__slide {
+  opacity: 0.6;
+}
+
+.splide__slide.is-active {
+  opacity: 1;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.splide__track--nav>.splide__list>.splide__slide.is-active {
+  border: 3px solid red !important;
+}
+.splide__track--nav>.splide__list>.splide__slide.is-active {
+  border: none !important;
+}
+
+.splide__arrow:hover {
+  opacity: 1;
+}
