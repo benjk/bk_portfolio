@@ -90,7 +90,7 @@ main {
 /****************** SPLIDE ******************/
 .projects-container{
   max-height: calc(100vh - var(--header-height));
-  max-width: 85vw;
+  max-width: 1500px;
   padding: 0 var(--margin-l);
   display: flex;
   flex-direction: row;
@@ -106,6 +106,7 @@ main {
   flex-direction: column;
   gap: var(--margin-s);
   align-items: center;
+  overflow: hidden;
 }
 
 .project-legend-container {
@@ -126,15 +127,14 @@ main {
 }
 
 .main-carousel {
-  height: 79%;
-  max-height: 80%;
+  max-height: 79%;
 }
 
 .thumbnail-carousel {
-  height: 19%;
+  max-height: 19%;
 }
 
-@media screen and (max-width: 778px) {
+@media screen and (max-width: 1024px) {
   .projects-container{
     max-width: 100vw;
     max-height: 200vh;
@@ -146,13 +146,13 @@ main {
     width: 100%;
     max-width: 100%;
     max-height: calc(100vh - var(--header-height));
-    height: calc(70vh - var(--header-height));
+    height: calc(80vh - var(--header-height));
     gap: var(--margin-xs);
   }
 
   .project-legend-container {
     width: 100%;
-    height: 60vh;
+    height: 50vh;
   }
 }
 

@@ -21,39 +21,38 @@ document.addEventListener( 'DOMContentLoaded', function () {
     main.mount();
     thumbnails.mount();
     
-    // GESTION DES THUMBNAILS
-    // Centré ou non
-    const container = document.querySelectorAll('.thumbnail-carousel .splide__list');    
-    
-    container.forEach(cont => {
-        checkOverflow(cont)
-    });
-    
-    function checkOverflow(cont) {        
-        if (cont.clientWidth < cont.scrollWidth) {
-            cont.classList.add('overflow');
-        } else {
-            cont.classList.remove('overflow');
-        }
-    }
-    
+    // GESTION DES THUMBNAILS 
     handleThumbSize()
+    checkOverflow()
 } );
 
 window.addEventListener('resize', handleThumbSize);
+window.addEventListener('resize', checkOverflow);
 
-function handleThumbSize() {
-    console.log('pwi');
+function checkOverflow() {    
+    const container = document.querySelectorAll('.thumbnail-carousel .splide__list');
+
+    container.forEach(cont => {
+        if (cont.clientWidth < cont.scrollWidth) {
+            cont.classList.add('overflow');
+            console.log('overflowed');
+            
+        } else {
+            cont.classList.remove('overflow');
+        }
+    });
     
+}
+
+function handleThumbSize() {    
     const mainCarousels = document.querySelectorAll('.main-carousel .is-active img');
     
     mainCarousels.forEach(mainCarousel => {
         
         const mainWidth = mainCarousel.clientWidth;
-        console.log("kikou" + mainWidth);
+        
         
         const thumbnailCarousel = mainCarousel.closest('.splide-container').querySelector('.thumbnail-carousel');
-        console.log(thumbnailCarousel);
         
         if (thumbnailCarousel) {
             thumbnailCarousel.style.setProperty('width', `${mainWidth}px`, 'important');
