@@ -16,6 +16,7 @@
 
     /****************** SIZES ******************/
     --header-height: 3rem;
+    --splide-arrow-size: clamp(2.5rem, 1.429rem + 2.857vw, 4rem);
 
     /****************** SPACING ******************/
     --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
@@ -193,5 +194,11 @@ main {
 }
 
 .splide__arrow:hover {
+  opacity: 0.7;
+}
+
+.splide__arrow {
   opacity: 1;
+  height: var(--splide-arrow-size);
+  width: var(--splide-arrow-size);
 }
