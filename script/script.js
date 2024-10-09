@@ -22,16 +22,16 @@ document.addEventListener( 'DOMContentLoaded', function () {
     thumbnails.mount();
     
     // GESTION DES THUMBNAILS 
-    handleThumbSize()
+    handleCarouselSize()
     checkOverflow()
 } );
 
-window.addEventListener('resize', handleThumbSize);
+window.addEventListener('resize', handleCarouselSize);
 window.addEventListener('resize', checkOverflow);
 
 function checkOverflow() {    
     const container = document.querySelectorAll('.thumbnail-carousel .splide__list');
-
+    
     container.forEach(cont => {
         if (cont.clientWidth < cont.scrollWidth) {
             cont.classList.add('overflow');
@@ -44,18 +44,37 @@ function checkOverflow() {
     
 }
 
-function handleThumbSize() {    
-    const mainCarousels = document.querySelectorAll('.main-carousel .is-active img');
+function handleCarouselSize() {    
+    const mainCarousels = document.querySelectorAll('.main-carousel');
     
-    mainCarousels.forEach(mainCarousel => {
+    mainCarousels.forEach(mainCarousel => {    
+        const activeImg = mainCarousel.querySelector('.is-active img');
         
-        const mainWidth = mainCarousel.clientWidth;
+        const mainWidth = activeImg.clientWidth;
         
-        
-        const thumbnailCarousel = mainCarousel.closest('.splide-container').querySelector('.thumbnail-carousel');
+        const thumbnailCarousel = activeImg.closest('.splide-container').querySelector('.thumbnail-carousel');
         
         if (thumbnailCarousel) {
             thumbnailCarousel.style.setProperty('width', `${mainWidth}px`, 'important');
         }
+        
+        // Ajustement de la hauteur
+        const ratio = activeImg.naturalHeight / activeImg.naturalWidth;
+        const realHeight = ratio * activeImg.clientWidth;
+        
+        // Calcul de la différence entre realHeight et renderedH
+        const difference = Math.abs(realHeight - activeImg.clientHeight);        
+        const tolerance = 0.01 * realHeight; // 1%
+        
+        if (difference >= tolerance) {
+            console.log(`RESIZE ME`);
+            mainCarousel.style.setProperty('height', `${Math.round(realHeight)}px`, 'important');
+            
+            const container =  mainCarousel.closest('.splide-container');
+            const containerHeight = container.clientHeight;
+            const newContainerHeight = containerHeight - difference;
+            container.style.setProperty('height', `${Math.round(newContainerHeight)}px`, 'important');
+        }
+        
     });
 }
