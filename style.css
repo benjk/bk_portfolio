@@ -83,6 +83,7 @@ html, body {
 
 main {
   margin-top: var(--header-height);
+  padding-top: var(--margin-m);
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -90,7 +91,7 @@ main {
 
 /****************** SPLIDE ******************/
 .projects-container{
-  max-height: calc(100vh - var(--header-height));
+  max-height: calc(95vh - var(--header-height));
   max-width: 1500px;
   padding: 0 var(--margin-l);
   display: flex;

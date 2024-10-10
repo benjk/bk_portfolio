@@ -65,16 +65,21 @@ function handleCarouselSize() {
         // Calcul de la différence entre realHeight et renderedH
         const difference = Math.abs(realHeight - activeImg.clientHeight);        
         const tolerance = 0.01 * realHeight; // 1%
+        console.log(difference);
         
         if (difference >= tolerance) {
             console.log(`RESIZE ME`);
             mainCarousel.style.setProperty('height', `${Math.round(realHeight)}px`, 'important');
             
-            const container =  mainCarousel.closest('.splide-container');
-            const containerHeight = container.clientHeight;
-            const newContainerHeight = containerHeight - difference;
-            container.style.setProperty('height', `${Math.round(newContainerHeight)}px`, 'important');
         }
+
+        const container =  mainCarousel.closest('.splide-container');
+        const containerHeight = container.clientHeight;
+        const containerDiff = Math.abs(realHeight - containerHeight*0.76);
+        console.log(containerDiff);
+        
+        const newContainerHeight = containerHeight - containerDiff;
+        container.style.setProperty('height', `${Math.round(newContainerHeight)}px`, 'important');
         
     });
 }
