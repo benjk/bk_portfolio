@@ -3,7 +3,7 @@
     --primary: #383131;
     --secondary: #fff;
     --light-primary: #F7FCD1;
-    --light-secondary: #6b70b3;
+    --light-secondary: #E6E0D2;
     --color-on-primary: #fff;
     --color-light-on-primary: grey;
     --color-on-secondary: black;
@@ -16,7 +16,7 @@
 
     /****************** SIZES ******************/
     --header-height: 3rem;
-    --splide-arrow-size: clamp(2.5rem, 2.143rem + 0.952vw, 3rem);
+    --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
 
     /****************** SPACING ******************/
     --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
@@ -102,7 +102,7 @@ main {
   max-width: 60%;
   max-height: 100%;
   background-color: var(--light-secondary);
-  padding: var(--margin-xs);
+  padding: var(--margin-xs) var(--margin-l);
   display: flex;
   flex-direction: column;
   gap: var(--margin-s);
@@ -113,7 +113,7 @@ main {
 
 .project-legend-container {
   width: 40%;
-  background-color: pink;
+  background-color: #DDE9B9;
 }
 
 .thumbnail-carousel .splide__list li {
@@ -150,6 +150,7 @@ main {
     max-height: calc(100vh - var(--header-height));
     height: calc(80vh - var(--header-height));
     gap: var(--margin-xs);
+    padding: var(--margin-xs) var(--margin-s);
   }
 
   .project-legend-container {
@@ -202,4 +203,12 @@ main {
   opacity: 1;
   height: var(--splide-arrow-size);
   width: var(--splide-arrow-size);
+}
+
+.splide__arrow--prev {
+  left: 0em;
+}
+
+.splide__arrow--next {
+  right: 0em;
 }
