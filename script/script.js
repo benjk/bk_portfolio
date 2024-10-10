@@ -76,10 +76,10 @@ function handleCarouselSize() {
         const container =  mainCarousel.closest('.splide-container');
         const containerHeight = container.clientHeight;
         const containerDiff = Math.abs(realHeight - containerHeight*0.76);
-        console.log(containerDiff);
-        
-        const newContainerHeight = containerHeight - containerDiff;
-        container.style.setProperty('height', `${Math.round(newContainerHeight)}px`, 'important');
-        
+
+        if (containerDiff >= tolerance) {
+            const newContainerHeight = containerHeight - containerDiff;
+            container.style.setProperty('height', `${Math.round(newContainerHeight)}px`, 'important');
+        }
     });
 }
