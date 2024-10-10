@@ -14,58 +14,72 @@
     </nav>
   </header>
   <main>
-    <div class="projects-container">
-      <div class="splide-container">
-        <section id="main-carousel1" class="splide main-carousel" aria-label="Beautiful Images">
-          <div class="splide__track">
-            <ul class="splide__list">
-              <li class="splide__slide">
-                <img src="assets/img/projet2_thumb1.JPG" alt="">
-              </li>
-              <li class="splide__slide">
-                <img src="assets/img/projet2_thumb2.JPG" alt="">
-              </li>
-              <li class="splide__slide">
-                <img src="assets/img/projet2_thumb3.JPG" alt="">
-              </li>
-              <li class="splide__slide">
-                <img src="assets/img/projet2_thumb4.JPG" alt="">
-              </li>
-              <li class="splide__slide">
-                <img src="assets/img/projet2_thumb5.JPG" alt="">
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section
-        id="thumbnail-carousel1"
-        class="splide thumbnail-carousel"
-        aria-label="The carousel with thumbnails. Selecting a thumbnail will change the Beautiful Gallery carousel."
-        >
-        <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
-              <img src="assets/img/projet2_thumb1.JPG" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/img/projet2_thumb2.JPG" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/img/projet2_thumb3.JPG" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/img/projet2_thumb4.JPG" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/img/projet2_thumb5.JPG" alt="">
-            </li>
-          </ul>
+    <input type="radio" name="slider" id="item-1" checked>
+    <input type="radio" name="slider" id="item-2">
+    <input type="radio" name="slider" id="item-3">
+    <input type="radio" name="slider" id="item-4">
+    <div class="projects-container-global">
+      <label class="card" for="item-1" id="song-1">
+          <div class="splide-container">
+            <section id="main-carousel1" class="splide main-carousel" aria-label="Beautiful Images">
+              <div class="splide__track">
+                <ul class="splide__list">
+                  <li class="splide__slide">
+                    <img src="assets/img/projet2_thumb1.JPG" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="assets/img/projet2_thumb2.JPG" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="assets/img/projet2_thumb3.JPG" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="assets/img/projet2_thumb4.JPG" alt="">
+                  </li>
+                  <li class="splide__slide">
+                    <img src="assets/img/projet2_thumb5.JPG" alt="">
+                  </li>
+                </ul>
+              </div>
+            </section>
+            <section
+            id="thumbnail-carousel1"
+            class="splide thumbnail-carousel"
+            aria-label="The carousel with thumbnails. Selecting a thumbnail will change the Beautiful Gallery carousel."
+            >
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class="splide__slide">
+                  <img src="assets/img/projet2_thumb1.JPG" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img src="assets/img/projet2_thumb2.JPG" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img src="assets/img/projet2_thumb3.JPG" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img src="assets/img/projet2_thumb4.JPG" alt="">
+                </li>
+                <li class="splide__slide">
+                  <img src="assets/img/projet2_thumb5.JPG" alt="">
+                </li>
+              </ul>
+            </div>
+          </section>
         </div>
-      </section>
-    </div>
-    <div class="project-legend-container">
-      
-    </div>
+        <div class="project-legend-container"> 
+        </div>
+    </label>
+    <label class="card" for="item-2" id="song-2">
+      <img src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80" alt="song">
+    </label>
+    <label class="card" for="item-3" id="song-3">
+      <img src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="song">
+    </label>
+    <label class="card" for="item-4" id="song-4">
+      <img src="assets/img/projet2_thumb1.JPG" alt="song">
+    </label>
   </div>
 </main>
 <script src="./node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
