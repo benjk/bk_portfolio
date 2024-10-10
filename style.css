@@ -190,8 +190,7 @@ input[type=radio] {
 
 @media screen and (max-width: 1024px) {
   .card{
-    max-width: 90vw;
-    max-height: 200vh;
+    max-width: 85vw;
     flex-direction: column;
     padding: 0 var(--margin-xs);
   }
@@ -200,7 +199,7 @@ input[type=radio] {
     width: 100%;
     max-width: 100%;
     max-height: calc(100vh - var(--header-height));
-    height: calc(80vh - var(--header-height));
+    height: calc(100vh - var(--header-height));
     gap: var(--margin-xs);
     padding: var(--margin-xs) var(--margin-s);
   }
@@ -208,6 +207,14 @@ input[type=radio] {
   .project-legend-container {
     width: 100%;
     height: 50vh;
+  }
+
+  .main-carousel {
+    max-height: 69%;
+  }
+  
+  .thumbnail-carousel {
+    max-height: 29%;
   }
 }
 
