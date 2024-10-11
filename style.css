@@ -13,6 +13,8 @@
     --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --shadow-header-smooth: 0 8px 14px 0 rgba(0, 0, 0, .04);
+    --basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    --strong-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 
     /****************** SIZES ******************/
     --header-height: 3rem;
@@ -101,7 +103,6 @@ main {
   width: 100%;
   height: 100%;
   max-height: calc(95vh - var(--header-height));
-  border-radius: 20px;
   overflow: hidden;
 }
 
@@ -119,11 +120,27 @@ main {
   flex-direction: row;
   justify-content: center;
   border-radius: 10px;
+  box-shadow: var(--strong-shadow);
   overflow: hidden;
 }
 
 input[type=radio] {
   display: none;
+}
+
+#item-1:checked ~ .projects-container-global #project-3 .splide-container,  #item-1:checked ~ .projects-container-global #project-3 .project-legend-container, 
+#item-2:checked ~ .projects-container-global #project-1 .splide-container, #item-2:checked ~ .projects-container-global #project-1 .project-legend-container,
+#item-3:checked ~ .projects-container-global #project-4 .splide-container, #item-3:checked ~ .projects-container-global #project-4 .project-legend-container,
+#item-4:checked ~ .projects-container-global #project-2 .splide-container, #item-4:checked ~ .projects-container-global #project-2 .project-legend-container,
+#item-1:checked ~ .projects-container-global #project-2 .splide-container, #item-1:checked ~ .projects-container-global #project-2 .project-legend-container,
+#item-2:checked ~ .projects-container-global #project-4 .splide-container, #item-2:checked ~ .projects-container-global #project-4 .project-legend-container,
+#item-3:checked ~ .projects-container-global #project-1 .splide-container, #item-3:checked ~ .projects-container-global #project-1 .project-legend-container,
+#item-4:checked ~ .projects-container-global #project-3 .splide-container, #item-4:checked ~ .projects-container-global #project-3 .project-legend-container,
+#item-1:checked ~ .projects-container-global #project-4 .splide-container, #item-1:checked ~ .projects-container-global #project-4 .project-legend-container,
+#item-2:checked ~ .projects-container-global #project-3 .splide-container, #item-2:checked ~ .projects-container-global #project-3 .project-legend-container,
+#item-3:checked ~ .projects-container-global #project-2 .splide-container, #item-3:checked ~ .projects-container-global #project-2 .project-legend-container,
+#item-4:checked ~ .projects-container-global #project-1 .splide-container, #item-4:checked ~ .projects-container-global #project-1 .project-legend-container{
+  pointer-events: none;
 }
 
 #item-1:checked ~ .projects-container-global #project-3, #item-2:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4, #item-4:checked ~ .projects-container-global #project-2 {
@@ -147,6 +164,7 @@ input[type=radio] {
   transform: translatex(0) scale(1);
   opacity: 1;
   z-index: 1;
+  pointer-events: all;
 }
 
 .splide-container {
@@ -182,6 +200,7 @@ input[type=radio] {
 
 .main-carousel {
   max-height: 79%;
+  flex: 1;
 }
 
 .thumbnail-carousel {
@@ -229,6 +248,7 @@ input[type=radio] {
   max-width: 100%;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: var(--basic-shadow);
 }
 
 .splide__slide img {
@@ -247,6 +267,7 @@ input[type=radio] {
   opacity: 1;
   display: flex !important;
   justify-content: center !important;
+  transform: scale(1.05);
 }
 
 .splide__track--nav>.splide__list>.splide__slide.is-active {
@@ -258,12 +279,20 @@ input[type=radio] {
 
 .splide__arrow:hover {
   opacity: 0.7;
+  box-shadow: var(--strong-shadow);
 }
 
 .splide__arrow {
   opacity: 1;
   height: var(--splide-arrow-size);
   width: var(--splide-arrow-size);
+  border: 2px solid white;
+  box-shadow: var(--basic-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease; 
+}
+
+.splide__arrow  svg {
+  fill: white;
 }
 
 .splide__arrow--prev {

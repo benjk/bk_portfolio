@@ -34,7 +34,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         });
 
         waitForAllImages().then(() => {
-            initializeSplideAndResize();
+            initializeSplideAndResize(data);
         });
     });
 });
@@ -56,7 +56,7 @@ function waitForAllImages() {
     return Promise.all(promises);
 }
 
-function initializeSplideAndResize() {
+function initializeSplideAndResize(data) {
     const mainCarousels = document.querySelectorAll('.main-carousel');
 
     mainCarousels.forEach((mainCarousel, index) => {
@@ -66,6 +66,7 @@ function initializeSplideAndResize() {
             rewind: true,
             pagination: false,
             arrows: false,
+            drag: false
         });
 
         var thumbnails = new Splide(`#thumbnail-carousel${index + 1}`, {
@@ -77,10 +78,26 @@ function initializeSplideAndResize() {
             isNavigation: true,
         });
 
+        thumbnails.on('mounted', function () {
+            console.log(`${index} mounted`);
+            console.log(data);
+            console.log('dataindex');
+
+            console.log(data[index]);
+            
+            // Change background for the previous arrow
+            document.querySelector(`#thumbnail-carousel${index + 1} .splide__arrow--prev`).style.setProperty('background-color', data[index].primaryColor)
+    
+            // Change background for the next arrow
+            document.querySelector(`#thumbnail-carousel${index + 1} .splide__arrow--next`).style.setProperty('background-color', data[index].primaryColor)
+        });
+
         main.sync(thumbnails);
         main.mount();
         thumbnails.mount();
+
     });
+
     
     // GESTION DES THUMBNAILS 
     adjustCarouselSize()
