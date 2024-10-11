@@ -1,0 +1,78 @@
+[
+    {
+        "id": 1,
+        "title": "Eludice",
+        "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1",
+        "primaryColor": "#7CB9D6",
+        "secondaryColor": "#FFFFFF",
+        "images": [
+            "assets/img/projet1_thumb1.JPG",
+            "assets/img/projet1_thumb2.JPG",
+            "assets/img/projet1_thumb3.JPG",
+            "assets/img/projet1_thumb4.JPG",
+            "assets/img/projet1_thumb5.JPG",
+            "assets/img/projet1_thumb6.JPG",
+            "assets/img/projet1_thumb7.JPG",
+            "assets/img/projet1_thumb8.JPG",
+            "assets/img/projet1_thumb9.JPG",
+            "assets/img/projet1_thumb10.JPG"
+        ],
+        "year": "2022",
+        "client": "Eludice",
+        "platform": "Android"
+    },
+    {
+        "id": 2,
+        "title": "Wabi Sabi",
+        "description": "Description du projet 2",
+        "primaryColor": "#DDE9B9",
+        "secondaryColor": "#282552",
+        "images": [
+            "assets/img/projet2_thumb1.JPG",
+            "assets/img/projet2_thumb2.JPG",
+            "assets/img/projet2_thumb3.JPG",
+            "assets/img/projet2_thumb4.JPG",
+            "assets/img/projet2_thumb5.JPG"
+        ],
+        "year": "2023",
+        "client": "Particulier",
+        "platform": "Web, Wordpress"
+    },
+    {
+        "id": 3,
+        "title": "Chapzy",
+        "description": "Description du projet 2",
+        "primaryColor": "#69AB2F",
+        "secondaryColor": "#F9B736",
+        "images": [
+            "assets/img/projet3_thumb1.png",
+            "assets/img/projet3_thumb2.png",
+            "assets/img/projet3_thumb3.png",
+            "assets/img/projet3_thumb4.png",
+            "assets/img/projet3_thumb5.png",
+            "assets/img/projet3_thumb6.png",
+            "assets/img/projet3_thumb7.png",
+            "assets/img/projet3_thumb8.png",
+            "assets/img/projet3_thumb9.png"
+        ],
+        "year": "2023",
+        "client": "Particulier",
+        "platform": "Web, Wordpress"
+    },
+    {
+        "id": 4,
+        "title": "Oyogoo",
+        "description": "Description du projet 2",
+        "primaryColor": "#00B1B1",
+        "secondaryColor": "#2D2D2D",
+        "images": [
+            "assets/img/projet4_thumb1.JPG",
+            "assets/img/projet4_thumb2.JPG",
+            "assets/img/projet4_thumb3.JPG",
+            "assets/img/projet4_thumb4.JPG"
+        ],
+        "year": "2023",
+        "client": "Particulier",
+        "platform": "Web, Wordpress"
+    }
+]

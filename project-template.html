@@ -1,0 +1,33 @@
+<label class="card" for="item-{{id}}" id="project-{{id}}">
+    <div class="splide-container">
+      <section id="main-carousel{{id}}" class="splide main-carousel" aria-label="{{title}}">
+        <div class="splide__track">
+          <ul class="splide__list">
+            {{mainImages}}
+          </ul>
+        </div>
+      </section>
+      <section
+      id="thumbnail-carousel{{id}}"
+      class="splide thumbnail-carousel"
+      aria-label="{{title}} miniatures"
+      >
+      <div class="splide__track">
+        <ul class="splide__list">
+            {{thumbnails}}
+        </ul>
+      </div>
+    </section>
+  </div>
+  <!-- <div class="project-legend-container" style="background-color: red;"> -->
+  <div class="project-legend-container" style="background-color: {{primaryColor}};">
+    <h2 style="color: {{secondaryColor}};">{{title}}</h2>
+        <p>{{description}}</p>
+        <ul>
+            <li>Année : {{year}}</li>
+            <li>Client : {{client}}</li>
+            <li>Technos : {{technologies}}</li>
+            <li>Plateforme : {{platform}}</li>
+        </ul>
+  </div>
+</label>
