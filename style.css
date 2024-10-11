@@ -119,6 +119,7 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  border: 8px solid transparent;
   border-radius: 10px;
   box-shadow: var(--strong-shadow);
   overflow: hidden;
@@ -211,6 +212,7 @@ input[type=radio] {
   .card{
     max-width: 85vw;
     flex-direction: column;
+    border: 5px solid transparent;
   }
 
   .splide-container {
