@@ -12,6 +12,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
         data.forEach(project => {
             // On passe l'image 1 en dernier
             const images = [...project.images];
+            const firstImage = images.shift();
+            images.push(firstImage);
             
             let mainImagesHTML = '';
             images.forEach(image => {
@@ -24,7 +26,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             // On vire les grosses images des thumbs pour oyo et chapzy
             let thumbHTML = ''
             if (project.id == 3 || project.id == 4) {
-                images.shift();
+                images.pop();
                 images.forEach(image => {
                     console.log(image);
                     
@@ -97,7 +99,7 @@ function initializeSplideAndResize(data) {
             pagination: false,
             arrows: false,
             drag: false,
-            start: 0,
+            start: startIndex
         });
         
         
@@ -109,8 +111,7 @@ function initializeSplideAndResize(data) {
             pagination: false,
             isNavigation: true,
             rewindByDrag: true,
-            start: 0,
-            // focus: startIndex
+            start: startIndex
         });
         
         console.log("startIndex");
@@ -157,7 +158,7 @@ function adjustCarouselSize() {
     const mainCarousels = document.querySelectorAll('.main-carousel');
     
     mainCarousels.forEach(mainCarousel => {    
-        const activeImg = mainCarousel.querySelector('.splide__slide:first-child img');
+        const activeImg = mainCarousel.querySelector('.splide__slide:last-child img');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
         
         console.log("activeImg");
@@ -183,9 +184,9 @@ function adjustCarouselSize() {
                 
                 
                 if (imgDifference >= imgTolerance) {
+                    img.style.setProperty('height', `${Math.round(imgRealHeight)}px`, 'important');
                     console.log("resizedImg");
                     
-                    img.style.setProperty('height', `${Math.round(imgRealHeight)}px`, 'important');
                 }
             })
             

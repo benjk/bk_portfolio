@@ -143,7 +143,7 @@ section {
   position: absolute;
   width: 85%;
   max-width: 1350px;
-  height: calc(90vh - var(--header-height));
+  height: 94%;
   left: 0;
   right: 0;
   margin: auto;
@@ -155,11 +155,12 @@ section {
   border: 10px solid transparent;
   border-radius: 10px;
   box-shadow: var(--strong-shadow);
+  overflow: hidden;
 }
 
 .splide-container {
   max-width: 60%;
-  height: calc(88vh - var(--header-height));
+  height: 100%;
   background-color: var(--light-secondary);
   padding: var(--margin-xs) var(--margin-l);
   display: flex;
@@ -202,16 +203,22 @@ section {
   .card{
     max-width: 85vw;
     flex-direction: column;
-    border: 5px solid transparent;
+    border: 4px solid transparent;
+    overflow: scroll;
+    justify-content: flex-start;
   }
 
   .splide-container {
     width: 100%;
     max-width: 100%;
-    max-height: calc(100vh - var(--header-height));
-    height: calc(100vh - var(--header-height));
-    gap: var(--margin-xs);
+    max-height: 70%;
+    min-height: 50%;
+    gap: var(--margin-s);
     padding: var(--margin-xs) var(--margin-s);
+  }
+
+  .project-legend-container {
+    flex: 1;
   }
 
   .project-legend-container {
@@ -219,11 +226,11 @@ section {
   }
 
   .main-carousel {
-    height: 69%;
+    height: 74%;
   }
   
   .thumbnail-carousel {
-    height: 29%;
+    height: 24%;
   }
 }
 
