@@ -186,18 +186,8 @@ function adjustCarouselSize() {
                 if (imgDifference >= imgTolerance) {
                     img.style.setProperty('height', `${Math.round(imgRealHeight)}px`, 'important');
                     console.log("resizedImg");
-                    
                 }
-            })
-            
-            // const container =  mainCarousel.closest('.card');
-            // const containerHeight = container.clientHeight;
-            // const containerDiff = Math.abs(realHeight - containerHeight*0.76);
-            
-            // if (containerDiff >= tolerance) {
-            //     const newContainerHeight = containerHeight - containerDiff;
-            //     container.style.setProperty('height', `${Math.round(newContainerHeight)}px`, 'important');
-            // }
+            })            
         }
         
     });
