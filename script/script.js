@@ -12,8 +12,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
         data.forEach(project => {
             // On passe l'image 1 en dernier
             const images = [...project.images];
-            const firstImage = images.shift();
-            images.push(firstImage);
             
             let mainImagesHTML = '';
             images.forEach(image => {
@@ -23,19 +21,43 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     </li>`;
             });
             
+            // On vire les grosses images des thumbs pour oyo et chapzy
+            let thumbHTML = ''
+            if (project.id == 3 || project.id == 4) {
+                images.shift();
+                images.forEach(image => {
+                    console.log(image);
+                    
+                    thumbHTML += `
+                    <li class="splide__slide">
+                        <img src="${image}" alt="">
+                    </li>`;
+                });
+            } else {
+                thumbHTML = mainImagesHTML;
+            }
+            
+            let infosProjectHTML = '';
+            Object.entries(project.details).forEach(([key, value]) => {
+                infosProjectHTML += `
+                    <li class="infos-project">
+                        <span>${capitalize(key)} :</span> ${value}
+                    </li>`;
+            });
+            
+            console.log("thumbHTML");
+            console.log(thumbHTML);
+            
+            
             const cardHTML = template
             .replace(new RegExp('{{id}}', 'g'), project.id)
             .replace(new RegExp('{{title}}', 'g'), project.title)
             .replace('{{description}}', project.description)
             .replace(new RegExp('{{primaryColor}}', 'g'), project.primaryColor)
             .replace(new RegExp('{{secondaryColor}}', 'g'), project.secondaryColor)
-            .replace('{{thumbnails}}', mainImagesHTML)
+            .replace('{{thumbnails}}', thumbHTML)
             .replace('{{mainImages}}', mainImagesHTML)
-            .replace(new RegExp('{{year}}', 'g'), project.year)
-            .replace(new RegExp('{{client}}', 'g'), project.client)
-            .replace(new RegExp('{{technologies}}', 'g'), project.technologies)
-            .replace(new RegExp('{{platform}}', 'g'), project.platform);
-            
+            .replace(new RegExp('{{infosProject}}', 'g'), infosProjectHTML)
             projectsContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
         
@@ -75,7 +97,7 @@ function initializeSplideAndResize(data) {
             pagination: false,
             arrows: false,
             drag: false,
-            start: startIndex,
+            start: 0,
         });
         
         
@@ -87,7 +109,7 @@ function initializeSplideAndResize(data) {
             pagination: false,
             isNavigation: true,
             rewindByDrag: true,
-            start: startIndex,
+            start: 0,
             // focus: startIndex
         });
         
@@ -135,7 +157,7 @@ function adjustCarouselSize() {
     const mainCarousels = document.querySelectorAll('.main-carousel');
     
     mainCarousels.forEach(mainCarousel => {    
-        const activeImg = mainCarousel.querySelector('.splide__slide:last-child img');
+        const activeImg = mainCarousel.querySelector('.splide__slide:first-child img');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
         
         console.log("activeImg");
@@ -150,21 +172,6 @@ function adjustCarouselSize() {
                 thumbnailCarousel.style.setProperty('width', `${mainWidth}px`, 'important');
             }
             
-            // Ajustement de la hauteur
-            const ratio = activeImg.naturalHeight / activeImg.naturalWidth;
-            const realHeight = ratio * activeImg.clientWidth;
-            
-            // Calcul de la différence entre realHeight et renderedH
-            const difference = Math.abs(realHeight - activeImg.clientHeight);        
-            const tolerance = 0.01 * realHeight; // 1%
-            
-            if (difference >= tolerance) {
-                console.log(`resized carousel`);
-                mainCarousel.style.setProperty('height', `${Math.round(realHeight)}px`, 'important');
-            }
-            
-            console.log(imgs);
-            
             imgs.forEach(img => {
                 // Ajustement de la hauteur
                 const imgRatio = img.naturalHeight / img.naturalWidth;
@@ -173,7 +180,7 @@ function adjustCarouselSize() {
                 // Calcul de la différence entre realHeight et renderedH
                 const imgDifference = Math.abs(imgRealHeight - img.clientHeight);   
                 const imgTolerance = 0.01 * imgRealHeight; // 1%
-     
+                
                 
                 if (imgDifference >= imgTolerance) {
                     console.log("resizedImg");

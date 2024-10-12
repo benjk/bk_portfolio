@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "title": "Eludice",
+        "title": "Siane",
         "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1",
         "primaryColor": "#7CB9D6",
         "secondaryColor": "#FFFFFF",
@@ -17,14 +17,16 @@
             "assets/img/projet1_thumb9.JPG",
             "assets/img/projet1_thumb10.JPG"
         ],
-        "year": "2022",
-        "client": "Eludice",
-        "platform": "Android"
+        "details": {
+            "année": "2022",
+            "client": "Eludice",
+            "plateforme": "Android"
+        }
     },
     {
         "id": 2,
         "title": "Wabi Sabi",
-        "description": "Description du projet 2",
+        "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1Description du projet 2",
         "primaryColor": "#DDE9B9",
         "secondaryColor": "#282552",
         "images": [
@@ -34,9 +36,11 @@
             "assets/img/projet2_thumb4.JPG",
             "assets/img/projet2_thumb5.JPG"
         ],
-        "year": "2023",
-        "client": "Particulier",
-        "platform": "Web, Wordpress"
+        "details": {
+            "année": "2023",
+            "client": "Particulier",
+            "plateforme": "Web, Wordpress"
+        }
     },
     {
         "id": 3,
@@ -55,9 +59,10 @@
             "assets/img/projet3_thumb8.png",
             "assets/img/projet3_thumb9.png"
         ],
-        "year": "2023",
-        "client": "Particulier",
-        "platform": "Web, Wordpress"
+        "details": {
+            "année": "2020",
+            "plateforme": "Android"
+        }
     },
     {
         "id": 4,
@@ -72,8 +77,10 @@
             "assets/img/projet4_thumb4.JPG",
             "assets/img/projet4_thumb5.JPG"
         ],
-        "year": "2023",
-        "client": "Particulier",
-        "platform": "Web, Wordpress"
+        "details": {
+            "année": "2023",
+            "client": "Oyogoo",
+            "plateforme": "Mobile, Web"
+        }
     }
 ]
