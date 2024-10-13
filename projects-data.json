@@ -2,9 +2,7 @@
     {
         "id": 1,
         "title": "Siane",
-        "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1",
-        "primaryColor": "#7CB9D6",
-        "secondaryColor": "#FFFFFF",
+        "description": "Réalisation d'une application Android pour tablette Samsung Galaxy A7.<br>A l'occasion du <a target='blank' href='https://www.salonsiane.com/place-de-lindustrie/'>salon SIANE Industries</a>, le salon des industriels du Grand Sud, j'ai réalisé une application Android mêlant <span>divertissement et pédagogie</span>.<br><br>L'application accompagne un jeu de piste physique et présente une série de mini-jeux sur les grandes thématiques de l'industrie française, comme les filières de l'énergie, du bois, du plastique,...<br><br>Pour ce faire, nous avons mis en place des mini-jeux sur mesures tels que des <span>puzzles</span>, <span>labyrinthes</span>, <span>drag & drop</span> ou encore de la <span>sélection</span>.",
         "images": [
             "assets/img/projet1_thumb1.JPG",
             "assets/img/projet1_thumb2.JPG",
@@ -27,8 +25,6 @@
         "id": 2,
         "title": "Wabi Sabi",
         "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1Description du projet 2",
-        "primaryColor": "#DDE9B9",
-        "secondaryColor": "#282552",
         "images": [
             "assets/img/projet2_thumb1.JPG",
             "assets/img/projet2_thumb2.JPG",
@@ -46,8 +42,6 @@
         "id": 3,
         "title": "Chapzy",
         "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1Description du projet 2",
-        "primaryColor": "#69AB2F",
-        "secondaryColor": "#F9B736",
         "images": [
             "assets/img/projet3_thumb1.png",
             "assets/img/projet3_thumb2.png",
@@ -68,8 +62,6 @@
         "id": 4,
         "title": "Oyogoo",
         "description": "Description du projet 2",
-        "primaryColor": "#00B1B1",
-        "secondaryColor": "#FFFFFF",
         "images": [
             "assets/img/projet4_thumb1.JPG",
             "assets/img/projet4_thumb2.JPG",

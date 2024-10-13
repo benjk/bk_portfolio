@@ -43,7 +43,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             Object.entries(project.details).forEach(([key, value]) => {
                 infosProjectHTML += `
                     <li class="infos-project">
-                        <span>${capitalize(key)} :</span> ${value}
+                        <span>${capitalize(key)}:</span> ${value}
                     </li>`;
             });
             
@@ -55,8 +55,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
             .replace(new RegExp('{{id}}', 'g'), project.id)
             .replace(new RegExp('{{title}}', 'g'), project.title)
             .replace('{{description}}', project.description)
-            .replace(new RegExp('{{primaryColor}}', 'g'), project.primaryColor)
-            .replace(new RegExp('{{secondaryColor}}', 'g'), project.secondaryColor)
             .replace('{{thumbnails}}', thumbHTML)
             .replace('{{mainImages}}', mainImagesHTML)
             .replace(new RegExp('{{infosProject}}', 'g'), infosProjectHTML)
@@ -65,6 +63,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
+            initializeAnimations();
         });
     });
 });
@@ -191,4 +190,16 @@ function adjustCarouselSize() {
         }
         
     });
+}
+
+function initializeAnimations() {
+    const contactLinks = document.querySelectorAll(".contact-link");
+    contactLinks.forEach( link => {
+        let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+
+        link.addEventListener("click", () => {
+            const headerHeight = document.querySelector('header').clientHeight;
+            gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
+          });
+    })
 }
