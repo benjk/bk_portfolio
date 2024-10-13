@@ -31,7 +31,7 @@
     --header-height: 3rem;
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
 
-    --title3-font-size: clamp(2rem, 1.429rem + 1.524vw, 2.8rem);
+    --title3-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
     --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
     --classic-btn-size: 10rem;
 
@@ -154,6 +154,7 @@ section {
   width: 100%;
   height: calc(96vh - var(--header-height));
   max-height: calc(96vh - var(--header-height));
+  min-height: 600px;
   padding: var(--margin-m) var(--margin-s);
   display: flex;
   flex-direction: column;
@@ -213,6 +214,21 @@ section {
 
 .thumbnail-carousel .splide__list.overflow {
   justify-content: flex-start;
+}
+
+@media screen and (min-width: 1025px) {
+  .card{
+    max-width: 70vw;
+  }
+
+  .project-legend-container a.button {
+    margin-bottom: var(--margin-s) !important;
+    margin-top: var(--margin-s) !important;
+  }
+
+  .project-legend-container {
+    gap:var(--margin-s);
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -482,7 +498,7 @@ input[type=radio] {
   display: flex;
   flex-direction: column;
   gap: var(--margin-m);
-  padding: var(--margin-s) var(--margin-s);
+  padding: var(--margin-s) 0 var(--margin-s) var(--margin-s);
   font-size: var(--text-font-size);
   color: var(--basic-text-color);
   justify-content: center;
