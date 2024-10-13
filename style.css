@@ -17,7 +17,7 @@
     --proj3-color1: #69AB2F;
     --proj3-color2: #F9B736;
     --proj4-color1: #00B1B1;
-    --proj4-color2: #000000;
+    --proj4-color2: #fff;
 
     /****************** GLOBAL ******************/
     --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -32,9 +32,8 @@
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
 
     --title3-font-size: clamp(2rem, 1.429rem + 1.524vw, 2.8rem);
-    --text-font-size: clamp(1.2rem, 1.057rem + 0.381vw, 1.4rem);
-
-    --classic-btn-size: 12rem;
+    --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
+    --classic-btn-size: 10rem;
 
     /****************** SPACING ******************/
     --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
@@ -230,9 +229,9 @@ section {
     width: 100%;
     max-width: 100%;
     max-height: 70%;
-    min-height: 70%;
+    min-height: 92%;
     gap: var(--margin-s);
-    padding: var(--margin-xs) var(--margin-s);
+    padding: var(--margin-s) var(--margin-s);
   }
 
   #project-1 .splide-container {
@@ -480,9 +479,10 @@ input[type=radio] {
   display: flex;
   flex-direction: column;
   gap: var(--margin-m);
-  padding: var(--margin-s) var(--margin-m);
+  padding: var(--margin-s) var(--margin-s);
   font-size: var(--text-font-size);
   color: var(--basic-text-color);
+  justify-content: center;
 }
   
 .project-legend-container h2 {
@@ -536,7 +536,7 @@ input[type=radio] {
 }
 
 .project-legend-container a.button:hover {
-  box-shadow: var(--super-strong-shadow);
+  box-shadow: var(--strong-shadow);
   filter: brightness(1.1);
 }
 

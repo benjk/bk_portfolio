@@ -27,10 +27,10 @@
         "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1Description du projet 2",
         "images": [
             "assets/img/projet2_thumb1.JPG",
-            "assets/img/projet2_thumb2.JPG",
-            "assets/img/projet2_thumb3.JPG",
             "assets/img/projet2_thumb4.JPG",
-            "assets/img/projet2_thumb5.JPG"
+            "assets/img/projet2_thumb5.JPG",
+            "assets/img/projet2_thumb3.JPG",
+            "assets/img/projet2_thumb2.JPG"
         ],
         "details": {
             "année": "2023",
@@ -44,14 +44,14 @@
         "description": "Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 Description du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1 du projet 1, description du projet 1Description du projet 2",
         "images": [
             "assets/img/projet3_thumb1.png",
-            "assets/img/projet3_thumb2.png",
             "assets/img/projet3_thumb3.png",
             "assets/img/projet3_thumb4.png",
             "assets/img/projet3_thumb5.png",
             "assets/img/projet3_thumb6.png",
             "assets/img/projet3_thumb7.png",
             "assets/img/projet3_thumb8.png",
-            "assets/img/projet3_thumb9.png"
+            "assets/img/projet3_thumb9.png",
+            "assets/img/projet3_thumb2.png"
         ],
         "details": {
             "année": "2020",
@@ -66,8 +66,8 @@
             "assets/img/projet4_thumb1.JPG",
             "assets/img/projet4_thumb2.JPG",
             "assets/img/projet4_thumb3.JPG",
-            "assets/img/projet4_thumb4.JPG",
-            "assets/img/projet4_thumb5.JPG"
+            "assets/img/projet4_thumb5.JPG",
+            "assets/img/projet4_thumb4.JPG"
         ],
         "details": {
             "année": "2023",
