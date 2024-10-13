@@ -13,7 +13,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
             // On passe l'image 1 en dernier
             const images = [...project.images];
             const firstImage = images.shift();
-            if (window.innerWidth > 1024 || project.id != 3 && project.id != 4) {
+            // Sur mobile on vire les logos ils genent l'affichage et n'apportent rien
+            if (!isMobile() || project.id != 3 && project.id != 4) {
                 images.push(firstImage);
             }
             
@@ -60,6 +61,24 @@ document.addEventListener( 'DOMContentLoaded', function () {
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
             initializeAnimations();
+
+            if (isMobile()) {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    document.addEventListener('scroll', () => {
+                        const cardRect = card.getBoundingClientRect();
+    
+                        console.log('scroll');
+                        
+                        if (cardRect.bottom <= window.innerHeight) {
+                            console.log('pwout');
+                            card.classList.add('scrollY');
+                        } else {
+                            card.classList.remove('scrollY');
+                        }
+                    });
+                })
+            }
         });
     });
 });
