@@ -8,16 +8,16 @@
     --color-light-on-primary: grey;
     --color-on-secondary: black;
     --color-light-on-secondary: grey;
-    --basic-text-color: black;
+    --basic-text-color: #3b3b3b;
 
     --proj1-color1: #7CB9D6;
     --proj1-color2: #FFFFFF;
     --proj2-color1: #DDE9B9;
     --proj2-color2: #282552;
     --proj3-color1: #69AB2F;
-    --proj3-color2: #F9B736;
+    --proj3-color2: #FFD73E;
     --proj4-color1: #00B1B1;
-    --proj4-color2: #000000;
+    --proj4-color2: #fff;
 
     /****************** GLOBAL ******************/
     --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -27,14 +27,19 @@
     --strong-shadow: 0px 4px 8px rgba(0, 0, 0, .7);
     --super-strong-shadow: 0px 4px 8px rgba(0, 0, 0, 1.2);
 
+    --font-family1-serif: "Capsuula", serif;
+    --font-family1: "Capsuula", sans-serif;
+    --font-family2: "ArialNarrow", sans-serif;
+
     /****************** SIZES ******************/
     --header-height: 3rem;
+
+    --card-border-size: 10px;
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
 
-    --title3-font-size: clamp(2rem, 1.429rem + 1.524vw, 2.8rem);
-    --text-font-size: clamp(1.2rem, 1.057rem + 0.381vw, 1.4rem);
-
-    --classic-btn-size: 12rem;
+    --title3-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
+    --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
+    --classic-btn-size: 10rem;
 
     /****************** SPACING ******************/
     --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
@@ -46,6 +51,13 @@
 @font-face {
   font-family: 'Capsuula';
   src: url('assets/fonts/Capsuula.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ArialNarrow';
+  src: url('assets/fonts/arialnarrow.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -118,7 +130,7 @@ main {
   justify-content: center;
   transform-style: preserve-3d;
   overflow: hidden;
-  font-family: "Capsuula", sans-serif;
+  font-family: var(--font-family1);
 }
 
 section {
@@ -146,12 +158,16 @@ section {
   background-color: paleturquoise;
 }
 
+.scrollY {
+  overflow-y: scroll !important;
+}
 /****************** SPLIDE ******************/
 .projects-container-global {
   position: relative;
   width: 100%;
   height: calc(96vh - var(--header-height));
   max-height: calc(96vh - var(--header-height));
+  min-height: 690px;
   padding: var(--margin-m) var(--margin-s);
   display: flex;
   flex-direction: column;
@@ -166,14 +182,15 @@ section {
   left: 0;
   right: 0;
   margin: auto;
-  transition: transform .4s ease;
+  transition: transform .4s ease, filter .4s ease;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 10px solid transparent;
+  border: var(--card-border-size) solid transparent;
   border-radius: 10px;
   box-shadow: var(--strong-shadow);
   overflow: hidden;
+
 }
 
 .splide-container {
@@ -213,16 +230,31 @@ section {
   justify-content: flex-start;
 }
 
+@media screen and (min-width: 1025px) {
+  .card{
+    max-width: 70vw;
+  }
+
+  .project-legend-container a.button {
+    margin-bottom: var(--margin-s) !important;
+    margin-top: 0 !important;
+  }
+
+  .project-legend-container {
+    gap:var(--margin-s);
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .projects-container-global {
     max-height: none;
+    height: calc(100vh - var(--header-height));
   }
 
   .card{
     max-width: 85vw;
     flex-direction: column;
     border: 4px solid transparent;
-    overflow: scroll;
     justify-content: flex-start;
   }
 
@@ -230,9 +262,9 @@ section {
     width: 100%;
     max-width: 100%;
     max-height: 70%;
-    min-height: 70%;
+    min-height: 91%;
     gap: var(--margin-s);
-    padding: var(--margin-xs) var(--margin-s);
+    padding: var(--margin-s) var(--margin-s);
   }
 
   #project-1 .splide-container {
@@ -310,19 +342,23 @@ input[type=radio] {
 }
 
 #item-1:checked ~ .projects-container-global #project-3, #item-2:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4, #item-4:checked ~ .projects-container-global #project-2 {
-  transform: translatex(-30%) scale(.8);
+  transform: translatex(-30%) scale(.7);
+  /* transform: translatex(-50%) scale(.4) rotate(-90deg); */
   opacity: .6;
-  z-index: 0;
+  /* z-index: 0; */
   cursor: pointer;
-  overflow: hidden
+  overflow: hidden;
+  filter: blur(5px);
 }
 
 #item-1:checked ~ .projects-container-global #project-2, #item-2:checked ~ .projects-container-global #project-4, #item-3:checked ~ .projects-container-global #project-1, #item-4:checked ~ .projects-container-global #project-3 {
-  transform: translatex(30%) scale(.8);
+  transform: translatex(30%) scale(.7);
+  /* transform: translatex(50%) scale(.4) rotate(90deg); */
   opacity: .6;
-  z-index: 0;
+  /* z-index: 0; */
   cursor: pointer;
-  overflow: hidden
+  overflow: hidden;
+  filter: blur(5px);
 }
 
 #item-1:checked ~ .projects-container-global #project-4, #item-2:checked ~ .projects-container-global #project-3, #item-3:checked ~ .projects-container-global #project-2, #item-4:checked ~ .projects-container-global #project-1 {
@@ -435,23 +471,19 @@ input[type=radio] {
   color: var(--proj4-color2);
 }
 
-#project-1 .project-legend-container a, #project-1 .project-legend-container span {
-  font-weight: bold;
+#project-1 .project-legend-container a, #project-1 .project-legend-container strong {
   color: var(--proj1-color2);
 }
 
-#project-2 .project-legend-container a, #project-2 .project-legend-container span {
-  font-weight: bold;
+#project-2 .project-legend-container a, #project-2 .project-legend-container strong {
   color: var(--proj2-color2);
 }
 
-#project-3 .project-legend-container a, #project-3 .project-legend-container span {
-  font-weight: bold;
+#project-3 .project-legend-container a, #project-3 .project-legend-container strong {
   color: var(--proj3-color2);
 }
 
-#project-4 .project-legend-container a, #project-4 .project-legend-container span {
-  font-weight: bold;
+#project-4 .project-legend-container a, #project-4 .project-legend-container strong {
   color: var(--proj4-color2);
 }
 
@@ -480,20 +512,32 @@ input[type=radio] {
   display: flex;
   flex-direction: column;
   gap: var(--margin-m);
-  padding: var(--margin-s) var(--margin-m);
+  padding: var(--margin-s) calc(var(--margin-s) - var(--card-border-size)) 0 var(--margin-s);
   font-size: var(--text-font-size);
   color: var(--basic-text-color);
+  justify-content: center;
+  transform: scale(1.01); /* trix pour eviter ligne 1px vide */
+  font-family: var(--font-family2);
 }
-  
+
 .project-legend-container h2 {
-  font-family: 'Capsuula', serif;
+  font-family: var(--font-family1-serif);
   font-size: var(--title3-font-size);
   text-align: center;
 }
 
-.project-legend-container a, .project-legend-container span {
-  font-weight: bold;
+.project-legend-container p {
+  text-align: justify;
+}
+
+.project-legend-container a, .project-legend-container strong {
   color: var(--basic-text-color);
+  font-weight: normal;
+}
+
+.project-legend-container a.contact-link {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .project-legend-container ul {
@@ -509,7 +553,7 @@ input[type=radio] {
   padding: 12px 24px;
   margin: auto;
   border-radius: 25px;
-  font-family: "Capsuula", serif;
+  font-family: var(--font-family1-serif);
   font-size: var(--text-font-size);
   font-weight: bold;
   cursor: pointer;
@@ -526,21 +570,39 @@ input[type=radio] {
   content: "";
   height: 155px;
   left: -75px;
-  opacity: .2;
+  opacity: 0;
   position: absolute;
   top: -50px;
   transform: rotate(35deg);
   transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
   width: 50px;
   z-index: -10;
+  cursor: default;
+  pointer-events: none;
 }
 
 .project-legend-container a.button:hover {
-  box-shadow: var(--super-strong-shadow);
+  /* box-shadow: var(--strong-shadow); */
   filter: brightness(1.1);
 }
 
 .project-legend-container a.button:hover:after {
+  opacity: .5;
   left: 120%;
   transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* .card {
+  animation: slide1 0.8s ease-in-out infinite;
+} */
+
+@keyframes slide1 {
+  0%,
+  100% {
+    transform: translate(-10px, 0);
+  }
+
+  50% {
+    transform: translate(0px, 0);
+  }
 }

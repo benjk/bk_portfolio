@@ -13,7 +13,10 @@ document.addEventListener( 'DOMContentLoaded', function () {
             // On passe l'image 1 en dernier
             const images = [...project.images];
             const firstImage = images.shift();
-            images.push(firstImage);
+            // Sur mobile on vire les logos ils genent l'affichage et n'apportent rien
+            if (!isMobile() || project.id != 3 && project.id != 4) {
+                images.push(firstImage);
+            }
             
             let mainImagesHTML = '';
             images.forEach(image => {
@@ -27,9 +30,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             let thumbHTML = ''
             if (project.id == 3 || project.id == 4) {
                 images.pop();
-                images.forEach(image => {
-                    console.log(image);
-                    
+                images.forEach(image => {                    
                     thumbHTML += `
                     <li class="splide__slide">
                         <img src="${image}" alt="">
@@ -43,17 +44,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
             Object.entries(project.details).forEach(([key, value]) => {
                 infosProjectHTML += `
                     <li class="infos-project">
-                        <span>${capitalize(key)}:</span> ${value}
+                        <strong>${capitalize(key)}:</strong> ${value}
                     </li>`;
-            });
-            
-            console.log("thumbHTML");
-            console.log(thumbHTML);
-            
+            });            
             
             const cardHTML = template
             .replace(new RegExp('{{id}}', 'g'), project.id)
-            .replace(new RegExp('{{title}}', 'g'), project.title)
+            .replace(new RegExp('{{title}}', 'g'), project.title.toUpperCase())
             .replace('{{description}}', project.description)
             .replace('{{thumbnails}}', thumbHTML)
             .replace('{{mainImages}}', mainImagesHTML)
@@ -64,6 +61,24 @@ document.addEventListener( 'DOMContentLoaded', function () {
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
             initializeAnimations();
+
+            if (isMobile()) {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    document.addEventListener('scroll', () => {
+                        const cardRect = card.getBoundingClientRect();
+    
+                        console.log('scroll');
+                        
+                        if (cardRect.bottom <= window.innerHeight) {
+                            console.log('pwout');
+                            card.classList.add('scrollY');
+                        } else {
+                            card.classList.remove('scrollY');
+                        }
+                    });
+                })
+            }
         });
     });
 });
@@ -113,15 +128,6 @@ function initializeSplideAndResize(data) {
             start: startIndex
         });
         
-        console.log("startIndex");
-        console.log(data[index].images.length);
-        
-        
-        thumbnails.on('mounted', function () {
-            document.querySelector(`#thumbnail-carousel${index + 1} .splide__arrow--prev`).style.setProperty('background-color', data[index].primaryColor)
-            document.querySelector(`#thumbnail-carousel${index + 1} .splide__arrow--next`).style.setProperty('background-color', data[index].primaryColor)
-        });
-        
         main.sync(thumbnails);
         main.mount();
         thumbnails.mount();
@@ -156,9 +162,6 @@ function adjustCarouselSize() {
     mainCarousels.forEach(mainCarousel => {    
         const activeImg = mainCarousel.querySelector('.splide__slide:last-child img');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
-        
-        console.log("activeImg");
-        console.log(activeImg);
         
         if (activeImg) {
             const mainWidth = activeImg.clientWidth;
