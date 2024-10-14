@@ -235,6 +235,22 @@ section {
     max-width: 70vw;
   }
 
+  #project-1.card .splide-container {
+    border-right: 6px solid var(--proj1-color2)!important;
+  }
+  
+  #project-2.card .splide-container {
+    border-right: 6px solid var(--proj2-color2)!important;
+  }
+  
+  #project-3.card .splide-container {
+    border-right: 6px solid var(--proj3-color2)!important;
+  }
+  
+  #project-4.card .splide-container {
+    border-right: 6px solid var(--proj4-color2)!important;
+  }
+
   .project-legend-container a.button {
     margin-bottom: var(--margin-s) !important;
     margin-top: 0 !important;
@@ -423,20 +439,56 @@ input[type=radio] {
   border-color: var(--proj4-color1);
 }
 
+#project-1.card .splide-container {
+  border: 4px solid var(--proj1-color2);
+}
+
+#project-2.card .splide-container {
+  border: 4px solid var(--proj2-color2);
+}
+
+#project-3.card .splide-container {
+  border: 4px solid var(--proj3-color2);
+}
+
+#project-4.card .splide-container {
+  border: 4px solid var(--proj4-color2);
+}
+
 #project-1.card .splide__arrow {
   background-color: var(--proj1-color1);
+  border-color: var(--proj1-color2);
+}
+
+#project-1.card .splide__arrow svg{
+  fill: var(--proj1-color2);
 }
 
 #project-2.card .splide__arrow {
   background-color: var(--proj2-color1);
+  border-color: var(--proj2-color2);
+}
+
+#project-2.card .splide__arrow svg{
+  fill: var(--proj2-color2);
 }
 
 #project-3.card .splide__arrow {
   background-color: var(--proj3-color1);
+  border-color: var(--proj3-color2);
+}
+
+#project-3.card .splide__arrow svg{
+  fill: var(--proj3-color2);
 }
 
 #project-4.card .splide__arrow {
   background-color: var(--proj4-color1);
+  border-color: var(--proj4-color2);
+}
+
+#project-4.card .splide__arrow svg{
+  fill: var(--proj4-color2);
 }
 
 #project-1.card .project-legend-container {
