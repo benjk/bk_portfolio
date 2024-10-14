@@ -132,9 +132,6 @@ function initializeSplideAndResize(data) {
     // GESTION DES THUMBNAILS 
     adjustCarouselSize()
     checkOverflow()
-    
-    window.addEventListener('resize', adjustCarouselSize);
-    window.addEventListener('resize', checkOverflow);
 }
 
 
