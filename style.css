@@ -8,14 +8,14 @@
     --color-light-on-primary: grey;
     --color-on-secondary: black;
     --color-light-on-secondary: grey;
-    --basic-text-color: black;
+    --basic-text-color: #3b3b3b;
 
     --proj1-color1: #7CB9D6;
     --proj1-color2: #FFFFFF;
     --proj2-color1: #DDE9B9;
     --proj2-color2: #282552;
     --proj3-color1: #69AB2F;
-    --proj3-color2: #F9B736;
+    --proj3-color2: #FFD73E;
     --proj4-color1: #00B1B1;
     --proj4-color2: #fff;
 
@@ -27,8 +27,14 @@
     --strong-shadow: 0px 4px 8px rgba(0, 0, 0, .7);
     --super-strong-shadow: 0px 4px 8px rgba(0, 0, 0, 1.2);
 
+    --font-family1-serif: "Capsuula", serif;
+    --font-family1: "Capsuula", sans-serif;
+    --font-family2: "ArialNarrow", sans-serif;
+
     /****************** SIZES ******************/
     --header-height: 3rem;
+
+    --card-border-size: 10px;
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
 
     --title3-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
@@ -45,6 +51,13 @@
 @font-face {
   font-family: 'Capsuula';
   src: url('assets/fonts/Capsuula.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ArialNarrow';
+  src: url('assets/fonts/arialnarrow.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -117,7 +130,7 @@ main {
   justify-content: center;
   transform-style: preserve-3d;
   overflow: hidden;
-  font-family: "Capsuula", sans-serif;
+  font-family: var(--font-family1);
 }
 
 section {
@@ -173,7 +186,7 @@ section {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  border: 10px solid transparent;
+  border: var(--card-border-size) solid transparent;
   border-radius: 10px;
   box-shadow: var(--strong-shadow);
   overflow: hidden;
@@ -332,7 +345,7 @@ input[type=radio] {
   transform: translatex(-30%) scale(.7);
   /* transform: translatex(-50%) scale(.4) rotate(-90deg); */
   opacity: .6;
-  z-index: 0;
+  /* z-index: 0; */
   cursor: pointer;
   overflow: hidden;
   filter: blur(5px);
@@ -342,7 +355,7 @@ input[type=radio] {
   transform: translatex(30%) scale(.7);
   /* transform: translatex(50%) scale(.4) rotate(90deg); */
   opacity: .6;
-  z-index: 0;
+  /* z-index: 0; */
   cursor: pointer;
   overflow: hidden;
   filter: blur(5px);
@@ -458,23 +471,19 @@ input[type=radio] {
   color: var(--proj4-color2);
 }
 
-#project-1 .project-legend-container a, #project-1 .project-legend-container span {
-  font-weight: bold;
+#project-1 .project-legend-container a, #project-1 .project-legend-container strong {
   color: var(--proj1-color2);
 }
 
-#project-2 .project-legend-container a, #project-2 .project-legend-container span {
-  font-weight: bold;
+#project-2 .project-legend-container a, #project-2 .project-legend-container strong {
   color: var(--proj2-color2);
 }
 
-#project-3 .project-legend-container a, #project-3 .project-legend-container span {
-  font-weight: bold;
+#project-3 .project-legend-container a, #project-3 .project-legend-container strong {
   color: var(--proj3-color2);
 }
 
-#project-4 .project-legend-container a, #project-4 .project-legend-container span {
-  font-weight: bold;
+#project-4 .project-legend-container a, #project-4 .project-legend-container strong {
   color: var(--proj4-color2);
 }
 
@@ -503,22 +512,32 @@ input[type=radio] {
   display: flex;
   flex-direction: column;
   gap: var(--margin-m);
-  padding: var(--margin-s) 0 0 var(--margin-s);
+  padding: var(--margin-s) calc(var(--margin-s) - var(--card-border-size)) 0 var(--margin-s);
   font-size: var(--text-font-size);
   color: var(--basic-text-color);
   justify-content: center;
   transform: scale(1.01); /* trix pour eviter ligne 1px vide */
+  font-family: var(--font-family2);
 }
 
 .project-legend-container h2 {
-  font-family: 'Capsuula', serif;
+  font-family: var(--font-family1-serif);
   font-size: var(--title3-font-size);
   text-align: center;
 }
 
-.project-legend-container a, .project-legend-container span {
-  font-weight: bold;
+.project-legend-container p {
+  text-align: justify;
+}
+
+.project-legend-container a, .project-legend-container strong {
   color: var(--basic-text-color);
+  font-weight: normal;
+}
+
+.project-legend-container a.contact-link {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .project-legend-container ul {
@@ -534,7 +553,7 @@ input[type=radio] {
   padding: 12px 24px;
   margin: auto;
   border-radius: 25px;
-  font-family: "Capsuula", serif;
+  font-family: var(--font-family1-serif);
   font-size: var(--text-font-size);
   font-weight: bold;
   cursor: pointer;

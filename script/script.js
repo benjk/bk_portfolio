@@ -44,7 +44,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             Object.entries(project.details).forEach(([key, value]) => {
                 infosProjectHTML += `
                     <li class="infos-project">
-                        <span>${capitalize(key)}:</span> ${value}
+                        <strong>${capitalize(key)}:</strong> ${value}
                     </li>`;
             });            
             
