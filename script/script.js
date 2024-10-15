@@ -61,13 +61,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
             initializeAnimations();
-
+            
             if (isMobile()) {
                 const cards = document.querySelectorAll('.card');
                 cards.forEach(card => {
                     document.addEventListener('scroll', () => {
                         const cardRect = card.getBoundingClientRect();
-    
+                        
                         console.log('scroll');
                         
                         if (cardRect.bottom <= window.innerHeight) {
@@ -193,13 +193,29 @@ function adjustCarouselSize() {
 }
 
 function initializeAnimations() {
+    const carouselArrows = document.querySelectorAll(".car-arrow")
+    document.addEventListener('mousemove', (event) => {
+        isHovered(carouselArrows[0]);
+        isHovered(carouselArrows[1]);
+    });
+
     const contactLinks = document.querySelectorAll(".contact-link");
     contactLinks.forEach( link => {
         let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-
+        
         link.addEventListener("click", () => {
             const headerHeight = document.querySelector('header').clientHeight;
             gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
-          });
+        });
+    })
+    
+    const projectsLinks = document.querySelectorAll(".projects-link");
+    projectsLinks.forEach( link => {
+        let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+        
+        link.addEventListener("click", () => {
+            const headerHeight = document.querySelector('header').clientHeight;
+            gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
+        });
     })
 }
