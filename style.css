@@ -14,7 +14,7 @@
     --proj1-color2: #FFFFFF;
     --proj2-color1: #DDE9B9;
     --proj2-color2: #282552;
-    --proj2-color2-light: rgba(40, 37, 82, 0.7);
+    --proj2-color2-light: rgba(40, 37, 82, 0.6);
     --proj3-color1: #00B1B1;
     --proj3-color2: #fff;
     --proj4-color1: #69AB2F;
@@ -99,6 +99,8 @@ html, body {
   min-height: 100vh;
   width: 100%;
   background-color: var(--primary);
+  overscroll-behavior: none;
+  touch-action: manipulation;
 }
 
 .header {
@@ -169,7 +171,7 @@ section {
   width: 100%;
   height: calc(96vh - var(--header-height));
   max-height: calc(96vh - var(--header-height));
-  min-height: 690px;
+  min-height: 650px;
   padding: var(--margin-m) var(--margin-s);
   display: flex;
   flex-direction: column;
@@ -317,7 +319,7 @@ section {
 @media screen and (max-width: 1024px) {
   .projects-container-global {
     max-height: none;
-    height: calc(100vh - (var(--header-height)*2));
+    height: calc(98vh - (var(--header-height)*2));
   }
 
   .car-arrow {
