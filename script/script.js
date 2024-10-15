@@ -238,7 +238,7 @@ function initMobileSwipe() {
             const endX = e.changedTouches[0].clientX;
             const diffX = startX - endX;
             
-            if (Math.abs(diffX) > 50) {
+            if (Math.abs(diffX) > 100) {
                 if (diffX > 0) {
                     nextSlide();
                 } else {

@@ -316,7 +316,7 @@ section {
 @media screen and (max-width: 1024px) {
   .projects-container-global {
     max-height: none;
-    height: calc(100vh - var(--header-height));
+    height: calc(100vh - (var(--header-height)*2));
   }
 
   .car-arrow {
