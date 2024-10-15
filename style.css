@@ -323,15 +323,15 @@ section {
   }
 
   .car-arrow {
-    max-width: 30px;
+    max-width: 22px;
   }  
   
   .car-left-arrow {
-    left: 0;
+    left: 3px;
   }
   
   .car-right-arrow {
-    right: 0;
+    right: 3px;
   }
 
   .card{
