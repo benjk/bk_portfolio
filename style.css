@@ -14,10 +14,10 @@
     --proj1-color2: #FFFFFF;
     --proj2-color1: #DDE9B9;
     --proj2-color2: #282552;
-    --proj3-color1: #69AB2F;
-    --proj3-color2: #FFD73E;
-    --proj4-color1: #00B1B1;
-    --proj4-color2: #fff;
+    --proj3-color1: #00B1B1;
+    --proj3-color2: #fff;
+    --proj4-color1: #69AB2F;
+    --proj4-color2: #FFD73E;
 
     /****************** GLOBAL ******************/
     --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -369,11 +369,11 @@ section {
     height: 24%;
   }
 
-  #item-1:checked ~ .projects-container-global #project-3, #item-2:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4, #item-4:checked ~ .projects-container-global #project-2 {
+  #item-1:checked ~ .projects-container-global #project-4, #item-2:checked ~ .projects-container-global #project-1, #item-4:checked ~ .projects-container-global #project-3, #item-3:checked ~ .projects-container-global #project-2 {
     opacity: 0 !important;
   }
   
-  #item-1:checked ~ .projects-container-global #project-2, #item-2:checked ~ .projects-container-global #project-4, #item-3:checked ~ .projects-container-global #project-1, #item-4:checked ~ .projects-container-global #project-3 {
+  #item-1:checked ~ .projects-container-global #project-2, #item-2:checked ~ .projects-container-global #project-3, #item-4:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4 {
     opacity: 0 !important;
   }
 }
@@ -416,21 +416,21 @@ input[type=radio] {
 }
 
 #item-1:checked ~ .projects-container-global #project-3 .splide-container,  #item-1:checked ~ .projects-container-global #project-3 .project-legend-container, 
-#item-2:checked ~ .projects-container-global #project-1 .splide-container, #item-2:checked ~ .projects-container-global #project-1 .project-legend-container,
-#item-3:checked ~ .projects-container-global #project-4 .splide-container, #item-3:checked ~ .projects-container-global #project-4 .project-legend-container,
-#item-4:checked ~ .projects-container-global #project-2 .splide-container, #item-4:checked ~ .projects-container-global #project-2 .project-legend-container,
 #item-1:checked ~ .projects-container-global #project-2 .splide-container, #item-1:checked ~ .projects-container-global #project-2 .project-legend-container,
-#item-2:checked ~ .projects-container-global #project-4 .splide-container, #item-2:checked ~ .projects-container-global #project-4 .project-legend-container,
-#item-3:checked ~ .projects-container-global #project-1 .splide-container, #item-3:checked ~ .projects-container-global #project-1 .project-legend-container,
-#item-4:checked ~ .projects-container-global #project-3 .splide-container, #item-4:checked ~ .projects-container-global #project-3 .project-legend-container,
 #item-1:checked ~ .projects-container-global #project-4 .splide-container, #item-1:checked ~ .projects-container-global #project-4 .project-legend-container,
+#item-2:checked ~ .projects-container-global #project-1 .splide-container, #item-2:checked ~ .projects-container-global #project-1 .project-legend-container,
+#item-2:checked ~ .projects-container-global #project-4 .splide-container, #item-2:checked ~ .projects-container-global #project-4 .project-legend-container,
 #item-2:checked ~ .projects-container-global #project-3 .splide-container, #item-2:checked ~ .projects-container-global #project-3 .project-legend-container,
+#item-3:checked ~ .projects-container-global #project-4 .splide-container, #item-3:checked ~ .projects-container-global #project-4 .project-legend-container,
+#item-3:checked ~ .projects-container-global #project-1 .splide-container, #item-3:checked ~ .projects-container-global #project-1 .project-legend-container,
 #item-3:checked ~ .projects-container-global #project-2 .splide-container, #item-3:checked ~ .projects-container-global #project-2 .project-legend-container,
+#item-4:checked ~ .projects-container-global #project-2 .splide-container, #item-4:checked ~ .projects-container-global #project-2 .project-legend-container,
+#item-4:checked ~ .projects-container-global #project-3 .splide-container, #item-4:checked ~ .projects-container-global #project-3 .project-legend-container,
 #item-4:checked ~ .projects-container-global #project-1 .splide-container, #item-4:checked ~ .projects-container-global #project-1 .project-legend-container{
   pointer-events: none;
 }
 
-#item-1:checked ~ .projects-container-global #project-3, #item-2:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4, #item-4:checked ~ .projects-container-global #project-2 {
+#item-1:checked ~ .projects-container-global #project-4, #item-2:checked ~ .projects-container-global #project-1, #item-4:checked ~ .projects-container-global #project-3, #item-3:checked ~ .projects-container-global #project-2 {
   transform: translatex(-30%) scale(.7);
   /* transform: translatex(-50%) scale(.4) rotate(-90deg); */
   opacity: .6;
@@ -439,7 +439,7 @@ input[type=radio] {
   filter: blur(5px);
 }
 
-#item-1:checked ~ .projects-container-global #project-2, #item-2:checked ~ .projects-container-global #project-4, #item-3:checked ~ .projects-container-global #project-1, #item-4:checked ~ .projects-container-global #project-3 {
+#item-1:checked ~ .projects-container-global #project-2, #item-2:checked ~ .projects-container-global #project-3, #item-4:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4 {
   transform: translatex(30%) scale(.7);
   /* transform: translatex(50%) scale(.4) rotate(90deg); */
   opacity: .6;
@@ -448,12 +448,12 @@ input[type=radio] {
   filter: blur(5px);
 }
 
-#item-1:checked ~ .projects-container-global #project-4, #item-2:checked ~ .projects-container-global #project-3, #item-3:checked ~ .projects-container-global #project-2, #item-4:checked ~ .projects-container-global #project-1 {
+#item-1:checked ~ .projects-container-global #project-3, #item-2:checked ~ .projects-container-global #project-4, #item-4:checked ~ .projects-container-global #project-2, #item-3:checked ~ .projects-container-global #project-1 {
   opacity: .2;
   z-index: 0;
 }
 
-#item-1:checked ~ .projects-container-global #project-1, #item-2:checked ~ .projects-container-global #project-2, #item-3:checked ~ .projects-container-global #project-3, #item-4:checked ~ .projects-container-global #project-4 {
+#item-1:checked ~ .projects-container-global #project-1, #item-2:checked ~ .projects-container-global #project-2, #item-4:checked ~ .projects-container-global #project-4, #item-3:checked ~ .projects-container-global #project-3 {
   transform: translatex(0) scale(1);
   opacity: 1;
   z-index: 1;

@@ -40,6 +40,23 @@
     },
     {
         "id": 3,
+        "title": "Oyogoo",
+        "description": "Cette application web, <strong>optimisée pour mobile</strong>, propose des podcasts ludiques destinés aux enfants pour les accompagner dans l'apprentissage de la natation.<br>Un <strong>player personnalisé</strong> a été développé pour ce besoin spécifique<br><br> Il s'agit d'une <strong>PWA (Progressive Web Application)</strong>, une application hebergée sur le web, mais se comportant comme une application mobile, elle peut être installée, lancée en plein écran et déployée sur le <strong>Playstore</strong>.<br><br>Visitez <a target='blank' href='https://www.oyogoo.com/'>oyogoo.com</a> !",
+        "images": [
+            "assets/img/projet4_thumb1.JPG",
+            "assets/img/projet4_thumb2.JPG",
+            "assets/img/projet4_thumb3.JPG",
+            "assets/img/projet4_thumb5.JPG",
+            "assets/img/projet4_thumb4.JPG"
+        ],
+        "details": {
+            "année": "2023",
+            "client": "Oyogoo",
+            "plateforme": "Mobile, Web"
+        }
+    },
+    {
+        "id": 4,
         "title": "Chapzy",
         "description": "Mon premier vrai projet développé en Android natif, c'est une application de divertissement qui permet de jouer aux Time's up entre amis.<br>Elle sert de support de jeu et offre des fonctionnalités complètes pour organiser les parties : <strong>gestion des joueurs et des équipes</strong>, <strong>minuterie</strong>, <strong>calcul des scores</strong>. L'application permet également la personnalisation avancée des paramètres de jeu, la création d'équipes flexibles, l'ajout de nouveaux mots par les joueurs et la <strong>gestion d'une collection</strong> personnalisée.<br><br>Le déploiement de cette application m'a permis de découvrir le fonctionnement du <strong>Playstore Google</strong>, du <strong>référencement Android</strong> (ASO) et de la <strong>vente de produits digitaux</strong>.<br><br>N'hésitez pas à <a target='blank' href='https://play.google.com/store/apps/details?id=chapzy.projet.chapzygame&hl=fr'>tester l'application</a> !",
         "images": [
@@ -56,23 +73,6 @@
         "details": {
             "année": "2019",
             "plateforme": "Android"
-        }
-    },
-    {
-        "id": 4,
-        "title": "Oyogoo",
-        "description": "Cette application web, <strong>optimisée pour mobile</strong>, propose des podcasts ludiques destinés aux enfants pour les accompagner dans l'apprentissage de la natation.<br>Un <strong>player personnalisé</strong> a été développé pour ce besoin spécifique<br><br> Il s'agit d'une <strong>PWA (Progressive Web Application)</strong>, une application hebergée sur le web, mais se comportant comme une application mobile, elle peut être installée, lancée en plein écran et déployée sur le <strong>Playstore</strong>.<br><br>Visitez <a target='blank' href='https://www.oyogoo.com/'>oyogoo.com</a> !",
-        "images": [
-            "assets/img/projet4_thumb1.JPG",
-            "assets/img/projet4_thumb2.JPG",
-            "assets/img/projet4_thumb3.JPG",
-            "assets/img/projet4_thumb5.JPG",
-            "assets/img/projet4_thumb4.JPG"
-        ],
-        "details": {
-            "année": "2023",
-            "client": "Oyogoo",
-            "plateforme": "Mobile, Web"
         }
     }
 ]

@@ -67,11 +67,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 cards.forEach(card => {
                     document.addEventListener('scroll', () => {
                         const cardRect = card.getBoundingClientRect();
-                        
-                        console.log('scroll');
-                        
+                                                
                         if (cardRect.bottom <= window.innerHeight) {
-                            console.log('pwout');
                             card.classList.add('scrollY');
                         } else {
                             card.classList.remove('scrollY');
@@ -138,6 +135,7 @@ function initializeSplideAndResize(data) {
     // GESTION DES THUMBNAILS 
     adjustCarouselSize()
     checkOverflow()
+    initMobileSwipe()
 }
 
 
@@ -146,9 +144,7 @@ function checkOverflow() {
     
     container.forEach(cont => {
         if (cont.clientWidth < cont.scrollWidth) {
-            cont.classList.add('overflow');
-            console.log('overflowed');
-            
+            cont.classList.add('overflow');            
         } else {
             cont.classList.remove('overflow');
         }
@@ -184,7 +180,6 @@ function adjustCarouselSize() {
                 
                 if (imgDifference >= imgTolerance) {
                     img.style.setProperty('height', `${Math.round(imgRealHeight)}px`, 'important');
-                    console.log("resizedImg");
                 }
             })            
         }
@@ -198,7 +193,7 @@ function initializeAnimations() {
         isHovered(carouselArrows[0]);
         isHovered(carouselArrows[1]);
     });
-
+    
     const contactLinks = document.querySelectorAll(".contact-link");
     contactLinks.forEach( link => {
         let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
@@ -218,4 +213,58 @@ function initializeAnimations() {
             gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
         });
     })
+}
+
+function initMobileSwipe() {
+    if (isMobile()) {
+        let startX = 0;
+        let currentSlide = 1;
+        
+        const totalSlides = 4;
+        
+        const handleTouchStart = (e) => {
+            if (!e.target.closest('.thumbnail-carousel') &&  !e.target.closest('.main-carousel')) {
+                startX = e.touches[0].clientX;
+            } else {
+                startX = null;
+            }
+        };
+        
+        const handleTouchEnd = (e) => {
+            if (startX === null) return;
+
+            const endX = e.changedTouches[0].clientX;
+            const diffX = startX - endX;
+            
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+            }
+        };
+        
+        const nextSlide = () => {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+            } else {
+                currentSlide = 1
+            }
+            document.getElementById(`item-${currentSlide}`).checked = true;
+        };
+        
+        const previousSlide = () => {
+            if (currentSlide > 1) {
+                currentSlide--;
+            } else {
+                currentSlide = totalSlides;
+            }
+            document.getElementById(`item-${currentSlide}`).checked = true;
+        };
+        
+        const swipeContainer = document.querySelector('.projects-container-global');
+        swipeContainer.addEventListener('touchstart', handleTouchStart);
+        swipeContainer.addEventListener('touchend', handleTouchEnd);        
+    }
 }
