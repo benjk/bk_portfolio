@@ -205,9 +205,9 @@ function initializeAnimations() {
 
 function initMobileSwipe() {
     // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
-    // ou/et ajouter le Y pour annuler le swipe si trong grande diffY
     if (isMobile()) {
         let startX = 0;
+        let startY = 0;
         let currentSlide = 1;
         
         const totalSlides = 4;
@@ -215,6 +215,7 @@ function initMobileSwipe() {
         const handleTouchStart = (e) => {
             if (!e.target.closest('.thumbnail-carousel')) {
                 startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;                
             } else {
                 startX = null;
             }
@@ -226,7 +227,12 @@ function initMobileSwipe() {
             const endX = e.changedTouches[0].clientX;
             const diffX = startX - endX;
             
-            if (Math.abs(diffX) > 150) {
+            const endY = e.changedTouches[0].clientY;
+            const diffY = startY - endY;
+            console.log(diffY);
+            
+            
+            if (Math.abs(diffX) > 80 && Math.abs(diffY) < 25) {
                 if (diffX > 0) {
                     nextSlide();
                 } else {
