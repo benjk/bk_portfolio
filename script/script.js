@@ -189,10 +189,12 @@ function adjustCarouselSize() {
 
 function initializeAnimations() {
     const carouselArrows = document.querySelectorAll(".car-arrow")
-    document.addEventListener('mousemove', (event) => {
-        isHovered(carouselArrows[0]);
-        isHovered(carouselArrows[1]);
-    });
+    if (!isMobile()) {        
+        document.addEventListener('mousemove', (event) => {
+            isHovered(carouselArrows[0]);
+            isHovered(carouselArrows[1]);
+        });
+    }
     
     const contactLinks = document.querySelectorAll(".contact-link");
     contactLinks.forEach( link => {
