@@ -7,7 +7,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         
         const projectsContainer = document.querySelector('.projects-container-global');
-        projectsContainer.innerHTML = '';
         
         data.forEach(project => {
             // On passe l'image 1 en dernier
@@ -61,21 +60,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
             initializeAnimations();
-            
-            if (isMobile()) {
-                const cards = document.querySelectorAll('.card');
-                cards.forEach(card => {
-                    document.addEventListener('scroll', () => {
-                        const cardRect = card.getBoundingClientRect();
-                                                
-                        if (cardRect.bottom <= window.innerHeight) {
-                            card.classList.add('scrollY');
-                        } else {
-                            card.classList.remove('scrollY');
-                        }
-                    });
-                })
-            }
+            initCardScrolling();
         });
     });
 });
@@ -189,6 +174,7 @@ function adjustCarouselSize() {
 
 function initializeAnimations() {
     const carouselArrows = document.querySelectorAll(".car-arrow")
+    
     if (!isMobile()) {        
         document.addEventListener('mousemove', (event) => {
             isHovered(carouselArrows[0]);
@@ -218,6 +204,8 @@ function initializeAnimations() {
 }
 
 function initMobileSwipe() {
+    // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
+    // ou/et ajouter le Y pour annuler le swipe si trong grande diffY
     if (isMobile()) {
         let startX = 0;
         let currentSlide = 1;
@@ -234,11 +222,11 @@ function initMobileSwipe() {
         
         const handleTouchEnd = (e) => {
             if (startX === null) return;
-
+            
             const endX = e.changedTouches[0].clientX;
             const diffX = startX - endX;
             
-            if (Math.abs(diffX) > 100) {
+            if (Math.abs(diffX) > 150) {
                 if (diffX > 0) {
                     nextSlide();
                 } else {
@@ -270,3 +258,141 @@ function initMobileSwipe() {
         swipeContainer.addEventListener('touchend', handleTouchEnd);        
     }
 }
+
+// function initCardScrolling() {
+//     if (isMobile()) {
+//         const cards = document.querySelectorAll('.card');
+//         cards.forEach(card => {
+    //             document.addEventListener('scroll', (e) => {
+        //                 const cardRect = card.getBoundingClientRect();
+//                 const isCardVisible = cardRect.top <= window.innerHeight && cardRect.bottom >= 0;
+
+//                 if (isCardVisible) {
+//                     const cardScrollHeight = card.scrollHeight;
+//                     const cardClientHeight = card.clientHeight;
+
+//                     if (cardRect.bottom <= window.innerHeight && window.scrollY + window.innerHeight >= cardRect.bottom) {
+//                         if (card.scrollTop < cardScrollHeight - cardClientHeight) {
+//                             // Bloquer le scroll sur la page et scroller la carte
+//                             e.preventDefault();
+//                             card.scrollTop += 20;  // Incrément du scroll sur la carte
+//                         }
+//                     }
+
+//                     // Si on remonte et qu'on atteint le haut de la carte
+//                     if (cardRect.top >= 0 && window.scrollY <= cardRect.top) {
+//                         if (card.scrollTop > 0) {
+//                             // Bloquer le scroll sur la page et remonter dans la carte
+//                             e.preventDefault();
+//                             card.scrollTop -= 20;  // Décrément du scroll sur la carte
+//                         }
+//                     }
+//                 }
+
+//                 if (cardRect.bottom <= window.innerHeight) {
+//                     card.classList.add('scrollY');
+//                 } else {
+//                     card.classList.remove('scrollY');
+//                 }
+//             });
+//         })
+//     }
+// }
+
+function initCardScrolling() {
+    
+    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+    let activeCard = document.querySelector('.card');
+    // Apply class is-active on cards
+    const radios = document.querySelectorAll('.radio-carousel');
+    radios.forEach(radio => {
+        if (radio.id == "item-1") {
+            document.querySelector(`label[for="${radio.id}"]`).classList.add('is-active');
+        }
+        radio.addEventListener('change', (event) => {
+            document.querySelectorAll('.card').forEach(label => {
+                label.classList.remove('is-active');
+            });
+            
+            if (radio.checked) {
+                const correspondingCard = document.querySelector(`label[for="${radio.id}"]`);
+                
+                if (correspondingCard) {
+                    correspondingCard.classList.add('is-active');
+                    activeCard = correspondingCard;
+                }
+            }
+        });
+    });
+
+    if (isMobile()) {
+        
+        const cards = document.querySelectorAll('.card');
+        
+        cards.forEach(card => {
+        });
+        let lastScrollTop = 0;
+        let scrollVelocity = 0;
+        
+        window.onscroll = function(e) {
+            const currentScrollTop = this.scrollY;
+            const isScrollingDown = currentScrollTop > lastScrollTop;
+            scrollVelocity = currentScrollTop - lastScrollTop;
+            lastScrollTop = currentScrollTop;
+            
+            const cardRect = activeCard.getBoundingClientRect();
+            if (isScrollingDown) {
+                const cardBottomReached = cardRect.bottom <= window.innerHeight;
+                
+                if (cardBottomReached) {
+                   
+                    const hasMoreContentToScroll = activeCard.scrollTop < activeCard.scrollHeight - activeCard.clientHeight;
+                    
+                    if (hasMoreContentToScroll) {
+                        e.preventDefault();
+                        smoothScrollInsideCard(activeCard, scrollVelocity);
+                    } else {
+                        // console.log("nomore down");
+                    }
+                }
+            } else {
+                const cardTopReached = cardRect.top > 0 + headerHeight;              
+                
+                if (cardTopReached) {
+                    const hasMoreContentToScroll = activeCard.scrollTop > 0;                    
+                    
+                    if (hasMoreContentToScroll) {
+                        e.preventDefault();
+                        smoothScrollInsideCard(activeCard, scrollVelocity);
+                    } else {
+                        // console.log("nomore top");
+                    }
+                } else {
+                    // console.log("not reached");    
+                }
+            }
+        };
+        
+        
+        
+        function smoothScrollInsideCard(card, velocity) {             
+            const friction = 0.45;  // Facteur de friction pour réduire la vitesse du scroll progressivement
+            
+            function applyInertia() {
+                if (velocity >= 1 || velocity <= -1) {
+                    console.log("scrollTop");
+                    console.log(card.scrollTop);
+                    
+                    card.scrollTop += velocity;
+                    velocity *= friction;
+                    
+                    requestAnimationFrame(applyInertia);
+                }
+            }
+            
+            applyInertia();
+        }
+    }
+}
+
