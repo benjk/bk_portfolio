@@ -259,46 +259,6 @@ function initMobileSwipe() {
     }
 }
 
-// function initCardScrolling() {
-//     if (isMobile()) {
-//         const cards = document.querySelectorAll('.card');
-//         cards.forEach(card => {
-    //             document.addEventListener('scroll', (e) => {
-        //                 const cardRect = card.getBoundingClientRect();
-//                 const isCardVisible = cardRect.top <= window.innerHeight && cardRect.bottom >= 0;
-
-//                 if (isCardVisible) {
-//                     const cardScrollHeight = card.scrollHeight;
-//                     const cardClientHeight = card.clientHeight;
-
-//                     if (cardRect.bottom <= window.innerHeight && window.scrollY + window.innerHeight >= cardRect.bottom) {
-//                         if (card.scrollTop < cardScrollHeight - cardClientHeight) {
-//                             // Bloquer le scroll sur la page et scroller la carte
-//                             e.preventDefault();
-//                             card.scrollTop += 20;  // Incrément du scroll sur la carte
-//                         }
-//                     }
-
-//                     // Si on remonte et qu'on atteint le haut de la carte
-//                     if (cardRect.top >= 0 && window.scrollY <= cardRect.top) {
-//                         if (card.scrollTop > 0) {
-//                             // Bloquer le scroll sur la page et remonter dans la carte
-//                             e.preventDefault();
-//                             card.scrollTop -= 20;  // Décrément du scroll sur la carte
-//                         }
-//                     }
-//                 }
-
-//                 if (cardRect.bottom <= window.innerHeight) {
-//                     card.classList.add('scrollY');
-//                 } else {
-//                     card.classList.remove('scrollY');
-//                 }
-//             });
-//         })
-//     }
-// }
-
 function initCardScrolling() {
     
     const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -353,8 +313,10 @@ function initCardScrolling() {
                         e.preventDefault();
                         smoothScrollInsideCard(activeCard, scrollVelocity);
                     } else {
-                        // console.log("nomore down");
+                        // console.log("nomore bot");
                     }
+                } else {
+                    // console.log("no reach bot");
                 }
             } else {
                 const cardTopReached = cardRect.top > 0 + headerHeight;              
