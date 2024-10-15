@@ -229,7 +229,6 @@ function initMobileSwipe() {
             
             const endY = e.changedTouches[0].clientY;
             const diffY = startY - endY;
-            console.log(diffY);
             
             
             if (Math.abs(diffX) > 80 && Math.abs(diffY) < 25) {
@@ -348,10 +347,7 @@ function initCardScrolling() {
             const friction = 0.45;  // Facteur de friction pour réduire la vitesse du scroll progressivement
             
             function applyInertia() {
-                if (velocity >= 1 || velocity <= -1) {
-                    console.log("scrollTop");
-                    console.log(card.scrollTop);
-                    
+                if (velocity >= 1 || velocity <= -1) {                   
                     card.scrollTop += velocity;
                     velocity *= friction;
                     
