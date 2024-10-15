@@ -223,7 +223,7 @@ function initMobileSwipe() {
         const totalSlides = 4;
         
         const handleTouchStart = (e) => {
-            if (!e.target.closest('.thumbnail-carousel') &&  !e.target.closest('.main-carousel')) {
+            if (!e.target.closest('.thumbnail-carousel')) {
                 startX = e.touches[0].clientX;
             } else {
                 startX = null;

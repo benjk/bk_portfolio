@@ -376,6 +376,10 @@ section {
   #item-1:checked ~ .projects-container-global #project-2, #item-2:checked ~ .projects-container-global #project-3, #item-4:checked ~ .projects-container-global #project-1, #item-3:checked ~ .projects-container-global #project-4 {
     opacity: 0 !important;
   }
+
+  #item-1:checked ~ .projects-container-global #project-3, #item-2:checked ~ .projects-container-global #project-4, #item-4:checked ~ .projects-container-global #project-2, #item-3:checked ~ .projects-container-global #project-1 {
+    opacity: 0 !important;
+  }
 }
 
 .splide {
