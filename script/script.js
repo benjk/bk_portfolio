@@ -60,7 +60,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
             initializeAnimations();
-            initCardScrolling();
+            initCardSwipeAndScroll();
         });
     });
 });
@@ -120,7 +120,6 @@ function initializeSplideAndResize(data) {
     // GESTION DES THUMBNAILS 
     adjustCarouselSize()
     checkOverflow()
-    initMobileSwipe()
 }
 
 
@@ -203,7 +202,21 @@ function initializeAnimations() {
     })
 }
 
-function initMobileSwipe() {
+function initCardSwipeAndScroll() {
+    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);    
+
+    let activeCard = document.querySelector('.card');
+    // Apply class is-active on cards
+    const radios = document.querySelectorAll('.radio-carousel');
+    radios.forEach(radio => {
+        if (radio.id == "item-1") {
+            document.querySelector(`label[for="${radio.id}"]`).classList.add('is-active');
+        }
+        radio.addEventListener('change', (event) => {
+            activateCardForItem(radio)
+        });
+    });
+
     // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
     if (isMobile()) {
         let startX = 0;
@@ -246,7 +259,9 @@ function initMobileSwipe() {
             } else {
                 currentSlide = 1
             }
-            document.getElementById(`item-${currentSlide}`).checked = true;
+            activeItem = document.getElementById(`item-${currentSlide}`);
+            activeItem.checked = true;
+            activateCardForItem(activeItem);
         };
         
         const previousSlide = () => {
@@ -255,44 +270,16 @@ function initMobileSwipe() {
             } else {
                 currentSlide = totalSlides;
             }
-            document.getElementById(`item-${currentSlide}`).checked = true;
+            activeItem = document.getElementById(`item-${currentSlide}`);
+            activeItem.checked = true;
+            activateCardForItem(activeItem);
         };
         
         const swipeContainer = document.querySelector('.projects-container-global');
         swipeContainer.addEventListener('touchstart', handleTouchStart);
-        swipeContainer.addEventListener('touchend', handleTouchEnd);        
-    }
-}
-
-function initCardScrolling() {
-    
-    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-    let activeCard = document.querySelector('.card');
-    // Apply class is-active on cards
-    const radios = document.querySelectorAll('.radio-carousel');
-    radios.forEach(radio => {
-        if (radio.id == "item-1") {
-            document.querySelector(`label[for="${radio.id}"]`).classList.add('is-active');
-        }
-        radio.addEventListener('change', (event) => {
-            document.querySelectorAll('.card').forEach(label => {
-                label.classList.remove('is-active');
-            });
-            
-            if (radio.checked) {
-                const correspondingCard = document.querySelector(`label[for="${radio.id}"]`);
-                
-                if (correspondingCard) {
-                    correspondingCard.classList.add('is-active');
-                    activeCard = correspondingCard;
-                }
-            }
-        });
-    });
-
-    if (isMobile()) {
+        swipeContainer.addEventListener('touchend', handleTouchEnd);    
         
+        // SCROLLING
         const cards = document.querySelectorAll('.card');
         
         cards.forEach(card => {
@@ -356,6 +343,21 @@ function initCardScrolling() {
             }
             
             applyInertia();
+        }
+
+        function activateCardForItem(radioItem) {
+            document.querySelectorAll('.card').forEach(label => {
+                label.classList.remove('is-active');
+            });
+            
+            if (radioItem.checked) {
+                const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
+                
+                if (correspondingCard) {
+                    correspondingCard.classList.add('is-active');
+                    activeCard = correspondingCard;
+                }
+            }
         }
     }
 }
