@@ -94,6 +94,14 @@ h1,h2,h3,h4,h5,p,img, span, div {
     caret-color: transparent;
 }
 
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+
+
 /****************** GLOBAL ******************/
 html, body {
   min-height: 100vh;
@@ -275,10 +283,12 @@ section {
 
 .thumbnail-carousel .splide__list li {
   flex: 0 0 auto;
+  height: 100%;
 }
 
 .thumbnail-carousel .splide__list {
   justify-content: center;
+  align-items: flex-start;
 }
 
 .thumbnail-carousel .splide__list.overflow {
@@ -341,7 +351,7 @@ section {
 }
 
 .splide__slide img {
-  width: 100%;
+  width: auto;
   height: 100%;
   object-fit: cover;
   margin: auto;
