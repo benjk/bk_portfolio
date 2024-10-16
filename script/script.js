@@ -39,6 +39,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 thumbHTML = mainImagesHTML;
             }
             
+            if (project.video) {
+                thumbHTML += `
+                    <li class="splide__slide">
+                        <img src="${project.video.thumb}" alt="">
+                    </li>`;
+                
+                mainImagesHTML += `
+                    <li class="splide__slide">
+                        ${project.video.src}
+                    </li>`;
+            }
+            
             let infosProjectHTML = '';
             Object.entries(project.details).forEach(([key, value]) => {
                 infosProjectHTML += `
@@ -86,7 +98,7 @@ function initializeSplideAndResize(data) {
     const mainCarousels = document.querySelectorAll('.main-carousel');
     
     mainCarousels.forEach((mainCarousel, index) => {
-        const startIndex = (data[index].images.length) - 1
+        const startIndex = (data[index].images.length)
         
         var main = new Splide(`#main-carousel${index + 1}`, {
             autoHeight: true,
@@ -204,7 +216,7 @@ function initializeAnimations() {
 
 function initCardSwipeAndScroll() {
     const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);    
-
+    
     let activeCard = document.querySelector('.card');
     // Apply class is-active on cards
     const radios = document.querySelectorAll('.radio-carousel');
@@ -216,7 +228,7 @@ function initCardSwipeAndScroll() {
             activateCardForItem(radio)
         });
     });
-
+    
     // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
     if (isMobile()) {
         let startX = 0;
@@ -298,7 +310,7 @@ function initCardSwipeAndScroll() {
                 const cardBottomReached = cardRect.bottom <= window.innerHeight;
                 
                 if (cardBottomReached) {
-                   
+                    
                     const hasMoreContentToScroll = activeCard.scrollTop < activeCard.scrollHeight - activeCard.clientHeight;
                     
                     if (hasMoreContentToScroll) {
@@ -344,7 +356,7 @@ function initCardSwipeAndScroll() {
             
             applyInertia();
         }
-
+        
         function activateCardForItem(radioItem) {
             document.querySelectorAll('.card').forEach(label => {
                 label.classList.remove('is-active');

@@ -331,6 +331,15 @@ section {
   box-shadow: var(--basic-shadow);
 }
 
+.main-carousel iframe {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--basic-shadow);
+}
+
 .splide__slide img {
   width: 100%;
   height: 100%;
