@@ -152,7 +152,7 @@ function adjustCarouselSize() {
     const mainCarousels = document.querySelectorAll('.main-carousel');
     
     mainCarousels.forEach(mainCarousel => {    
-        const activeImg = mainCarousel.querySelector('.splide__slide:last-child img');
+        const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child iframe');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
         
         if (activeImg) {
