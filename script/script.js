@@ -403,10 +403,12 @@ function initCardSwipeAndScroll() {
             const friction = 0.45;  // Facteur de friction pour réduire la vitesse du scroll progressivement
             
             function applyInertia() {
-                if (velocity >= 1 || velocity <= -1) {                   
+                const hasMoreContentToScroll2 = ((card.scrollTop < card.scrollHeight - card.clientHeight) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
+
+                if (Math.abs(velocity) >= 1 && hasMoreContentToScroll2) {                   
                     card.scrollTop += velocity;
-                    velocity *= friction;
-                    
+                    velocity *= friction;               
+
                     requestAnimationFrame(applyInertia);
                 }
             }
