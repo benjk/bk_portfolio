@@ -43,6 +43,7 @@
 
     --card-border-size: 10px;
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+    --car-arrow-mobile-size: clamp(1.2rem, 0.248rem + 3.81vw, 2.2rem);
 
     --title3-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
     --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
@@ -699,15 +700,15 @@ input[type=radio] {
   }
 
   .car-arrow {
-    max-width: 22px;
+    max-width: var(--car-arrow-mobile-size);
   }  
   
   .car-left-arrow {
-    left: 3px;
+    left: var(--margin-xs);
   }
   
   .car-right-arrow {
-    right: 3px;
+    right: var(--margin-xs);
   }
 
   .card{

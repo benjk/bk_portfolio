@@ -303,19 +303,76 @@ function initCardSwipeAndScroll() {
                 }
             }
         };
+    }
         
         initializeAnimations();
 
         function initializeAnimations() {
             const carouselArrows = document.querySelectorAll(".car-arrow")
+            let hoveredCard = null;
+            let hoveredArrow = null;
             
-            if (!isMobile()) {        
+            if (!isMobile()) {
+                const cardsContainer = document.querySelector('.projects-container-global');
+
+                cardsContainer.addEventListener('mouseover', (event) => {
+                    const card = event.target.closest('.card');
+
+                    if (!card || activeCard == card) return;
+                    hoveredCard = card;
+                
+                    switch (card.id) {
+                        case "project-1":
+                            if (activeCard && activeCard.id == "project-2") {
+                                hoveredArrow = carouselArrows[0];
+                            } else if (activeCard && activeCard.id == "project-4") {
+                                hoveredArrow = carouselArrows[1];
+                            }
+                            break;
+                        case "project-2":
+                            if (activeCard && activeCard.id == "project-3") {
+                                hoveredArrow = carouselArrows[0];
+                            } else if (activeCard && activeCard.id == "project-1") {
+                                hoveredArrow = carouselArrows[1];
+                            }
+                            break;
+                        case "project-3":
+                            if (activeCard && activeCard.id == "project-4") {
+                                hoveredArrow = carouselArrows[0];
+                            } else if (activeCard && activeCard.id == "project-2") {
+                                hoveredArrow = carouselArrows[1];
+                            }
+                            break;
+                        case "project-4":
+                            if (activeCard && activeCard.id == "project-1") {
+                                hoveredArrow = carouselArrows[0];
+                            } else if (activeCard && activeCard.id == "project-3") {
+                                hoveredArrow = carouselArrows[1];
+                            }
+                            break;
+                    }
+                    if (hoveredArrow) {
+                        hoveredArrow.classList.add('hovered');
+                        hoveredCard.addEventListener('mouseleave', (event) => {
+                            hoveredArrow.classList.remove("hovered");
+                        });
+                    }
+                });
+
                 const cards = document.querySelectorAll('.card');
+                
                 cards.forEach( card => {
-                    card.addEventListener('mousemove', (event) => {
-                        if (card == activeCard) {
-                            
+                    card.addEventListener('mouseover', (event) => {
+                        switch (card.id)   {
+                            case "project-1":
+                                if (activeCard.id == "project-2") {
+                                    carouselArrows[0].classList.add("hovered");
+                                } else if (activeCard.id == "project-4"){
+                                    carouselArrows[1].classList.add("hovered");
+                                }
                         }
+                        
+        
                     });
                 })
             }
@@ -355,8 +412,8 @@ function initCardSwipeAndScroll() {
             }
             
             applyInertia();
-        }
-        
+        }   
+
         function activateCardForItem(radioItem) {
             document.querySelectorAll('.card').forEach(label => {
                 label.classList.remove('is-active');
@@ -372,5 +429,4 @@ function initCardSwipeAndScroll() {
             }
         }
     }
-}
 
