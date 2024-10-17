@@ -71,7 +71,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
-            initializeAnimations();
             initCardSwipeAndScroll();
         });
     });
@@ -183,37 +182,6 @@ function adjustCarouselSize() {
     });
 }
 
-function initializeAnimations() {
-    const carouselArrows = document.querySelectorAll(".car-arrow")
-    
-    if (!isMobile()) {        
-        document.addEventListener('mousemove', (event) => {
-            isHovered(carouselArrows[0]);
-            isHovered(carouselArrows[1]);
-        });
-    }
-    
-    const contactLinks = document.querySelectorAll(".contact-link");
-    contactLinks.forEach( link => {
-        let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-        
-        link.addEventListener("click", () => {
-            const headerHeight = document.querySelector('header').clientHeight;
-            gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
-        });
-    })
-    
-    const projectsLinks = document.querySelectorAll(".projects-link");
-    projectsLinks.forEach( link => {
-        let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-        
-        link.addEventListener("click", () => {
-            const headerHeight = document.querySelector('header').clientHeight;
-            gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
-        });
-    })
-}
-
 function initCardSwipeAndScroll() {
     const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);    
     
@@ -292,10 +260,6 @@ function initCardSwipeAndScroll() {
         swipeContainer.addEventListener('touchend', handleTouchEnd);    
         
         // SCROLLING
-        const cards = document.querySelectorAll('.card');
-        
-        cards.forEach(card => {
-        });
         let lastScrollTop = 0;
         let scrollVelocity = 0;
         
@@ -340,6 +304,42 @@ function initCardSwipeAndScroll() {
             }
         };
         
+        initializeAnimations();
+
+        function initializeAnimations() {
+            const carouselArrows = document.querySelectorAll(".car-arrow")
+            
+            if (!isMobile()) {        
+                const cards = document.querySelectorAll('.card');
+                cards.forEach( card => {
+                    card.addEventListener('mousemove', (event) => {
+                        if (card == activeCard) {
+                            
+                        }
+                    });
+                })
+            }
+            
+            const contactLinks = document.querySelectorAll(".contact-link");
+            contactLinks.forEach( link => {
+                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+                
+                link.addEventListener("click", () => {
+                    const headerHeight = document.querySelector('header').clientHeight;
+                    gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
+                });
+            })
+            
+            const projectsLinks = document.querySelectorAll(".projects-link");
+            projectsLinks.forEach( link => {
+                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+                
+                link.addEventListener("click", () => {
+                    const headerHeight = document.querySelector('header').clientHeight;
+                    gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
+                });
+            })
+        }
         
         
         function smoothScrollInsideCard(card, velocity) {             
