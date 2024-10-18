@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@splidejs/splide": "^4.1.4",
+    "gsap": "^3.12.5",
     "lite-youtube-embed": "^0.3.3"
   }
 }
