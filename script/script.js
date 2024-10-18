@@ -256,8 +256,8 @@ function initCardSwipeAndScroll() {
         };
         
         const swipeContainer = document.querySelector('.projects-container-global');
-        swipeContainer.addEventListener('touchstart', handleTouchStart);
-        swipeContainer.addEventListener('touchend', handleTouchEnd);    
+        swipeContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
+        swipeContainer.addEventListener('touchend', handleTouchEnd, {passive: true});    
         
         // SCROLLING
         let lastScrollTop = 0;
