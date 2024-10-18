@@ -422,6 +422,7 @@ function initCardSwipeAndScroll() {
             });
             
             if (radioItem.checked) {
+                pauseVideoPlayer();
                 const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
                 
                 if (correspondingCard) {
@@ -429,6 +430,14 @@ function initCardSwipeAndScroll() {
                     activeCard = correspondingCard;
                 }
             }
+        }
+
+        async function pauseVideoPlayer() {
+            const player = await document.querySelector('lite-youtube').getYTPlayer();
+            if (player && player.getPlayerState() == 1) {              
+                player.pauseVideo()
+            }
+
         }
     }
 
