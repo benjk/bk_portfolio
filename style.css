@@ -362,7 +362,7 @@ section {
   box-shadow: var(--basic-shadow);
 }
 
-.main-carousel iframe {
+.main-carousel lite-youtube {
   height: 100%;
   width: 100%;
   max-width: 100%;

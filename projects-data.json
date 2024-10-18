@@ -16,8 +16,9 @@
             "assets/img/projet1_thumb10.JPG"
         ],
         "video": {
-            "src": "<iframe loading='lazy' width='560' height='315' src='https://www.youtube.com/embed/WKHzvc703PE?si=j7mcOnz9k9EpC96e' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>",
-                        "thumb": "assets/img/projet1_video_thumb.JPG"
+            "src": "WKHzvc703PE",
+            "title": "Siane Démo",
+            "thumb": "assets/img/projet1_video_thumb.JPG"
         },
         "details": {
             "année": "2022",

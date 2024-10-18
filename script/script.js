@@ -47,7 +47,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 mainImagesHTML += `
                     <li class="splide__slide">
-                        ${project.video.src}
+                        <lite-youtube videoid="${project.video.src}" playlabel="${project.video.title}"></lite-youtube>
                     </li>`;
             }
             
