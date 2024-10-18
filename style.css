@@ -153,13 +153,18 @@ section {
   width: 100%;
 }
 
-#first-section, #second-section, #third-section, #four-section {
-  min-height: 500px;
-
+#second-section, #third-section, #four-section {
+  min-height: 300px;
 }
 
 #first-section {
+  height: calc(100vh - var(--header-height) - var(--margin-m));
+  min-height: 300px;
   background-color: var(--color1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #first-section p {
@@ -193,10 +198,9 @@ section {
 .projects-container-global {
   position: relative;
   width: 100%;
-  height: calc(96vh - var(--header-height));
-  max-height: calc(96vh - var(--header-height));
+  height: calc(100vh - var(--header-height));
+  max-height: calc(100vh - var(--header-height));
   min-height: 650px;
-  padding: var(--margin-m) var(--margin-s);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -262,7 +266,7 @@ section {
   position: absolute;
   width: 85%;
   max-width: 1350px;
-  height: 94%;
+  height: 90%;
   left: 0;
   right: 0;
   margin: auto;
@@ -696,7 +700,7 @@ input[type=radio] {
 @media screen and (max-width: 1024px) {
   .projects-container-global {
     max-height: none;
-    height: calc(98vh - (var(--header-height)*2));
+    height: calc(100vh - (var(--header-height)));
   }
 
   .car-arrow {
