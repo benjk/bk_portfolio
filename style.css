@@ -45,6 +45,7 @@
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
     --car-arrow-mobile-size: clamp(1.2rem, 0.248rem + 3.81vw, 2.2rem);
 
+    --title1-font-size: 6rem;
     --title3-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
     --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
     --classic-btn-size: 10rem;
@@ -138,7 +139,6 @@ header:hover {
 main {
   min-height: 100vh;
   width: 100%;
-  padding-top: var(--margin-m);
   margin-top: var(--header-height);
   flex-direction: column;
   display: flex;
@@ -155,24 +155,6 @@ section {
 
 #second-section, #third-section, #four-section {
   min-height: 300px;
-}
-
-#first-section {
-  height: calc(100vh - var(--header-height) - var(--margin-m));
-  min-height: 300px;
-  background-color: var(--color1);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#first-section p {
-  color: var(--color3);
-}
-
-#first-section p strong, #first-section p a {
-  color: var(--color2);
 }
 
 #second-section {
@@ -194,6 +176,46 @@ section {
 .scrollY {
   overflow-y: scroll !important;
 }
+
+/****************** FIRST SECTION ******************/
+#first-section {
+  height: calc(100vh - var(--header-height));
+  min-height: 300px;
+  background-color: var(--color1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#first-section .content-first-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#first-section h1 {
+  color: var(--color3);
+  font-size: var(--title1-font-size);
+}
+
+#first-section h2 {
+  color: var(--color2);
+  font-size: var(--title3-font-size);
+  text-transform: uppercase;
+}
+
+#first-section p {
+  color: var(--color3);
+  font-size: var(--text-font-size);
+}
+
+#first-section p strong, #first-section p a {
+  color: var(--color2);
+}
+
+
 /****************** SPLIDE ******************/
 .projects-container-global {
   position: relative;
