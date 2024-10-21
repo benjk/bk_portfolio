@@ -57,6 +57,9 @@
     --margin-s: clamp(0.8rem, 0.657rem + 0.381vw, 1rem);
     --margin-m: clamp(1rem, 0.429rem + 1.524vw, 1.8rem);
     --margin-l: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+
+    /****************** ANIMATION ******************/
+    --typing-anim-delay: 2.5s
 }
 
 @font-face {
@@ -205,12 +208,34 @@ section {
   font-size: var(--title1-font-size);
   text-align: center;
   line-height: calc(var(--title1-font-size)*1.1);
+  font-weight: normal;
 }
 
 #first-section h2 {
   color: var(--color2);
   font-size: var(--title3-font-size);
   text-transform: uppercase;
+}
+
+.typewriter {
+  box-sizing: content-box;
+  width: fit-content;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .10em solid var(--color2); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  animation: typing var(--typing-anim-delay) steps(20, end), blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--color2); }
 }
 
 #first-section p {
@@ -253,6 +278,47 @@ section {
   fill: var(--color2);
 }
 
+#first-section a.second-link {
+  height: 100%;
+  width: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.down-arrow {
+  margin-top: var(--margin-l);
+  filter: drop-shadow(var(--basic-shadow));
+  max-width: 60px;
+  stroke: var(--color3);
+  fill: var(--color3);
+  animation: down-arrow-slide 1s ease-in-out infinite;
+  animation-delay: var(--typing-anim-delay);
+  transition: all 0.2s ease;
+
+}
+
+.down-arrow:hover {
+  filter: drop-shadow(var(--strong-shadow));
+  cursor: pointer;
+  stroke: var(--color2);
+  fill: var(--color2);
+}
+
+@keyframes down-arrow-slide {
+  0%,
+  100% {
+    transform: translateY(0px);
+    stroke: var(--color3);
+    fill: var(--color3);
+  }
+
+  50% {
+    transform: translateY(10px);
+    stroke: var(--color2);
+    fill: var(--color2);
+  }
+}
+
 /****************** SPLIDE ******************/
 .projects-container-global {
   position: relative;
@@ -271,9 +337,6 @@ section {
   filter: drop-shadow(var(--basic-shadow));
   max-width: 60px;
   pointer-events: none;
-}
-
-.car-arrow {
   stroke: var(--color3)
 }
 
@@ -756,6 +819,10 @@ input[type=radio] {
     height: calc(100vh - var(--header-height));
   }
 
+  .down-arrow {
+    max-width: calc(var(--car-arrow-mobile-size)*2);
+  }
+
   .projects-container-global {
     max-height: none;
     height: calc(100vh - (var(--header-height)));
@@ -763,7 +830,7 @@ input[type=radio] {
 
   .car-arrow {
     max-width: var(--car-arrow-mobile-size);
-  }  
+  }
   
   .car-left-arrow {
     left: var(--margin-xs);

@@ -394,8 +394,22 @@ function initCardSwipeAndScroll() {
                 let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
                 
                 link.addEventListener("click", () => {
-                    const headerHeight = document.querySelector('header').clientHeight;
+                    const header = document.querySelector('header')
+                    let headerHeight = 0;
+                    if (header) headerHeight = header.clientHeight;
                     gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
+                });
+            })
+
+            const secondLinks = document.querySelectorAll(".second-link");
+            secondLinks.forEach( link => {
+                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+                
+                link.addEventListener("click", () => {
+                    const header = document.querySelector('header')
+                    let headerHeight = 0;
+                    if (header) headerHeight = header.clientHeight;
+                    gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
                 });
             })
         }
