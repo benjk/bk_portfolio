@@ -382,7 +382,9 @@ function initCardSwipeAndScroll() {
                 let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
                 
                 link.addEventListener("click", () => {
-                    const headerHeight = document.querySelector('header').clientHeight;
+                    const header = document.querySelector('header')
+                    let headerHeight = 0;
+                    if (header) headerHeight = header.clientHeight;
                     gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
                 });
             })

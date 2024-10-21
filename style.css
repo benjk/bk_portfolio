@@ -40,13 +40,15 @@
 
     /****************** SIZES ******************/
     --header-height: 3rem;
+    --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
 
     --card-border-size: 10px;
     --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
     --car-arrow-mobile-size: clamp(1.2rem, 0.248rem + 3.81vw, 2.2rem);
 
-    --title1-font-size: 6rem;
-    --title3-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
+    --title1-font-size: clamp(3.5rem, 2.364rem + 3.636vw, 6rem);
+    --title2-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
+    --title3-font-size: clamp(1.7rem, 1.382rem + 1.018vw, 2.4rem);
     --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
     --classic-btn-size: 10rem;
 
@@ -139,7 +141,6 @@ header:hover {
 main {
   min-height: 100vh;
   width: 100%;
-  margin-top: var(--header-height);
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -179,7 +180,7 @@ section {
 
 /****************** FIRST SECTION ******************/
 #first-section {
-  height: calc(100vh - var(--header-height));
+  height: 100vh;
   min-height: 300px;
   background-color: var(--color1);
   display: flex;
@@ -193,11 +194,17 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: var(--margin-s);
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
 }
 
 #first-section h1 {
   color: var(--color3);
   font-size: var(--title1-font-size);
+  text-align: center;
+  line-height: calc(var(--title1-font-size)*1.1);
 }
 
 #first-section h2 {
@@ -208,13 +215,43 @@ section {
 
 #first-section p {
   color: var(--color3);
-  font-size: var(--text-font-size);
+  font-size: 1rem;
 }
 
 #first-section p strong, #first-section p a {
   color: var(--color2);
 }
 
+.network-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-height: var(--main-network-icon-size);
+  gap: var(--margin-m);
+}
+
+.network-container a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.network-container  svg.network-icon {
+  stroke: var(--color3);
+  fill: var(--color3);
+  width: var(--main-network-icon-size);
+  min-width: var(--main-network-icon-size);
+  max-height: 100%;
+  transition: all 0.2s ease;
+}
+
+.network-container  svg.network-icon:hover {
+  cursor: pointer;
+  stroke: var(--color2);
+  fill: var(--color2);
+}
 
 /****************** SPLIDE ******************/
 .projects-container-global {
@@ -234,7 +271,6 @@ section {
   filter: drop-shadow(var(--basic-shadow));
   max-width: 60px;
   pointer-events: none;
-  color: var(--color3);
 }
 
 .car-arrow {
@@ -485,10 +521,6 @@ input[type=radio] {
   transition: box-shadow 0.3s ease, transform 0.3s ease; 
 }
 
-.splide__arrow  svg {
-  fill: white;
-}
-
 .splide__arrow--prev {
   left: 0em;
 }
@@ -649,7 +681,7 @@ input[type=radio] {
 
 .project-legend-container h2 {
   font-family: var(--font-family1-serif);
-  font-size: var(--title3-font-size);
+  font-size: var(--title2-font-size);
   text-align: center;
 }
 
@@ -720,6 +752,10 @@ input[type=radio] {
 }
 
 @media screen and (max-width: 1024px) {
+  #first-section {
+    height: calc(100vh - var(--header-height));
+  }
+
   .projects-container-global {
     max-height: none;
     height: calc(100vh - (var(--header-height)));
