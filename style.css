@@ -232,7 +232,7 @@ section {
 }
 
 .network-container a {
-  width: 100%;
+  max-width: var(--main-network-icon-size);
   height: 100%;
   display: flex;
   align-items: center;
