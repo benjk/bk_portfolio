@@ -182,15 +182,38 @@ section {
 }
 
 /****************** FIRST SECTION ******************/
+.first-wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background-color: var(--color1);
+}
+
+.intro-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  object-fit: cover;
+  pointer-events: none;
+}
+
 #first-section {
+  z-index: 1;
+  background-color: transparent;
+  position: relative;
+  width: 100%;
   height: 100vh;
   min-height: 300px;
-  background-color: var(--color1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+
 
 #first-section .content-first-section {
   display: flex;
