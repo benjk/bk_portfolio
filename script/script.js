@@ -271,11 +271,12 @@ function initCardSwipeAndScroll() {
             
             const cardRect = activeCard.getBoundingClientRect();
             if (isScrollingDown) {
-                const cardBottomReached = cardRect.bottom <= window.innerHeight;
+                const cardBottomReached = cardRect.bottom <= window.innerHeight;                
                 
                 if (cardBottomReached) {
                     
-                    const hasMoreContentToScroll = activeCard.scrollTop < activeCard.scrollHeight - activeCard.clientHeight;
+                    // Comme GSAP ne permet pas (ou jai pas trouvay) d'aller exactement en bas de l'élément, ajout d'un seuil de 20px
+                    const hasMoreContentToScroll = ((activeCard.scrollHeight - activeCard.clientHeight) - activeCard.scrollTop) > 20;
                     
                     if (hasMoreContentToScroll) {
                         e.preventDefault();
@@ -287,10 +288,11 @@ function initCardSwipeAndScroll() {
                     // console.log("no reach bot");
                 }
             } else {
-                const cardTopReached = cardRect.top > 0 + headerHeight;              
+                const cardTopReached = cardRect.top > 0 + headerHeight;          
                 
+                // Comme GSAP ne permet pas d'atteindre le top, ajout d'un seuil de 4 (=border size)
                 if (cardTopReached) {
-                    const hasMoreContentToScroll = activeCard.scrollTop > 0;                    
+                    const hasMoreContentToScroll = activeCard.scrollTop > 4;                             
                     
                     if (hasMoreContentToScroll) {
                         e.preventDefault();
@@ -306,37 +308,50 @@ function initCardSwipeAndScroll() {
     }
 
     function smoothScrollInsideCard(bottom, card, velocity) { 
-        const hasMoreContentToScroll2 = ((card.scrollTop < card.scrollHeight - card.clientHeight) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
+        
+        const distanceToScroll = card.scrollHeight - card.clientHeight
+        const hasMoreContentToScroll2 = ((card.scrollTop < distanceToScroll) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
         const eltTarget = bottom ? card.querySelector('button') : card.querySelector('.splide-container')
-
-            if (Math.abs(velocity) >= 1 && hasMoreContentToScroll2) {         
-                // disableGlobalScroll()        
-                gsap.to(card, {
-                    duration: 1,
-                    scrollTo: {
-                      y: eltTarget
-                    },
-                    onComplete: () => {
-                        console.log("Scroll terminé");
-                    }
-                  });
-            }  
-
-        // const friction = 0.45;  // Facteur de friction pour réduire la vitesse du scroll progressivement
         
-        // function applyInertia() {
-        //     const hasMoreContentToScroll2 = ((card.scrollTop < card.scrollHeight - card.clientHeight) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
+        const velocityAbs = Math.abs(velocity);
+        // Utilisation d'une func logarithmique pour lisser le rapport durée/vitesse. Sans ça c'était un peu trop long sur un petit scroll
+        const factor = (1 + Math.log(velocityAbs + 1));
+        let idealDuration = distanceToScroll*0.1 / (velocityAbs*factor);
 
-        //     if (Math.abs(velocity) >= 1 && hasMoreContentToScroll2) {                   
-        //         card.scrollTop += velocity;
-        //         velocity *= friction;               
+        // console.log("factor");
+        // console.log(factor);
+        // console.log("velocity");
+        // console.log(velocity);
+        // console.log("distanceToScroll");
+        // console.log(distanceToScroll);
+        // console.log("idealDurationBEFORE");
+        // console.log(idealDuration);
 
-        //         requestAnimationFrame(applyInertia);
-        //     }
-        // }
-        
-        // applyInertia();
-    }    
+        if (idealDuration > 0.35) idealDuration = 0.35
+        console.log(`idealDuration ${idealDuration}`);
+
+        if (velocityAbs >= 1 && hasMoreContentToScroll2) {         
+            stopScroll()        
+            gsap.to(card, {
+                duration: idealDuration,
+                scrollTo: {
+                  y: eltTarget
+                },
+                onComplete: () => {
+                    // console.log("Scroll terminé");
+                    enableScroll()
+                }
+              });
+        }
+    }
+    
+    function stopScroll() {
+        document.body.style.overflow = "hidden"
+    }
+    
+    function enableScroll() {
+        document.body.style.overflow = "scroll"
+    }
 
     initializeAnimations();
     
