@@ -40,6 +40,8 @@
 
     /****************** SIZES ******************/
     --header-height: 3rem;
+    --mobile-screen-height: calc(100vh - var(--header-height));
+
     --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
 
     --card-border-size: 10px;
@@ -144,6 +146,12 @@ header:hover {
 main {
   min-height: 100vh;
   width: 100%;
+
+}
+
+.section-wrapper {
+  min-height: 100vh;
+  width: 100%;
   flex-direction: column;
   display: flex;
   align-items: center;
@@ -155,26 +163,31 @@ main {
 
 section {
   width: 100%;
+  z-index: 1;
 }
 
 #second-section, #third-section, #four-section {
-  min-height: 300px;
+  min-height: 600px;
 }
 
 #second-section {
+  width: 85%;
+  border-radius: 10px;
   background-color: var(--color3);
+  padding: var(--margin-l);
 }
 
 .projects-container-global {
-  background-color: var(--color1) !important;
+  background-color: transparent !important;
 }
 
 #third-section {
   background-color: var(--color3);
+  width: 85%;
 }
 
 #four-section {
-  background-color: var(--color1);
+  background-color: transparent;
 }
 
 .scrollY {
@@ -190,18 +203,18 @@ section {
 }
 
 .intro-bg {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   opacity: 0.5;
   object-fit: cover;
   pointer-events: none;
+  z-index: 0;
 }
 
 #first-section {
-  z-index: 1;
   background-color: transparent;
   position: relative;
   width: 100%;
@@ -346,12 +359,30 @@ section {
 .projects-container-global {
   position: relative;
   width: 100%;
-  height: calc(100vh - var(--header-height));
-  max-height: calc(100vh - var(--header-height));
+  height: 100vh;
+  max-height: 100vh;
   min-height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.card {
+  position: absolute;
+  width: 85%;
+  max-width: 1350px;
+  height: 90%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transition: transform .4s ease, filter .4s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: var(--card-border-size) solid transparent;
+  border-radius: 10px;
+  box-shadow: var(--strong-shadow);
+  overflow: hidden;
 }
 
 .car-arrow {
@@ -404,25 +435,6 @@ section {
   50% {
     transform: translateX(4px);
   }
-}
-
-.card {
-  position: absolute;
-  width: 85%;
-  max-width: 1350px;
-  height: 90%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  transition: transform .4s ease, filter .4s ease;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border: var(--card-border-size) solid transparent;
-  border-radius: 10px;
-  box-shadow: var(--strong-shadow);
-  overflow: hidden;
-
 }
 
 .splide-container {
@@ -839,7 +851,7 @@ input[type=radio] {
 
 @media screen and (max-width: 1024px) {
   #first-section {
-    height: calc(100vh - var(--header-height));
+    height: var(--mobile-screen-height);
   }
 
   .down-arrow {
@@ -849,7 +861,7 @@ input[type=radio] {
 
   .projects-container-global {
     max-height: none;
-    height: calc(100vh - (var(--header-height)));
+    height: var(--mobile-screen-height);
   }
 
   .car-arrow {

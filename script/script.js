@@ -279,7 +279,7 @@ function initCardSwipeAndScroll() {
                     
                     if (hasMoreContentToScroll) {
                         e.preventDefault();
-                        smoothScrollInsideCard(activeCard, scrollVelocity);
+                        smoothScrollInsideCard(true, activeCard, scrollVelocity);
                     } else {
                         // console.log("nomore bot");
                     }
@@ -294,7 +294,7 @@ function initCardSwipeAndScroll() {
                     
                     if (hasMoreContentToScroll) {
                         e.preventDefault();
-                        smoothScrollInsideCard(activeCard, scrollVelocity);
+                        smoothScrollInsideCard(false, activeCard, scrollVelocity);
                     } else {
                         // console.log("nomore top");
                     }
@@ -304,156 +304,171 @@ function initCardSwipeAndScroll() {
             }
         };
     }
+
+    function smoothScrollInsideCard(bottom, card, velocity) { 
+        const hasMoreContentToScroll2 = ((card.scrollTop < card.scrollHeight - card.clientHeight) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
+        const eltTarget = bottom ? card.querySelector('button') : card.querySelector('.splide-container')
+
+            if (Math.abs(velocity) >= 1 && hasMoreContentToScroll2) {         
+                // disableGlobalScroll()        
+                gsap.to(card, {
+                    duration: 1,
+                    scrollTo: {
+                      y: eltTarget
+                    },
+                    onComplete: () => {
+                        console.log("Scroll terminé");
+                    }
+                  });
+            }  
+
+        // const friction = 0.45;  // Facteur de friction pour réduire la vitesse du scroll progressivement
         
-        initializeAnimations();
+        // function applyInertia() {
+        //     const hasMoreContentToScroll2 = ((card.scrollTop < card.scrollHeight - card.clientHeight) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
 
-        function initializeAnimations() {
-            const carouselArrows = document.querySelectorAll(".car-arrow")
-            let hoveredCard = null;
-            let hoveredArrow = null;
+        //     if (Math.abs(velocity) >= 1 && hasMoreContentToScroll2) {                   
+        //         card.scrollTop += velocity;
+        //         velocity *= friction;               
+
+        //         requestAnimationFrame(applyInertia);
+        //     }
+        // }
+        
+        // applyInertia();
+    }    
+
+    initializeAnimations();
+    
+    function initializeAnimations() {
+        const carouselArrows = document.querySelectorAll(".car-arrow")
+        let hoveredCard = null;
+        let hoveredArrow = null;
+        
+        if (!isMobile()) {
+            const cardsContainer = document.querySelector('.projects-container-global');
+
+            cardsContainer.addEventListener('mouseover', (event) => {
+                const card = event.target.closest('.card');
+
+                if (!card || activeCard == card) return;
+                hoveredCard = card;
             
-            if (!isMobile()) {
-                const cardsContainer = document.querySelector('.projects-container-global');
-
-                cardsContainer.addEventListener('mouseover', (event) => {
-                    const card = event.target.closest('.card');
-
-                    if (!card || activeCard == card) return;
-                    hoveredCard = card;
-                
-                    switch (card.id) {
-                        case "project-1":
-                            if (activeCard && activeCard.id == "project-2") {
-                                hoveredArrow = carouselArrows[0];
-                            } else if (activeCard && activeCard.id == "project-4") {
-                                hoveredArrow = carouselArrows[1];
-                            }
-                            break;
-                        case "project-2":
-                            if (activeCard && activeCard.id == "project-3") {
-                                hoveredArrow = carouselArrows[0];
-                            } else if (activeCard && activeCard.id == "project-1") {
-                                hoveredArrow = carouselArrows[1];
-                            }
-                            break;
-                        case "project-3":
-                            if (activeCard && activeCard.id == "project-4") {
-                                hoveredArrow = carouselArrows[0];
-                            } else if (activeCard && activeCard.id == "project-2") {
-                                hoveredArrow = carouselArrows[1];
-                            }
-                            break;
-                        case "project-4":
-                            if (activeCard && activeCard.id == "project-1") {
-                                hoveredArrow = carouselArrows[0];
-                            } else if (activeCard && activeCard.id == "project-3") {
-                                hoveredArrow = carouselArrows[1];
-                            }
-                            break;
-                    }
-                    if (hoveredArrow) {
-                        hoveredArrow.classList.add('hovered');
-                        hoveredCard.addEventListener('mouseleave', (event) => {
-                            hoveredArrow.classList.remove("hovered");
-                        });
-                    }
-                });
-
-                const cards = document.querySelectorAll('.card');
-                
-                cards.forEach( card => {
-                    card.addEventListener('mouseover', (event) => {
-                        switch (card.id)   {
-                            case "project-1":
-                                if (activeCard.id == "project-2") {
-                                    carouselArrows[0].classList.add("hovered");
-                                } else if (activeCard.id == "project-4"){
-                                    carouselArrows[1].classList.add("hovered");
-                                }
+                switch (card.id) {
+                    case "project-1":
+                        if (activeCard && activeCard.id == "project-2") {
+                            hoveredArrow = carouselArrows[0];
+                        } else if (activeCard && activeCard.id == "project-4") {
+                            hoveredArrow = carouselArrows[1];
                         }
-                        
-        
+                        break;
+                    case "project-2":
+                        if (activeCard && activeCard.id == "project-3") {
+                            hoveredArrow = carouselArrows[0];
+                        } else if (activeCard && activeCard.id == "project-1") {
+                            hoveredArrow = carouselArrows[1];
+                        }
+                        break;
+                    case "project-3":
+                        if (activeCard && activeCard.id == "project-4") {
+                            hoveredArrow = carouselArrows[0];
+                        } else if (activeCard && activeCard.id == "project-2") {
+                            hoveredArrow = carouselArrows[1];
+                        }
+                        break;
+                    case "project-4":
+                        if (activeCard && activeCard.id == "project-1") {
+                            hoveredArrow = carouselArrows[0];
+                        } else if (activeCard && activeCard.id == "project-3") {
+                            hoveredArrow = carouselArrows[1];
+                        }
+                        break;
+                }
+                if (hoveredArrow) {
+                    hoveredArrow.classList.add('hovered');
+                    hoveredCard.addEventListener('mouseleave', (event) => {
+                        hoveredArrow.classList.remove("hovered");
                     });
-                })
-            }
-            
-            const contactLinks = document.querySelectorAll(".contact-link");
-            contactLinks.forEach( link => {
-                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-                
-                link.addEventListener("click", () => {
-                    const header = document.querySelector('header')
-                    let headerHeight = 0;
-                    if (header) headerHeight = header.clientHeight;
-                    gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
-                });
-            })
-            
-            const projectsLinks = document.querySelectorAll(".projects-link");
-            projectsLinks.forEach( link => {
-                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-                
-                link.addEventListener("click", () => {
-                    const header = document.querySelector('header')
-                    let headerHeight = 0;
-                    if (header) headerHeight = header.clientHeight;
-                    gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
-                });
-            })
-
-            const secondLinks = document.querySelectorAll(".second-link");
-            secondLinks.forEach( link => {
-                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-                
-                link.addEventListener("click", () => {
-                    const header = document.querySelector('header')
-                    let headerHeight = 0;
-                    if (header) headerHeight = header.clientHeight;
-                    gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
-                });
-            })
-        }
-        
-        
-        function smoothScrollInsideCard(card, velocity) {             
-            const friction = 0.45;  // Facteur de friction pour réduire la vitesse du scroll progressivement
-            
-            function applyInertia() {
-                const hasMoreContentToScroll2 = ((card.scrollTop < card.scrollHeight - card.clientHeight) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
-
-                if (Math.abs(velocity) >= 1 && hasMoreContentToScroll2) {                   
-                    card.scrollTop += velocity;
-                    velocity *= friction;               
-
-                    requestAnimationFrame(applyInertia);
                 }
-            }
-            
-            applyInertia();
-        }   
-
-        function activateCardForItem(radioItem) {
-            document.querySelectorAll('.card').forEach(label => {
-                label.classList.remove('is-active');
             });
+
+            const cards = document.querySelectorAll('.card');
             
-            if (radioItem.checked) {
-                pauseVideoPlayer();
-                const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
-                
-                if (correspondingCard) {
-                    correspondingCard.classList.add('is-active');
-                    activeCard = correspondingCard;
-                }
+            cards.forEach( card => {
+                card.addEventListener('mouseover', (event) => {
+                    switch (card.id)   {
+                        case "project-1":
+                            if (activeCard.id == "project-2") {
+                                carouselArrows[0].classList.add("hovered");
+                            } else if (activeCard.id == "project-4"){
+                                carouselArrows[1].classList.add("hovered");
+                            }
+                    }
+                    
+    
+                });
+            })
+        }
+        
+        const contactLinks = document.querySelectorAll(".contact-link");
+        contactLinks.forEach( link => {
+            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+            
+            link.addEventListener("click", () => {
+                const header = document.querySelector('header')
+                let headerHeight = 0;
+                if (header) headerHeight = header.clientHeight;
+                gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
+            });
+        })
+        
+        const projectsLinks = document.querySelectorAll(".projects-link");
+        projectsLinks.forEach( link => {
+            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+            
+            link.addEventListener("click", () => {
+                const header = document.querySelector('header')
+                let headerHeight = 0;
+                if (header) headerHeight = header.clientHeight;
+                gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
+            });
+        })
+
+        const secondLinks = document.querySelectorAll(".second-link");
+        secondLinks.forEach( link => {
+            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+            
+            link.addEventListener("click", () => {
+                const header = document.querySelector('header')
+                let headerHeight = 0;
+                if (header) headerHeight = header.clientHeight;
+                gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
+            });
+        })
+    }
+
+    function activateCardForItem(radioItem) {
+        document.querySelectorAll('.card').forEach(label => {
+            label.classList.remove('is-active');
+        });
+        
+        if (radioItem.checked) {
+            pauseVideoPlayer();
+            const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
+            
+            if (correspondingCard) {
+                correspondingCard.classList.add('is-active');
+                activeCard = correspondingCard;
             }
         }
+    }
 
-        async function pauseVideoPlayer() {
-            const player = await document.querySelector('lite-youtube').getYTPlayer();
-            if (player && player.getPlayerState() == 1) {              
-                player.pauseVideo()
-            }
-
+    async function pauseVideoPlayer() {
+        const player = await document.querySelector('lite-youtube').getYTPlayer();
+        if (player && player.getPlayerState() == 1) {              
+            player.pauseVideo()
         }
+
+    }
     }
 
