@@ -222,7 +222,7 @@ function initCardSwipeAndScroll() {
             const diffY = startY - endY;
             
             
-            if (Math.abs(diffX) > 80 && Math.abs(diffY) < 25) {
+            if (Math.abs(diffX) > 40 && Math.abs(diffY) < 25) {
                 if (diffX > 0) {
                     nextSlide();
                 } else {
@@ -263,16 +263,22 @@ function initCardSwipeAndScroll() {
         let scrollAnimation = null;
 
         window.ontouchstart = function(e) {
-            console.log("touchstarted");
-            
             if (scrollAnimation != null) {
                 scrollAnimation.kill();
                 scrollAnimation = null;
                 enableScroll()
             }
+
+            if (scrollingLinkAnimation != null) {
+                scrollingLinkAnimation.kill();
+                scrollingLinkAnimation = null;
+            }
         }
         
         window.onscroll = function(e) {
+            console.log("scrollingLinkAnimation");
+            console.log(scrollingLinkAnimation);
+            
             const currentScrollTop = this.scrollY;
             const isScrollingDown = currentScrollTop > lastScrollTop;
             scrollVelocity = currentScrollTop - lastScrollTop;
@@ -283,10 +289,18 @@ function initCardSwipeAndScroll() {
                 const cardBottomReached = cardRect.top < -10;               
                 
                 if (cardBottomReached) {
+                    console.log("REACHED BOTTOM");
                     
-                    const hasMoreContentToScroll = ((activeCard.scrollHeight - activeCard.clientHeight) - activeCard.scrollTop) > 15;                    
+                    
+                    const hasMoreContentToScroll = ((activeCard.scrollHeight - activeCard.clientHeight) - activeCard.scrollTop) > 15;       
+                    // console.log("activeCard.scrollHeight");
+                    // console.log(activeCard.scrollHeight);
+                    // console.log(activeCard.clientHeight);
+                    // console.log(activeCard.scrollTop);
+                                 
                     
                     if (hasMoreContentToScroll) {
+                        console.log("HAS MORE CONTENT");
                         e.preventDefault();
                         smoothScrollInsideCard(true, activeCard, scrollVelocity);
                     } else {
@@ -308,7 +322,7 @@ function initCardSwipeAndScroll() {
                         // console.log("nomore top");
                     }
                 } else {
-                    // console.log("not reached");    
+                    // console.log("not reached");
                 }
             }
         };
@@ -341,7 +355,7 @@ function initCardSwipeAndScroll() {
             console.log(`idealDuration ${idealDuration}`);
             console.log(`scrolHeight ${card.scrollHeight}`);
             
-            if (velocityAbs >= 1 && hasMoreContentToScroll2) {              
+            if (velocityAbs >= 1 && hasMoreContentToScroll2 && scrollingLinkAnimation == null) {              
                 stopScroll()        
                 scrollAnimation = gsap.to(card, {
                     duration: idealDuration,
@@ -395,6 +409,7 @@ function initCardSwipeAndScroll() {
         }
     }
     
+    let scrollingLinkAnimation = null;
     initializeAnimations();
     
     function initializeAnimations() {
@@ -475,7 +490,17 @@ function initCardSwipeAndScroll() {
                 const header = document.querySelector('header')
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
-                gsap.to(window, {duration: duration, scrollTo:{y:"#third-section", offsetY: headerHeight}});
+                scrollingLinkAnimation = gsap.to(window, {
+                    duration: duration,
+                    scrollTo: {
+                        y:"#third-section", offsetY: headerHeight
+                    },
+                    onComplete: () => {
+                        setTimeout(() => {
+                            scrollingLinkAnimation = null;
+                        }, 50);
+                    }
+                });
             });
         })
         
@@ -487,7 +512,16 @@ function initCardSwipeAndScroll() {
                 const header = document.querySelector('header')
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
-                gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
+                scrollingLinkAnimation = gsap.to(window, {
+                    duration: duration,
+                    scrollTo: {
+                        y:".projects-container-global", offsetY: headerHeight
+                    },
+                    onComplete: () => {
+                        setTimeout(() => {
+                            scrollingLinkAnimation = null;
+                        }, 50);                    }
+                });
             });
         })
         
@@ -500,6 +534,16 @@ function initCardSwipeAndScroll() {
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
                 gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
+                scrollingLinkAnimation = gsap.to(window, {
+                    duration: duration,
+                    scrollTo: {
+                        y:"#second-section", offsetY: headerHeight
+                    },
+                    onComplete: () => {
+                        setTimeout(() => {
+                            scrollingLinkAnimation = null;
+                        }, 50);                    }
+                });
             });
         })
     }
