@@ -260,6 +260,17 @@ function initCardSwipeAndScroll() {
         // SCROLLING
         let lastScrollTop = 0;
         let scrollVelocity = 0;
+        let scrollAnimation = null;
+
+        window.ontouchstart = function(e) {
+            console.log("touchstarted");
+            
+            if (scrollAnimation != null) {
+                scrollAnimation.kill();
+                scrollAnimation = null;
+                enableScroll()
+            }
+        }
         
         window.onscroll = function(e) {
             const currentScrollTop = this.scrollY;
@@ -273,8 +284,7 @@ function initCardSwipeAndScroll() {
                 
                 if (cardBottomReached) {
                     
-                    // Comme GSAP ne permet pas (ou jai pas trouvay) d'aller exactement en bas de l'élément, ajout d'un seuil de 20px
-                    const hasMoreContentToScroll = ((activeCard.scrollHeight - activeCard.clientHeight) - activeCard.scrollTop) > 20;
+                    const hasMoreContentToScroll = ((activeCard.scrollHeight - activeCard.clientHeight) - activeCard.scrollTop) > 15;                    
                     
                     if (hasMoreContentToScroll) {
                         e.preventDefault();
@@ -288,9 +298,8 @@ function initCardSwipeAndScroll() {
             } else {
                 const cardTopReached = cardRect.top > 0;          
                 
-                // Comme GSAP ne permet pas d'atteindre le top, ajout d'un seuil de 4 (=border size)
                 if (cardTopReached) {
-                    const hasMoreContentToScroll = activeCard.scrollTop > 4;                             
+                    const hasMoreContentToScroll = activeCard.scrollTop > 0;                             
                     
                     if (hasMoreContentToScroll) {
                         e.preventDefault();
@@ -303,54 +312,89 @@ function initCardSwipeAndScroll() {
                 }
             }
         };
-    }
 
-    function smoothScrollInsideCard(bottom, card, velocity) { 
+        function smoothScrollInsideCard(bottom, card, velocity) { 
+            const distanceToScroll = card.scrollHeight - card.clientHeight
+            const MINIMAL_SCROLL_DURATION = distanceToScroll / 333
+            const hasMoreContentToScroll2 = ((card.scrollTop < distanceToScroll) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
+            const eltTarget = bottom ? card.scrollHeight-card.clientHeight : 0
+            
+            const velocityAbs = Math.abs(velocity);
+            // Utilisation d'une func racine carré pour lisser le rapport durée/vitesse. Sans ça c'était un peu trop long sur un petit scroll
+            const factor = (1 + Math.sqrt(velocityAbs + 1));
+            const initialDuration = 25 / (velocityAbs*factor);        
+            
+            // console.log("factor");
+            // console.log(factor);
+            // console.log("velocity");
+            // console.log(velocity);
+            // console.log("distanceToScroll");
+            // console.log(distanceToScroll);
+            // console.log("velocityAbs");
+            // console.log(velocityAbs);
+            // console.log("eltTarget");
+            // console.log(eltTarget);
+            // console.log("idealDurationBEFORE");
+            // console.log(initialDuration);
+            
+            const idealDuration = (initialDuration > MINIMAL_SCROLL_DURATION) ?  MINIMAL_SCROLL_DURATION : initialDuration
+            console.log(`idealDuration ${idealDuration}`);
+            console.log(`scrolHeight ${card.scrollHeight}`);
+            
+            if (velocityAbs >= 1 && hasMoreContentToScroll2) {              
+                stopScroll()        
+                scrollAnimation = gsap.to(card, {
+                    duration: idealDuration,
+                    scrollTo: {
+                        y: eltTarget
+                    },
+                    onComplete: () => {
+                        const realTime = 15 / velocity;
+                        let remainingVelocity = realTime - idealDuration
+                        remainingVelocity = Math.sign(remainingVelocity) * Math.min(1, Math.abs(remainingVelocity));
+                        // console.log("realTime");
+                        // console.log(realTime);
+                        
+                        if (Math.abs(realTime) < 1) {
+                            redistributeInertia(remainingVelocity)
+                        } else {
+                            enableScroll();
+                        }
+                    }
+                });
+            }
+        }
         
-        const distanceToScroll = card.scrollHeight - card.clientHeight
-        const hasMoreContentToScroll2 = ((card.scrollTop < distanceToScroll) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
-        const eltTarget = bottom ? card.scrollHeight : 0
+        function stopScroll() {
+            document.body.style.overflow = "hidden"
+        }
         
-        const velocityAbs = Math.abs(velocity);
-        // Utilisation d'une func logarithmique pour lisser le rapport durée/vitesse. Sans ça c'était un peu trop long sur un petit scroll
-        const factor = (1 + Math.log(velocityAbs + 1));
-        let idealDuration = distanceToScroll*0.1 / (velocityAbs*factor);
-
-        // console.log("factor");
-        // console.log(factor);
-        // console.log("velocity");
-        // console.log(velocity);
-        // console.log("distanceToScroll");
-        // console.log(distanceToScroll);
-        // console.log("idealDurationBEFORE");
-        // console.log(idealDuration);
-
-        if (idealDuration > 0.35) idealDuration = 0.35
-        console.log(`idealDuration ${idealDuration}`);
-
-        if (velocityAbs >= 1 && hasMoreContentToScroll2) {         
-            stopScroll()        
-            gsap.to(card, {
-                duration: idealDuration,
+        function enableScroll() {
+            document.body.style.overflow = "scroll"
+        }
+        
+        function redistributeInertia(remainingVelocity) {
+            enableScroll();
+            const maxScrollDistance = (remainingVelocity > 0) ? document.documentElement.scrollHeight - window.scrollY: window.scrollY;
+            const exponent = 2.5;
+            const remainingScroll = maxScrollDistance / Math.pow(Math.abs(remainingVelocity) + 1, exponent);
+            
+            const scrollTarget = window.scrollY + (Math.sign(remainingVelocity)*remainingScroll);
+            // console.log("REMAININGVELOCITY");                        
+            // console.log(remainingVelocity); 
+            
+            scrollAnimation = gsap.to(window, {
+                duration: Math.abs(remainingVelocity),
                 scrollTo: {
-                  y: eltTarget
+                    y: scrollTarget
                 },
                 onComplete: () => {
-                    // console.log("Scroll terminé");
-                    enableScroll()
+                    scrollAnimation = null;
                 }
-              });
+            });
         }
     }
     
-    function stopScroll() {
-        document.body.style.overflow = "hidden"
-    }
-    
-    function enableScroll() {
-        document.body.style.overflow = "scroll"
-    }
-
     initializeAnimations();
     
     function initializeAnimations() {
@@ -360,42 +404,42 @@ function initCardSwipeAndScroll() {
         
         if (!isMobile()) {
             const cardsContainer = document.querySelector('.projects-container-global');
-
+            
             cardsContainer.addEventListener('mouseover', (event) => {
                 const card = event.target.closest('.card');
-
+                
                 if (!card || activeCard == card) return;
                 hoveredCard = card;
-            
+                
                 switch (card.id) {
                     case "project-1":
-                        if (activeCard && activeCard.id == "project-2") {
-                            hoveredArrow = carouselArrows[0];
-                        } else if (activeCard && activeCard.id == "project-4") {
-                            hoveredArrow = carouselArrows[1];
-                        }
-                        break;
+                    if (activeCard && activeCard.id == "project-2") {
+                        hoveredArrow = carouselArrows[0];
+                    } else if (activeCard && activeCard.id == "project-4") {
+                        hoveredArrow = carouselArrows[1];
+                    }
+                    break;
                     case "project-2":
-                        if (activeCard && activeCard.id == "project-3") {
-                            hoveredArrow = carouselArrows[0];
-                        } else if (activeCard && activeCard.id == "project-1") {
-                            hoveredArrow = carouselArrows[1];
-                        }
-                        break;
+                    if (activeCard && activeCard.id == "project-3") {
+                        hoveredArrow = carouselArrows[0];
+                    } else if (activeCard && activeCard.id == "project-1") {
+                        hoveredArrow = carouselArrows[1];
+                    }
+                    break;
                     case "project-3":
-                        if (activeCard && activeCard.id == "project-4") {
-                            hoveredArrow = carouselArrows[0];
-                        } else if (activeCard && activeCard.id == "project-2") {
-                            hoveredArrow = carouselArrows[1];
-                        }
-                        break;
+                    if (activeCard && activeCard.id == "project-4") {
+                        hoveredArrow = carouselArrows[0];
+                    } else if (activeCard && activeCard.id == "project-2") {
+                        hoveredArrow = carouselArrows[1];
+                    }
+                    break;
                     case "project-4":
-                        if (activeCard && activeCard.id == "project-1") {
-                            hoveredArrow = carouselArrows[0];
-                        } else if (activeCard && activeCard.id == "project-3") {
-                            hoveredArrow = carouselArrows[1];
-                        }
-                        break;
+                    if (activeCard && activeCard.id == "project-1") {
+                        hoveredArrow = carouselArrows[0];
+                    } else if (activeCard && activeCard.id == "project-3") {
+                        hoveredArrow = carouselArrows[1];
+                    }
+                    break;
                 }
                 if (hoveredArrow) {
                     hoveredArrow.classList.add('hovered');
@@ -404,21 +448,21 @@ function initCardSwipeAndScroll() {
                     });
                 }
             });
-
+            
             const cards = document.querySelectorAll('.card');
             
             cards.forEach( card => {
                 card.addEventListener('mouseover', (event) => {
                     switch (card.id)   {
                         case "project-1":
-                            if (activeCard.id == "project-2") {
-                                carouselArrows[0].classList.add("hovered");
-                            } else if (activeCard.id == "project-4"){
-                                carouselArrows[1].classList.add("hovered");
-                            }
+                        if (activeCard.id == "project-2") {
+                            carouselArrows[0].classList.add("hovered");
+                        } else if (activeCard.id == "project-4"){
+                            carouselArrows[1].classList.add("hovered");
+                        }
                     }
                     
-    
+                    
                 });
             })
         }
@@ -446,7 +490,7 @@ function initCardSwipeAndScroll() {
                 gsap.to(window, {duration: duration, scrollTo:{y:".projects-container-global", offsetY: headerHeight}});
             });
         })
-
+        
         const secondLinks = document.querySelectorAll(".second-link");
         secondLinks.forEach( link => {
             let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
@@ -459,7 +503,7 @@ function initCardSwipeAndScroll() {
             });
         })
     }
-
+    
     function activateCardForItem(radioItem) {
         document.querySelectorAll('.card').forEach(label => {
             label.classList.remove('is-active');
@@ -475,13 +519,13 @@ function initCardSwipeAndScroll() {
             }
         }
     }
-
+    
     async function pauseVideoPlayer() {
         const player = await document.querySelector('lite-youtube').getYTPlayer();
         if (player && player.getPlayerState() == 1) {              
             player.pauseVideo()
         }
-
+        
     }
-    }
+}
 
