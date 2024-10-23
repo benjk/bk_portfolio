@@ -182,9 +182,7 @@ function adjustCarouselSize() {
     });
 }
 
-function initCardSwipeAndScroll() {
-    const headerHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) * parseFloat(getComputedStyle(document.documentElement).fontSize);    
-    
+function initCardSwipeAndScroll() {    
     let activeCard = document.querySelector('.card');
     // Apply class is-active on cards
     const radios = document.querySelectorAll('.radio-carousel');
@@ -271,7 +269,7 @@ function initCardSwipeAndScroll() {
             
             const cardRect = activeCard.getBoundingClientRect();
             if (isScrollingDown) {
-                const cardBottomReached = cardRect.bottom <= window.innerHeight;                
+                const cardBottomReached = cardRect.top < -10;               
                 
                 if (cardBottomReached) {
                     
@@ -288,7 +286,7 @@ function initCardSwipeAndScroll() {
                     // console.log("no reach bot");
                 }
             } else {
-                const cardTopReached = cardRect.top > 0 + headerHeight;          
+                const cardTopReached = cardRect.top > 0;          
                 
                 // Comme GSAP ne permet pas d'atteindre le top, ajout d'un seuil de 4 (=border size)
                 if (cardTopReached) {
