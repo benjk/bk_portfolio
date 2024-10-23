@@ -276,8 +276,6 @@ function initCardSwipeAndScroll() {
         }
         
         window.onscroll = function(e) {
-            console.log("scrollingLinkAnimation");
-            console.log(scrollingLinkAnimation);
             
             const currentScrollTop = this.scrollY;
             const isScrollingDown = currentScrollTop > lastScrollTop;
@@ -285,13 +283,12 @@ function initCardSwipeAndScroll() {
             lastScrollTop = currentScrollTop;
             
             const cardRect = activeCard.getBoundingClientRect();
+            const legendProjectContainer = activeCard.querySelector(".project-legend-container");
+            console.log(legendProjectContainer);
+            
             if (isScrollingDown) {
-                const cardBottomReached = cardRect.top < -10;               
-                
+                const cardBottomReached = cardRect.top < -10 && legendProjectContainer.getBoundingClientRect().top > 0;               
                 if (cardBottomReached) {
-                    console.log("REACHED BOTTOM");
-                    
-                    
                     const hasMoreContentToScroll = ((activeCard.scrollHeight - activeCard.clientHeight) - activeCard.scrollTop) > 15;       
                     // console.log("activeCard.scrollHeight");
                     // console.log(activeCard.scrollHeight);
@@ -300,7 +297,6 @@ function initCardSwipeAndScroll() {
                                  
                     
                     if (hasMoreContentToScroll) {
-                        console.log("HAS MORE CONTENT");
                         e.preventDefault();
                         smoothScrollInsideCard(true, activeCard, scrollVelocity);
                     } else {
