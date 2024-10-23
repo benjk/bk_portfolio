@@ -349,7 +349,7 @@ function initCardSwipeAndScroll() {
                         y: eltTarget
                     },
                     onComplete: () => {
-                        const realTime = 15 / velocity;
+                        const realTime = 22 / velocity;
                         let remainingVelocity = realTime - idealDuration
                         remainingVelocity = Math.sign(remainingVelocity) * Math.min(1, Math.abs(remainingVelocity));
                         // console.log("realTime");
@@ -375,8 +375,8 @@ function initCardSwipeAndScroll() {
         
         function redistributeInertia(remainingVelocity) {
             enableScroll();
-            const maxScrollDistance = (remainingVelocity > 0) ? document.documentElement.scrollHeight - window.scrollY: window.scrollY;
-            const exponent = 2.5;
+            const maxScrollDistance = window.scrollY;
+            const exponent = 2.8;
             const remainingScroll = maxScrollDistance / Math.pow(Math.abs(remainingVelocity) + 1, exponent);
             
             const scrollTarget = window.scrollY + (Math.sign(remainingVelocity)*remainingScroll);
