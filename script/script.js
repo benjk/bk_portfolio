@@ -311,7 +311,7 @@ function initCardSwipeAndScroll() {
         
         const distanceToScroll = card.scrollHeight - card.clientHeight
         const hasMoreContentToScroll2 = ((card.scrollTop < distanceToScroll) && velocity > 0 || (card.scrollTop > 0 && velocity < 0))
-        const eltTarget = bottom ? card.querySelector('button') : card.querySelector('.splide-container')
+        const eltTarget = bottom ? card.scrollHeight : 0
         
         const velocityAbs = Math.abs(velocity);
         // Utilisation d'une func logarithmique pour lisser le rapport durée/vitesse. Sans ça c'était un peu trop long sur un petit scroll
