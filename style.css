@@ -40,7 +40,7 @@
 
     /****************** SIZES ******************/
     --header-height: 3rem;
-    --mobile-screen-height: calc(100vh - var(--header-height));
+    --mobile-screen-height: 100dvh;
 
     --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
 
