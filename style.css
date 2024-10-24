@@ -143,6 +143,15 @@ header:hover {
   cursor: pointer;
 }
 
+footer {
+  width: 100%;
+  background-color: var(--color1);
+  color: var(--color3);
+  padding: var(--margin-xs) var(--margin-s);
+  display: flex;
+  justify-content: center;
+}
+
 main {
   min-height: 100vh;
   width: 100%;
