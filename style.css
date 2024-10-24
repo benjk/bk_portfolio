@@ -889,10 +889,10 @@ input[type=radio] {
   .splide-container {
     width: 100%;
     max-width: 100%;
-    max-height: 70%;
-    min-height: 92%;
+    height: 100vh;
     gap: var(--margin-s);
     padding: 0 0 var(--margin-xs) 0;
+    justify-content: flex-start;
   }
 
   #project-1 .splide-container {
@@ -908,11 +908,11 @@ input[type=radio] {
   }
 
   .main-carousel {
-    height: 74%;
+    height: 75%;
   }
   
   .thumbnail-carousel {
-    height: 24%;
+    height: 25%;
     max-height: 100px;
   }
 
