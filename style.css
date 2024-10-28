@@ -391,6 +391,7 @@ section {
 
 .mobile-carrow {
   opacity: 0;
+  display: none;
 }
 
 .car-arrow {
@@ -874,6 +875,7 @@ input[type=radio] {
   }
 
   .mobile-carrow {
+    display: block;
     z-index: 10;
     filter: drop-shadow(var(--basic-shadow));
     max-width: 60px;
