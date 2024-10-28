@@ -29,7 +29,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     </li>`;
             });
             
-            let thumbHTML = mainImagesHTML;
+            let thumbHTML = ''
+            if ((project.id == 3 || project.id == 4) && !isMobile()) {
+                images.pop();
+                images.forEach(image => {                    
+                    thumbHTML += `
+                    <li class="splide__slide">
+                        <img src="${image}" alt="">
+                    </li>`;
+                });
+            } else {
+                thumbHTML = mainImagesHTML;
+            }
             
             if (project.video) {
                 thumbHTML += `

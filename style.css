@@ -627,11 +627,11 @@ input[type=radio] {
 }
 
 .splide__arrow--prev {
-  left: 0em;
+  left: calc(var(--margin-m)*-1)
 }
 
 .splide__arrow--next {
-  right: 0em;
+  right: calc(var(--margin-m)*-1)
 }
 
 /****************** PROJECT DETAIL ******************/
