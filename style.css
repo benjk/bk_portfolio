@@ -1,68 +1,68 @@
 :root {
-    /****************** COLORS ******************/
-
-    --color1: #1E2040;
-    --color2: #E94E1B;
-    --color3: #E6E0D2;
-
-    --primary: #383131;
-    --secondary: #fff;
-    --light-primary: #F7FCD1;
-    --light-secondary: #E6E0D2;
-    --color-on-primary: #fff;
-    --color-light-on-primary: grey;
-    --color-on-secondary: black;
-    --color-light-on-secondary: grey;
-    --basic-text-color: #3b3b3b;
-
-    --proj1-color1: #7CB9D6;
-    --proj1-color2: #FFFFFF;
-    --proj2-color1: #DDE9B9;
-    --proj2-color2: #282552;
-    --proj2-color2-light: rgba(40, 37, 82, 0.6);
-    --proj3-color1: #00B1B1;
-    --proj3-color2: #fff;
-    --proj4-color1: #69AB2F;
-    --proj4-color2: #FFD73E;
-
-    /****************** GLOBAL ******************/
-    --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-header-smooth: 0 8px 4px 0 rgba(0, 0, 0, .04);
-    --smooth-border: 2px solid var(--color2);
-    --basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    --strong-shadow: 0px 4px 8px rgba(0, 0, 0, .7);
-    --super-strong-shadow: 0px 4px 8px rgba(0, 0, 0, 1.2);
-
-    --font-family1-serif: "Capsuula", serif;
-    --font-family1: "Capsuula", sans-serif;
-    --font-family2: "ArialNarrow", sans-serif;
-
-    /****************** SIZES ******************/
-    --header-height: 3rem;
-    --mobile-screen-height: 100svh;
-    --mobile-projects-height: clamp(70rem, 64.807rem + 23.739vw, 80rem);
-
-    --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
-
-    --card-border-size: 10px;
-    --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
-    --car-arrow-mobile-size: clamp(1.7rem, 0.765rem + 4.273vw, 3.5rem);
-
-    --title1-font-size: clamp(3.5rem, 2.364rem + 3.636vw, 6rem);
-    --title2-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
-    --title3-font-size: clamp(1.7rem, 1.382rem + 1.018vw, 2.4rem);
-    --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
-    --classic-btn-size: 10rem;
-
-    /****************** SPACING ******************/
-    --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
-    --margin-s: clamp(0.8rem, 0.657rem + 0.381vw, 1rem);
-    --margin-m: clamp(1rem, 0.429rem + 1.524vw, 1.8rem);
-    --margin-l: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
-
-    /****************** ANIMATION ******************/
-    --typing-anim-delay: 2.5s
+  /****************** COLORS ******************/
+  
+  --color1: #1E2040;
+  --color2: #E94E1B;
+  --color3: #E6E0D2;
+  
+  --primary: #383131;
+  --secondary: #fff;
+  --light-primary: #F7FCD1;
+  --light-secondary: #E6E0D2;
+  --color-on-primary: #fff;
+  --color-light-on-primary: grey;
+  --color-on-secondary: black;
+  --color-light-on-secondary: grey;
+  --basic-text-color: #3b3b3b;
+  
+  --proj1-color1: #7CB9D6;
+  --proj1-color2: #FFFFFF;
+  --proj2-color1: #DDE9B9;
+  --proj2-color2: #282552;
+  --proj2-color2-light: rgba(40, 37, 82, 0.6);
+  --proj3-color1: #00B1B1;
+  --proj3-color2: #fff;
+  --proj4-color1: #69AB2F;
+  --proj4-color2: #FFD73E;
+  
+  /****************** GLOBAL ******************/
+  --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-header-smooth: 0 8px 4px 0 rgba(0, 0, 0, .04);
+  --smooth-border: 2px solid var(--color2);
+  --basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  --strong-shadow: 0px 4px 8px rgba(0, 0, 0, .7);
+  --super-strong-shadow: 0px 4px 8px rgba(0, 0, 0, 1.2);
+  
+  --font-family1-serif: "Capsuula", serif;
+  --font-family1: "Capsuula", sans-serif;
+  --font-family2: "ArialNarrow", sans-serif;
+  
+  /****************** SIZES ******************/
+  --header-height: 3rem;
+  --mobile-screen-height: 100svh;
+  --mobile-projects-height: clamp(70rem, 64.807rem + 23.739vw, 80rem);
+  
+  --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
+  
+  --card-border-size: 10px;
+  --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+  --car-arrow-mobile-size: clamp(1.7rem, 0.765rem + 4.273vw, 3.5rem);
+  
+  --title1-font-size: clamp(3.5rem, 2.364rem + 3.636vw, 6rem);
+  --title2-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
+  --title3-font-size: clamp(1.7rem, 1.382rem + 1.018vw, 2.4rem);
+  --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
+  --classic-btn-size: 10rem;
+  
+  /****************** SPACING ******************/
+  --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
+  --margin-s: clamp(0.8rem, 0.657rem + 0.381vw, 1rem);
+  --margin-m: clamp(1rem, 0.429rem + 1.524vw, 1.8rem);
+  --margin-l: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+  
+  /****************** ANIMATION ******************/
+  --typing-anim-delay: 2.5s
 }
 
 @font-face {
@@ -84,22 +84,22 @@
 * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
 */
 html {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: content-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: content-box;
 }
 
 /**
 * reset of default margins and paddings.
 */
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 h1,h2,h3,h4,h5,p,img, span, div {
-    caret-color: transparent;
+  caret-color: transparent;
 }
 
 ul, li {
@@ -156,7 +156,7 @@ footer {
 main {
   min-height: 100vh;
   width: 100%;
-
+  
 }
 
 .section-wrapper {
@@ -350,7 +350,7 @@ section {
     stroke: var(--color3);
     fill: var(--color3);
   }
-
+  
   50% {
     transform: translateY(10px);
     stroke: var(--color2);
@@ -389,6 +389,10 @@ section {
   overflow: hidden;
 }
 
+.mobile-carrow {
+  opacity: 0;
+}
+
 .car-arrow {
   position: absolute;
   z-index: 10;
@@ -423,7 +427,7 @@ section {
   100% {
     transform: translateX(-14px);
   }
-
+  
   50% {
     transform: translateX(-4px);
   }
@@ -435,7 +439,7 @@ section {
   100% {
     transform: translateX(14px);
   }
-
+  
   50% {
     transform: translateX(4px);
   }
@@ -484,7 +488,7 @@ section {
   .card{
     max-width: 70vw;
   }
-
+  
   #project-1.card .splide-container {
     border-right: 6px solid var(--proj1-color2)!important;
   }
@@ -500,12 +504,12 @@ section {
   #project-4.card .splide-container {
     border-right: 6px solid var(--proj4-color2)!important;
   }
-
+  
   .project-legend-container a.button {
     margin-bottom: var(--margin-s) !important;
     margin-top: 0 !important;
   }
-
+  
   .project-legend-container {
     gap:var(--margin-s);
   }
@@ -856,29 +860,45 @@ input[type=radio] {
   #first-section {
     height: var(--mobile-screen-height);
   }
-
+  
   .down-arrow {
     max-width: calc(var(--car-arrow-mobile-size)*3);
     min-height: 45px;
   }
-
+  
   .projects-container-global {
     max-height: none;
     height: var(--mobile-projects-height);
+    justify-content: flex-start;
+    position: relative;
   }
 
-  .car-arrow {
+  .mobile-carrow {
+    z-index: 10;
+    filter: drop-shadow(var(--basic-shadow));
+    max-width: 60px;
+    pointer-events: none;
+    stroke: var(--color3);
     max-width: var(--car-arrow-mobile-size);
+    position: fixed;
+    top: calc(50vh - var(--car-arrow-mobile-size)/2);
+    transition: opacity .4s ease;
+  }
+  
+  .car-arrow {
+    visibility: hidden;
   }
   
   .car-left-arrow {
+    animation: left-arrow-slide 2.7s ease-in-out infinite;
     left: var(--margin-s);
   }
   
   .car-right-arrow {
+    animation: right-arrow-slide 2.7s ease-in-out infinite;
     right: var(--margin-s);
   }
-
+  
   .card{
     height: var(--mobile-projects-height);
     max-width: 75vw;
@@ -887,7 +907,7 @@ input[type=radio] {
     justify-content: flex-start;
     transition: transform .4s ease, opacity .5s ease;
   }
-
+  
   .splide-container {
     height: auto;
     width: 100%;
@@ -895,14 +915,14 @@ input[type=radio] {
     gap: var(--margin-s);
     padding: 0 0 var(--margin-xs) 0;
     justify-content: flex-start;
-    over: scroll;
+    overflow-y: auto;
   }
-
+  
   #project-1 .splide-container {
     min-height: 50%;
     height: 50%;
   }
-
+  
   .main-carousel {
     height: auto;
   }
@@ -910,7 +930,7 @@ input[type=radio] {
   .thumbnail-carousel {
     height: auto;
   }
-
+  
   .splide__slide img {
     width: auto;
     height: 100%;
@@ -928,7 +948,7 @@ input[type=radio] {
     max-height: 100px;
     padding: 0 var(--margin-m);
   }
-
+  
   .splide__arrow--prev {
     left: var(--margin-xs);
   }
@@ -936,7 +956,7 @@ input[type=radio] {
   .splide__arrow--next {
     right: var(--margin-xs);
   }
-
+  
   #project-1 .main-carousel {
     height: 85%;
   }
@@ -944,7 +964,7 @@ input[type=radio] {
   #project-1 .thumbnail-carousel {
     height: 12%;
   }
-
+  
   #project-1.card .splide-container {
     border-bottom: 6px solid var(--proj1-color2)!important;
   }
@@ -960,13 +980,15 @@ input[type=radio] {
   #project-4.card .splide-container {
     border-bottom: 6px solid var(--proj4-color2)!important;
   }
-
+  
   #item-1:checked ~ #project-4, #item-2:checked ~ #project-1, #item-4:checked ~ #project-3, #item-3:checked ~ #project-2 {
+    transform: translate3d(-30%, 0, 0);
     opacity: 0 ;
     filter: none;
   }
   
   #item-1:checked ~ #project-2, #item-2:checked ~ #project-3, #item-4:checked ~ #project-1, #item-3:checked ~ #project-4 {
+    transform: translate3d(30%, 0, 0);
     opacity: 0;
     filter: none;
   }

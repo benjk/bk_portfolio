@@ -1,24 +1,12 @@
 
 document.addEventListener( 'DOMContentLoaded', function () {
-    document.addEventListener("orientationchange", function(event){
-    switch(window.orientation) 
-    {  
-        case -180: case 180:
-            console.log("landscape");
-            
-            break; 
-            default:
-                console.log("portr");
-    }
-});
+    const projectsContainer = document.querySelector('.projects-container-global');
+    const mobileArrows = document.querySelectorAll('.mobile-carrow');
 
     Promise.all([
         fetch('projects-data.json').then(response => response.json()),
         fetch('project-template.html').then(response => response.text())
     ]).then(([data, template]) => {
-        
-        
-        const projectsContainer = document.querySelector('.projects-container-global');
         
         data.forEach(project => {
             // On passe l'image 1 en dernier
@@ -75,9 +63,27 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         waitForAllImages().then(() => {
             initializeSplideAndResize(data);
-            initCardSwipeAndScroll();
+            initCardSwipe();
         });
     });
+    
+    window.addEventListener('scroll', handleMobileCarArrow);
+
+    function handleMobileCarArrow() {
+        const topThreshold = window.innerHeight * 0.2;
+        const bottomThreshold = window.innerHeight * 0.8;
+        const sectionPosition = projectsContainer.getBoundingClientRect();
+        if (sectionPosition.top < topThreshold && sectionPosition.bottom > bottomThreshold) {
+            mobileArrows.forEach( arr => {
+                arr.style.opacity = "1"
+            })
+        } else {
+            mobileArrows.forEach( arr => {
+                arr.style.opacity = "0"
+            })
+        }        
+    }
+    
 });
 
 function waitForAllImages() {
@@ -178,22 +184,15 @@ function adjustCarouselSize() {
                 
                 
                 if (imgDifference >= imgTolerance) {
-                    console.log("resized");
-                    console.log(img);
-                    
                     img.style.setProperty('height', `${Math.round(imgRealHeight)}px`, 'important');
                 }
             })            
-        } else {
-            console.log("VTFF");
         }
-        
     });
 }
 
-function initCardSwipeAndScroll() {    
+function initCardSwipe() {    
     let activeCard = document.querySelector('.card');
-    // Apply class is-active on cards
     const radios = document.querySelectorAll('.radio-carousel');
     radios.forEach(radio => {
         if (radio.id == "item-1") {
@@ -379,54 +378,55 @@ function initCardSwipeAndScroll() {
                         setTimeout(() => {
                             scrollingLinkAnimation = null;
                         }, 50);                    }
+                    });
                 });
-            });
-        })
-        
-        const secondLinks = document.querySelectorAll(".second-link");
-        secondLinks.forEach( link => {
-            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+            })
             
-            link.addEventListener("click", () => {
-                const header = document.querySelector('header')
-                let headerHeight = 0;
-                if (header) headerHeight = header.clientHeight;
-                gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
-                scrollingLinkAnimation = gsap.to(window, {
-                    duration: duration,
-                    scrollTo: {
-                        y:"#second-section", offsetY: headerHeight
-                    },
-                    onComplete: () => {
-                        setTimeout(() => {
-                            scrollingLinkAnimation = null;
-                        }, 50);                    }
+            const secondLinks = document.querySelectorAll(".second-link");
+            secondLinks.forEach( link => {
+                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+                
+                link.addEventListener("click", () => {
+                    const header = document.querySelector('header')
+                    let headerHeight = 0;
+                    if (header) headerHeight = header.clientHeight;
+                    gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
+                    scrollingLinkAnimation = gsap.to(window, {
+                        duration: duration,
+                        scrollTo: {
+                            y:"#second-section", offsetY: headerHeight
+                        },
+                        onComplete: () => {
+                            setTimeout(() => {
+                                scrollingLinkAnimation = null;
+                            }, 50);                    }
+                        });
+                    });
+                })
+            }
+            
+            function activateCardForItem(radioItem) {
+                document.querySelectorAll('.card').forEach(label => {
+                    label.classList.remove('is-active');
                 });
-            });
-        })
-    }
-    
-    function activateCardForItem(radioItem) {
-        document.querySelectorAll('.card').forEach(label => {
-            label.classList.remove('is-active');
-        });
-        
-        if (radioItem.checked) {
-            pauseVideoPlayer();
-            const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
+                
+                if (radioItem.checked) {
+                    pauseVideoPlayer();
+                    const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
+                    
+                    if (correspondingCard) {
+                        correspondingCard.classList.add('is-active');
+                        activeCard = correspondingCard;
+                    }
+                }
+            }
             
-            if (correspondingCard) {
-                correspondingCard.classList.add('is-active');
-                activeCard = correspondingCard;
+            async function pauseVideoPlayer() {
+                const player = await document.querySelector('lite-youtube').getYTPlayer();
+                if (player && player.getPlayerState() == 1) {              
+                    player.pauseVideo()
+                }
+                
             }
         }
-    }
-    
-    async function pauseVideoPlayer() {
-        const player = await document.querySelector('lite-youtube').getYTPlayer();
-        if (player && player.getPlayerState() == 1) {              
-            player.pauseVideo()
-        }
         
-    }
-}
