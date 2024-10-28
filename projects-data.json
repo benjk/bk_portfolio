@@ -46,7 +46,7 @@
     {
         "id": 3,
         "title": "Oyogoo",
-        "description": "Cette application web, <strong>optimisée pour mobile</strong>, propose des podcasts ludiques destinés aux enfants pour les accompagner dans l'apprentissage de la natation.<br>Un <strong>player personnalisé</strong> a été développé pour ce besoin spécifique<br><br> Il s'agit d'une <strong>PWA (Progressive Web Application)</strong>, une application hebergée sur le web, mais se comportant comme une application mobile, elle peut être installée, lancée en plein écran et déployée sur le <strong>Playstore</strong>.<br><br>Visitez <a target='blank' href='https://www.oyogoo.com/'>oyogoo.com</a> !",
+        "description": "Cette application web, <strong>optimisée pour mobile</strong>, propose des podcasts ludiques destinés aux enfants pour les accompagner dans l'apprentissage de la natation.<br>Un <strong>player personnalisé</strong> a été développé pour ce besoin spécifique<br><br> Il s'agit d'une <strong>PWA (Progressive Web Application)</strong>, une application hebergée sur le web, mais se comportant comme une application mobile, elle peut être installée, lancée en plein écran et déployée sur le <strong>Playstore</strong>.<br><br>Visitez <a target='blank' href='https://www.oyogoo.com/'>oyogoo.com</a>",
         "images": [
             "assets/img/projet4_thumb1.JPG",
             "assets/img/projet4_thumb2.JPG",
@@ -63,7 +63,7 @@
     {
         "id": 4,
         "title": "Chapzy",
-        "description": "Une application de divertissement pour jouer aux Time's up.<br>Elle sert de support de jeu et offre des outils pour organiser les parties : <strong>gestion des joueurs et des équipes</strong>, <strong>minuterie</strong>, <strong>calcul des scores</strong>.<br>Et plein d'autres fonctionnalités : la personnalisation avancée des paramètres de jeu, la création d'équipes flexibles, l'ajout de nouveaux mots par les joueurs et la <strong>gestion d'une collection</strong> personnalisée.<br><br>Le déploiement de cette application m'a permis de découvrir le fonctionnement du <strong>Playstore Google</strong>, du <strong>référencement Android</strong> (ASO) et de la <strong>vente de produits digitaux</strong>.<br><br>N'hésitez pas à <a target='blank' href='https://play.google.com/store/apps/details?id=chapzy.projet.chapzygame&hl=fr'>tester l'application</a> !",
+        "description": "Une application de divertissement pour jouer aux Time's up.<br>Elle sert de support de jeu et offre des outils pour organiser les parties : <strong>gestion des joueurs et des équipes</strong>, <strong>minuterie</strong>, <strong>calcul des scores</strong>.<br>Et plein d'autres fonctionnalités : la personnalisation avancée des paramètres de jeu, la création d'équipes flexibles, l'ajout de nouveaux mots par les joueurs et la <strong>gestion d'une collection</strong> personnalisée.<br><br>Le déploiement de cette application m'a permis de découvrir le fonctionnement du <strong>Playstore Google</strong>, du <strong>référencement Android</strong> (ASO) et de la <strong>vente de produits digitaux.</strong><a target='blank' href='https://play.google.com/store/apps/details?id=chapzy.projet.chapzygame&hl=fr'></a> !",
         "images": [
             "assets/img/projet3_thumb1.png",
             "assets/img/projet3_thumb3.png",

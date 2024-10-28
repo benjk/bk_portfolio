@@ -41,7 +41,7 @@
   /****************** SIZES ******************/
   --header-height: 3rem;
   --mobile-screen-height: 100svh;
-  --mobile-projects-height: clamp(70rem, 64.807rem + 23.739vw, 80rem);
+  --mobile-projects-height: clamp(70rem, 63.59rem + 25.641vw, 80rem);
   
   --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
   
