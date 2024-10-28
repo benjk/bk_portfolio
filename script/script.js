@@ -1,5 +1,17 @@
 
 document.addEventListener( 'DOMContentLoaded', function () {
+    document.addEventListener("orientationchange", function(event){
+    switch(window.orientation) 
+    {  
+        case -180: case 180:
+            console.log("landscape");
+            
+            break; 
+            default:
+                console.log("portr");
+    }
+});
+
     Promise.all([
         fetch('projects-data.json').then(response => response.json()),
         fetch('project-template.html').then(response => response.text())
@@ -15,6 +27,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
             // Sur mobile on vire les logos ils genent l'affichage et n'apportent rien
             if (!isMobile() || project.id != 3 && project.id != 4) {
                 images.push(firstImage);
+                if (isMobile() && project.id == 2) {
+                    const firstImage = images.shift();
+                    images.push(firstImage);
+                    console.log(firstImage);
+                }
             }
             
             let mainImagesHTML = '';
@@ -25,19 +42,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     </li>`;
             });
             
-            // On vire les grosses images des thumbs pour oyo et chapzy
-            let thumbHTML = ''
-            if (project.id == 3 || project.id == 4) {
-                images.pop();
-                images.forEach(image => {                    
-                    thumbHTML += `
-                    <li class="splide__slide">
-                        <img src="${image}" alt="">
-                    </li>`;
-                });
-            } else {
-                thumbHTML = mainImagesHTML;
-            }
+            let thumbHTML = mainImagesHTML;
             
             if (project.video) {
                 thumbHTML += `
