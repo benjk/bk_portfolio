@@ -117,7 +117,6 @@ html, body {
   min-height: 100vh;
   width: 100%;
   background-color: var(--color1);
-  overscroll-behavior: none;
   touch-action: manipulation;
 }
 
