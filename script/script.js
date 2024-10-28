@@ -32,7 +32,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             let thumbHTML = ''
             if ((project.id == 3 || project.id == 4) && !isMobile()) {
                 images.pop();
-                images.forEach(image => {                    
+                images.forEach(image => {            
                     thumbHTML += `
                     <li class="splide__slide">
                         <img src="${image}" alt="">

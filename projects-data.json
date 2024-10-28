@@ -2,7 +2,7 @@
     {
         "id": 1,
         "title": "Siane",
-        "description": "Réalisation d'une application Android pour tablette Samsung Galaxy A7.<br>A l'occasion du <a target='blank' href='https://www.salonsiane.com/place-de-lindustrie/'>salon SIANE Industries</a>, le salon des industriels du Grand Sud, j'ai réalisé une application Android mêlant <strong>divertissement et pédagogie</strong>.<br><br>L'application accompagne un jeu de piste physique et présente une série de mini-jeux sur les grandes thématiques de l'industrie française, comme les filières de l'énergie, du bois, du plastique,...<br><br>Pour ce faire, nous avons mis en place des mini-jeux sur mesures tels que des <strong>puzzles</strong>, <strong>labyrinthes</strong>, <strong>drag & drop</strong> ou encore de la <strong>sélection</strong>.",
+        "description": "Réalisation d'une application Android pour tablette Samsung Galaxy A7.<br><br>A l'occasion du <a target='blank' href='https://www.salonsiane.com/place-de-lindustrie/'>salon SIANE Industries</a>, le salon des industriels du Grand Sud, j'ai réalisé une application Android mêlant <strong>divertissement et pédagogie</strong>.<br><br>L'application accompagne un jeu de piste physique et présente une série de mini-jeux sur les grandes thématiques de l'industrie française, comme les filières de l'énergie, du bois, du plastique,...<br><br>Pour ce faire, nous avons mis en place des mini-jeux sur mesures tels que des <strong>puzzles</strong>, <strong>labyrinthes</strong>, <strong>drag & drop</strong> ou encore de la <strong>sélection</strong>.",
         "images": [
             "assets/img/projet1_thumb1.JPG",
             "assets/img/projet1_thumb2.JPG",
@@ -63,7 +63,7 @@
     {
         "id": 4,
         "title": "Chapzy",
-        "description": "Une application de divertissement pour jouer aux Time's up.<br>Elle sert de support de jeu et offre des outils pour organiser les parties : <strong>gestion des joueurs et des équipes</strong>, <strong>minuterie</strong>, <strong>calcul des scores</strong>.<br>Et plein d'autres fonctionnalités : la personnalisation avancée des paramètres de jeu, la création d'équipes flexibles, l'ajout de nouveaux mots par les joueurs et la <strong>gestion d'une collection</strong> personnalisée.<br><br>Le déploiement de cette application m'a permis de découvrir le fonctionnement du <strong>Playstore Google</strong>, du <strong>référencement Android</strong> (ASO) et de la <strong>vente de produits digitaux.</strong><a target='blank' href='https://play.google.com/store/apps/details?id=chapzy.projet.chapzygame&hl=fr'></a> !",
+        "description": "Une application de divertissement pour jouer aux Time's up. Elle sert de support de jeu et offre des outils pour organiser les parties : <strong>gestion des joueurs et des équipes</strong>, <strong>minuterie</strong>, <strong>calcul des scores</strong>.<br>Et plein d'autres fonctionnalités : la personnalisation avancée des paramètres de jeu, la création d'équipes flexibles, l'ajout de nouveaux mots par les joueurs et la <strong>gestion d'une collection</strong> personnalisée.<br><br>Le déploiement de cette application m'a permis de découvrir le fonctionnement du <strong>Playstore Google</strong>, du <strong>référencement Android</strong> (ASO) et de la <strong>vente de produits digitaux.</strong><a target='blank' href='https://play.google.com/store/apps/details?id=chapzy.projet.chapzygame&hl=fr'></a>",
         "images": [
             "assets/img/projet3_thumb1.png",
             "assets/img/projet3_thumb3.png",

@@ -939,6 +939,11 @@ input[type=radio] {
     width: auto;
     height: 100%;
   }
+
+  .main-carousel .splide__slide img {
+    width: 100%;
+    height: auto;
+  }
   
   .project-legend-container {
     flex: 1;
