@@ -30,7 +30,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 if (isMobile() && project.id == 2) {
                     const firstImage = images.shift();
                     images.push(firstImage);
-                    console.log(firstImage);
                 }
             }
             
@@ -156,7 +155,7 @@ function adjustCarouselSize() {
     const mainCarousels = document.querySelectorAll('.main-carousel');
     
     mainCarousels.forEach(mainCarousel => {    
-        const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child iframe');
+        const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child lite-youtube');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
         
         if (activeImg) {
@@ -179,9 +178,14 @@ function adjustCarouselSize() {
                 
                 
                 if (imgDifference >= imgTolerance) {
+                    console.log("resized");
+                    console.log(img);
+                    
                     img.style.setProperty('height', `${Math.round(imgRealHeight)}px`, 'important');
                 }
             })            
+        } else {
+            console.log("VTFF");
         }
         
     });
@@ -201,7 +205,7 @@ function initCardSwipeAndScroll() {
     });
     
     // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
-    if (isMobile()) {
+    if (isMobile()) {       
         let startX = 0;
         let startY = 0;
         let currentSlide = 1;
