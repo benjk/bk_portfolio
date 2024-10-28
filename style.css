@@ -62,7 +62,9 @@
   --margin-l: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
   
   /****************** ANIMATION ******************/
-  --typing-anim-delay: 2.5s
+  --typing-anim-delay: 2.5s;
+  --arrow-slide1: clamp(0.4rem, -0.138rem + 2.154vw, 1.8rem);
+  --arrow-slide2: 0.25rem;
 }
 
 @font-face {
@@ -426,11 +428,11 @@ section {
 @keyframes left-arrow-slide {
   0%,
   100% {
-    transform: translateX(-14px);
+    transform: translateX(var(--arrow-slide1));
   }
   
   50% {
-    transform: translateX(-4px);
+    transform: translateX(calc(var(--arrow-slide2)*-1));
   }
 }
 
@@ -438,11 +440,11 @@ section {
 @keyframes right-arrow-slide {
   0%,
   100% {
-    transform: translateX(14px);
+    transform: translateX(calc(var(--arrow-slide1)*-1));
   }
   
   50% {
-    transform: translateX(4px);
+    transform: translateX(var(--arrow-slide2));
   }
 }
 
