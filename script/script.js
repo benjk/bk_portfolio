@@ -1,7 +1,24 @@
 
 document.addEventListener( 'DOMContentLoaded', function () {
+    const header = document.querySelector('header')
     const projectsContainer = document.querySelector('.projects-container-global');
+    const carouselArrows = document.querySelectorAll(".car-arrow");
     const mobileArrows = document.querySelectorAll('.mobile-carrow');
+    const radiosCarousel = document.querySelectorAll('.radio-carousel');
+
+    let mainCarousels;
+    let thumbCarouselImgContainer;
+    let cards;
+    let contactLinks;
+    let projectsLinks;
+    let secondLinks;
+
+    // Versionning
+    const spanVersionning = document.querySelector("span#versionning");
+    if (spanVersionning) {
+        spanVersionning.textContent = "v1.0.1"
+    }
+
 
     Promise.all([
         fetch('projects-data.json').then(response => response.json()),
@@ -73,6 +90,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
         });
         
         waitForAllImages().then(() => {
+            mainCarousels = document.querySelectorAll('.main-carousel');
+            thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
+            cards = document.querySelectorAll('.card');
+            contactLinks = document.querySelectorAll(".contact-link");
+            projectsLinks = document.querySelectorAll(".projects-link");
+            secondLinks = document.querySelectorAll(".second-link");
+            
             initializeSplideAndResize(data);
             initCardSwipe();
         });
@@ -94,8 +118,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
             })
         }        
     }
-    
-});
 
 function waitForAllImages() {
     const images = Array.from(document.querySelectorAll('img'));
@@ -115,8 +137,6 @@ function waitForAllImages() {
 }
 
 function initializeSplideAndResize(data) {
-    const mainCarousels = document.querySelectorAll('.main-carousel');
-    
     mainCarousels.forEach((mainCarousel, index) => {
         const startIndex = (data[index].images.length)
         
@@ -155,10 +175,8 @@ function initializeSplideAndResize(data) {
 }
 
 
-function checkOverflow() {    
-    const container = document.querySelectorAll('.thumbnail-carousel .splide__list');
-    
-    container.forEach(cont => {
+function checkOverflow() {        
+    thumbCarouselImgContainer.forEach(cont => {
         if (cont.clientWidth < cont.scrollWidth) {
             cont.classList.add('overflow');            
         } else {
@@ -168,9 +186,7 @@ function checkOverflow() {
     
 }
 
-function adjustCarouselSize() {    
-    const mainCarousels = document.querySelectorAll('.main-carousel');
-    
+function adjustCarouselSize() {        
     mainCarousels.forEach(mainCarousel => {    
         const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child lite-youtube');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
@@ -204,8 +220,7 @@ function adjustCarouselSize() {
 
 function initCardSwipe() {    
     let activeCard = document.querySelector('.card');
-    const radios = document.querySelectorAll('.radio-carousel');
-    radios.forEach(radio => {
+    radiosCarousel.forEach(radio => {
         if (radio.id == "item-1") {
             document.querySelector(`label[for="${radio.id}"]`).classList.add('is-active');
         }
@@ -272,23 +287,19 @@ function initCardSwipe() {
             activateCardForItem(activeItem);
         };
         
-        const swipeContainer = document.querySelector('.projects-container-global');
-        swipeContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
-        swipeContainer.addEventListener('touchend', handleTouchEnd, {passive: true});   
+        projectsContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
+        projectsContainer.addEventListener('touchend', handleTouchEnd, {passive: true});   
     } 
     
     let scrollingLinkAnimation = null;
     initializeAnimations();
     
     function initializeAnimations() {
-        const carouselArrows = document.querySelectorAll(".car-arrow")
         let hoveredCard = null;
         let hoveredArrow = null;
         
-        if (!isMobile()) {
-            const cardsContainer = document.querySelector('.projects-container-global');
-            
-            cardsContainer.addEventListener('mouseover', (event) => {
+        if (!isMobile()) {            
+            projectsContainer.addEventListener('mouseover', (event) => {
                 const card = event.target.closest('.card');
                 
                 if (!card || activeCard == card) return;
@@ -331,9 +342,7 @@ function initCardSwipe() {
                     });
                 }
             });
-            
-            const cards = document.querySelectorAll('.card');
-            
+                        
             cards.forEach( card => {
                 card.addEventListener('mouseover', (event) => {
                     switch (card.id)   {
@@ -350,12 +359,10 @@ function initCardSwipe() {
             })
         }
         
-        const contactLinks = document.querySelectorAll(".contact-link");
         contactLinks.forEach( link => {
             let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
             
             link.addEventListener("click", () => {
-                const header = document.querySelector('header')
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
                 scrollingLinkAnimation = gsap.to(window, {
@@ -372,12 +379,10 @@ function initCardSwipe() {
             });
         })
         
-        const projectsLinks = document.querySelectorAll(".projects-link");
         projectsLinks.forEach( link => {
             let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
             
             link.addEventListener("click", () => {
-                const header = document.querySelector('header')
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
                 scrollingLinkAnimation = gsap.to(window, {
@@ -393,12 +398,10 @@ function initCardSwipe() {
                 });
             })
             
-            const secondLinks = document.querySelectorAll(".second-link");
             secondLinks.forEach( link => {
                 let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
                 
                 link.addEventListener("click", () => {
-                    const header = document.querySelector('header')
                     let headerHeight = 0;
                     if (header) headerHeight = header.clientHeight;
                     gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
@@ -417,7 +420,7 @@ function initCardSwipe() {
             }
             
             function activateCardForItem(radioItem) {
-                document.querySelectorAll('.card').forEach(label => {
+                cards.forEach(label => {
                     label.classList.remove('is-active');
                 });
                 
@@ -440,4 +443,5 @@ function initCardSwipe() {
                 
             }
         }
+    });
         

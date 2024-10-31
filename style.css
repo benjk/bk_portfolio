@@ -1,5 +1,7 @@
 :root {
   /****************** COLORS ******************/
+
+  --versionning-color: blue;
   
   --color1: #1E2040;
   --color2: #E94E1B;
@@ -147,7 +149,7 @@ header:hover {
 
 footer {
   width: 100%;
-  background-color: var(--color1);
+  background-color: var(--versionning-color);
   color: var(--color3);
   padding: var(--margin-xs) var(--margin-s);
   display: flex;
