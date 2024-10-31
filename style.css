@@ -1,6 +1,6 @@
 :root {
   /****************** COLORS ******************/
-
+  
   --versionning-color: blue;
   
   --color1: #1E2040;
@@ -28,8 +28,7 @@
   --proj4-color2: #FFD73E;
   
   /****************** GLOBAL ******************/
-  --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-header: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-header-smooth: 0 8px 4px 0 rgba(0, 0, 0, .04);
   --smooth-border: 2px solid var(--color2);
   --basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -47,6 +46,8 @@
   
   --main-network-icon-size: clamp(2rem, 1.636rem + 1.164vw, 2.8rem);
   
+  --section-max-width: 1350px;
+  --card-max-width: 1350px;
   --card-border-size: 10px;
   --splide-arrow-size: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
   --car-arrow-mobile-size: clamp(1.7rem, 0.765rem + 4.273vw, 3.5rem);
@@ -180,15 +181,14 @@ section {
   z-index: 1;
 }
 
-#second-section, #third-section, #four-section {
-  min-height: 600px;
+h2 {
+  color: var(--color2);
+  font-size: var(--title3-font-size);
+  text-transform: uppercase;
 }
 
-#second-section {
-  width: 85%;
-  border-radius: 10px;
-  background-color: var(--color3);
-  padding: var(--margin-l);
+#third-section, #four-section {
+  min-height: 600px;
 }
 
 #third-section {
@@ -251,12 +251,6 @@ section {
   text-align: center;
   line-height: calc(var(--title1-font-size)*1.1);
   font-weight: normal;
-}
-
-#first-section h2 {
-  color: var(--color2);
-  font-size: var(--title3-font-size);
-  text-transform: uppercase;
 }
 
 .typewriter {
@@ -361,6 +355,86 @@ section {
   }
 }
 
+/****************** SECOND SECTION ******************/
+
+#second-section {
+  width: 90%;
+  max-width: var(--section-max-width);
+  padding-top: var(--margin-l);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#second-section h2 {
+  margin-bottom: var(--margin-l);
+}
+
+#second-section .pres-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: var(--margin-l);
+}
+
+#second-section .pres-wrapper .pres-img-container {
+  display: flex;
+  align-items: center;
+  width: 40%;
+}
+
+.pres-img-container img {
+  max-width: 100%;
+}
+
+#second-section .pres-wrapper .pres-text-container {
+  width: 60%;
+  padding: 0 var(--margin-l);
+  color: var(--color3);
+  font-size: var(--text-font-size);
+  font-family: var(--font-family2);
+  text-align: justify;
+  margin-left: var(--margin-l);
+}
+
+.pres-text-container span.important {
+  color: var(--color2)
+}
+
+.pres-text-container span.important {
+  font-weight: bold;
+}
+
+.pres-text-container .pres-text a.link {
+  color: var(--color2);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#second-section .client-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#second-section .client-wrapper h3 {
+  margin-bottom: var(--margin-m);
+  margin-top: var(--margin-m);
+  color: var(--color2);
+  font-size: var(--title3-font-size);
+}
+
+.client-logo-container {
+  min-height: 200px;
+  width: 100%;
+  background-color: var(--color3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /****************** SPLIDE ******************/
 .projects-container-global {
   position: relative;
@@ -377,7 +451,7 @@ section {
 .card {
   position: absolute;
   width: 85%;
-  max-width: 1350px;
+  max-width: var(--card-max-width);
   height: 90%;
   left: 0;
   right: 0;
@@ -876,7 +950,7 @@ input[type=radio] {
     justify-content: flex-start;
     position: relative;
   }
-
+  
   .mobile-carrow {
     display: block;
     z-index: 10;
@@ -940,7 +1014,7 @@ input[type=radio] {
     width: auto;
     height: 100%;
   }
-
+  
   .main-carousel .splide__slide img {
     width: 100%;
     height: auto;
@@ -1006,5 +1080,29 @@ input[type=radio] {
   #item-1:checked ~ #project-3, #item-2:checked ~ #project-4, #item-4:checked ~ #project-2, #item-3:checked ~ #project-1 {
     opacity: 0;
     filter: none;
+  }
+  
+  /****************** SECOND SECTION ******************/
+  
+  #second-section {
+    width: 100%;
+    padding: var(--margin-l) var(--margin-s);
+  }
+
+  #second-section .pres-wrapper {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: var(--margin-l);
+    gap: var(--margin-l);
+  }
+
+  #second-section .pres-wrapper .pres-img-container {
+    width: 100%;
+    padding: 0 var(--margin-l);
+  }
+  
+  #second-section .pres-wrapper .pres-text-container {
+    width: 100%;
+    margin-left: 0;
   }
 }
