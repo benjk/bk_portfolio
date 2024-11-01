@@ -374,7 +374,7 @@ function initCardSwipe() {
                 scrollingLinkAnimation = gsap.to(window, {
                     duration: duration,
                     scrollTo: {
-                        y:"#third-section", offsetY: headerHeight
+                        y:"#contact-section", offsetY: headerHeight
                     },
                     onComplete: () => {
                         setTimeout(() => {
