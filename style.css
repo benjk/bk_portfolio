@@ -250,6 +250,7 @@ h2 {
 }
 
 .typewriter {
+  will-change: transform;
   box-sizing: content-box;
   width: fit-content;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -318,6 +319,7 @@ h2 {
 }
 
 .down-arrow {
+  will-change: transform;
   margin-top: var(--margin-l);
   filter: drop-shadow(var(--basic-shadow));
   max-width: 60px;
@@ -515,6 +517,7 @@ h2 {
 }
 
 .car-arrow {
+  will-change: transform;
   position: absolute;
   z-index: 10;
   filter: drop-shadow(var(--basic-shadow));
