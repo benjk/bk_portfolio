@@ -69,7 +69,7 @@
   
   /****************** ANIMATION ******************/
   --typing-anim-delay: 2.5s;
-  --arrow-slide1: clamp(0.4rem, -0.138rem + 2.154vw, 1.8rem);
+  --arrow-slide1: clamp(0.4rem, -0.138rem + 2.154vw, 1rem);
   --arrow-slide2: 0.25rem;
   --client-slide-speed: 30s;
 }
