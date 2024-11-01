@@ -1,7 +1,7 @@
 :root {
   /****************** COLORS ******************/
   
-  --versionning-color: blue;
+  --versionning-color: #1E2040;
   
   --color1: #1E2040;
   --color2: #E94E1B;
@@ -187,13 +187,8 @@ h2 {
   text-transform: uppercase;
 }
 
-#third-section, #four-section {
+#four-section {
   min-height: 600px;
-}
-
-#third-section {
-  background-color: var(--color3);
-  width: 85%;
 }
 
 #four-section {
@@ -390,11 +385,14 @@ h2 {
 #second-section .pres-wrapper .pres-text-container {
   width: 60%;
   padding: 0 var(--margin-l);
+  margin-left: var(--margin-l);
+}
+
+.pres-text-container .pres-text {
   color: var(--color3);
   font-size: var(--text-font-size);
   font-family: var(--font-family2);
   text-align: justify;
-  margin-left: var(--margin-l);
 }
 
 .pres-text-container span.important {
@@ -436,6 +434,17 @@ h2 {
 }
 
 /****************** SPLIDE ******************/
+#third-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#third-section h2 {
+  margin-top: var(--margin-l);
+}
+
 .projects-container-global {
   position: relative;
   width: 100%;
@@ -537,7 +546,8 @@ h2 {
 }
 
 .main-carousel {
-  height: 79%; /* Utilisez une valeur fixe pour le carrousel principal */
+  height: 79%; /* 
+  Utilisez une valeur fixe pour le carrousel principal */
 }
 
 .thumbnail-carousel {
