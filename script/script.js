@@ -16,8 +16,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
     if (spanVersionning) {
-        spanVersionning.textContent = "v1.0.1"
+        spanVersionning.textContent = "v1.0.2"
     }
+
+    // Customers carousel
+    const track = document.querySelector(".client-slide-track");
+    track.innerHTML += track.innerHTML;
+    const trackWidth = track.scrollWidth;
+    document.documentElement.style.setProperty("--track-width", `${trackWidth/-2}px`);
 
 
     Promise.all([
