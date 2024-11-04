@@ -112,7 +112,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
     function handleMobileCarArrow() {
         const topThreshold = window.innerHeight * 0.2;
-        const bottomThreshold = window.innerHeight * 0.8;
+        const bottomThreshold = window.innerHeight * 0.55;
         const sectionPosition = projectsContainer.getBoundingClientRect();
         if (sectionPosition.top < topThreshold && sectionPosition.bottom > bottomThreshold) {
             mobileArrows.forEach( arr => {
@@ -389,12 +389,13 @@ function initCardSwipe() {
             let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
             
             link.addEventListener("click", () => {
+                let seuil = isMobile() ? "#third-section" : ".projects-container-global"
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
                 scrollingLinkAnimation = gsap.to(window, {
                     duration: duration,
                     scrollTo: {
-                        y:".projects-container-global", offsetY: headerHeight
+                        y: seuil, offsetY: headerHeight
                     },
                     onComplete: () => {
                         setTimeout(() => {
