@@ -60,7 +60,7 @@
   --title4-font-size: clamp(1.35rem, 1.177rem + 0.692vw, 1.8rem);
   --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
   --btn-font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.3rem);
-  --btn-font-size: clamp(0.95rem, 0.81rem + 0.56vw, 1.3rem);
+  --btn-font-size: clamp(1rem, 0.88rem + 0.48vw, 1.3rem);
   --classic-btn-size: 10rem;
   --bigger-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
   
@@ -420,10 +420,6 @@ h2 {
   width: var(--bigger-btn-size);
   margin-top: 0;
   margin-bottom: 0;
-}
-
-.pres-text-container .button:after {
-  background: var(--color3);
 }
 
 #second-section .client-wrapper {
@@ -977,6 +973,7 @@ a.button {
   margin-top: var(--margin-m);
   overflow: hidden;
   position: relative;
+  white-space: nowrap;
 }
 
 a.button:after {
