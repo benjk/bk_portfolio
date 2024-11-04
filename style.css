@@ -72,7 +72,7 @@
   --typing-anim-delay: 2.5s;
   --arrow-slide1: clamp(0.4rem, -0.138rem + 2.154vw, 1rem);
   --arrow-slide2: 0.25rem;
-  --client-slide-speed: 30s;
+  --client-slide-speed: 20s;
 }
 
 @font-face {
@@ -165,7 +165,6 @@ footer {
 main {
   min-height: 100vh;
   width: 100%;
-  
 }
 
 .section-wrapper {
@@ -448,11 +447,7 @@ h2 {
 
 @keyframes scroll {
 	0% { transform: translateX(0); }
-	100% { transform: translateX(calc(var(--track-width) - var(--margin-l)/2))}
-}
-
-.client-logo-container:hover .client-slide-track {
-  animation-play-state: paused;
+	100% { transform: translateX(calc(var(--track-width) - var(--margin-l)))}
 }
 
 .client-logo-container .client-slide {
@@ -1172,6 +1167,11 @@ input[type=radio] {
 
   .client-slide-track {
     gap: var(--margin-l);
-    animation: scroll calc(var(--client-slide-speed)*0.75) linear infinite;
+    animation: scrollMob calc(var(--client-slide-speed)*0.75) linear infinite;
+  }
+
+  @keyframes scrollMob {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(var(--track-width) - (var(--margin-l)/2)))}
   }
 }
