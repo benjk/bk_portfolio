@@ -246,7 +246,7 @@ function initCardSwipe() {
         const handleTouchStart = (e) => {
             if (!e.target.closest('.thumbnail-carousel')) {
                 startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;                
+                startY = e.touches[0].clientY;       
             } else {
                 startX = null;
             }

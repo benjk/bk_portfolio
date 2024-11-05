@@ -17,7 +17,7 @@
   --color-light-on-primary: grey;
   --color-on-secondary: black;
   --color-light-on-secondary: grey;
-  --basic-text-color: #3b3b3b;
+  --basic-text-color: var(--color1);
   
   --proj1-color1: #7CB9D6;
   --proj1-color2: #FFFFFF;
@@ -58,10 +58,10 @@
   --title2-font-size: clamp(2rem, 1.714rem + 0.762vw, 2.4rem);
   --title3-font-size: clamp(1.7rem, 1.382rem + 1.018vw, 2.4rem);
   --title4-font-size: clamp(1.35rem, 1.177rem + 0.692vw, 1.8rem);
-  --text-font-size: clamp(0.8rem, 0.586rem + 0.571vw, 1.1rem);
+  --text-font-size: clamp(0.8rem, 0.627rem + 0.692vw, 1.25rem);
   --btn-font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.3rem);
   --btn-font-size: clamp(1rem, 0.88rem + 0.48vw, 1.3rem);
-  --classic-btn-size: 10rem;
+  --classic-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
   --bigger-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
   
   /****************** SPACING ******************/
@@ -485,49 +485,60 @@ h2 {
   max-width: var(--section-max-width);
   display: flex;
   flex-direction: column;
-  align-items: center;
   background-color: transparent;
   padding-top: var(--margin-l);
 }
 
 #contact-section h2 {
   margin-bottom: var(--margin-l);
+  text-align: left;
+  position: relative;
+  left: calc(40% + var(--margin-l));
 }
 
 #contact-section .contact-container {
   width: 100%;
   height: 450px;
-  border: var(--card-border-size) solid var(--color3);
-  border-radius: 10px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  gap: var(--margin-l);
 }
 
 #contact-section .contact-infos-container {
-  width: 35%;
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: var(--margin-l);
-  background-color: var(--color3);
-  color: var(--color1);
-  font-size: var(--text-font-size);
-  font-family: var(--font-family2);
+width: 40%;
+height: 100%;
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: var(--margin-l);
+color: var(--color1);
+font-size: var(--text-font-size);
+font-family: var(--font-family2);
+border-radius: 10px;
+background-color: var(--color3);
+}
+
+#contact-section .contact-infos-container h4 {
+  color: var(--color2);
+  text-transform: uppercase;
+  font-family: var(--font-family1);
+  font-size: var(--title4-font-size);
 }
 
 #contact-section .contact-form-container {
-  width: 65%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--margin-l);
   padding: var(--margin-l);
+  background-color: transparent;
+  border-radius: 10px;
 }
 
 .form-group {
@@ -535,7 +546,6 @@ h2 {
   position: relative;
   font-family: var(--font-family2);
   width: 100%;
-  color: var(--color3)
 }
 
 .floating-input {
@@ -543,9 +553,12 @@ h2 {
   border-radius: 8px;
   background-color: transparent;
   border: 2px solid var(--color3);
-  color: inherit;
+  color: var(--color3);
   width: 100%;
   outline: none;
+  box-shadow: var(--basic-shadow);
+  font-family: var(--font-family2);
+  font-size: var(--text-font-size);
 }
 
 textarea.floating-input {
@@ -557,13 +570,13 @@ textarea.floating-input {
   position: absolute;
   left: var(--pad-input);
   top: var(--pad-input);
-  background: var(--color1);
+  background: transparent;
   padding-inline: .3em;
   transition: transform 200ms;
   pointer-events: none;
   transform-origin: left;
   translate: -.3em;
-  color: var(--color2)
+  color: var(--color3)
 }
 
 .floating-input::placeholder {
@@ -571,12 +584,20 @@ textarea.floating-input {
 }
 .floating-input:focus + label,
 .floating-input:not(:placeholder-shown) + label {
-  transform: translateY(calc(-50% - var(--pad-input))) scale(.8);
+  transform: translateY(calc(-50% - var(--pad-input)*2)) scale(.8);
   color: var(--color2);
 }
 
 .floating-input:focus {
-  border: 2px solid var(--color2);;
+  border: 2px solid var(--color2);
+}
+
+.contact-form-container .button {
+  color: var(--color2);
+  border: 2px solid var(--color3);
+  width: var(--bigger-btn-size);
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /****************** SPLIDE ******************/
@@ -1010,13 +1031,13 @@ input[type=radio] {
 .project-legend-container {
   display: flex;
   flex-direction: column;
-  gap: var(--margin-m);
-  padding: var(--margin-s) calc(var(--margin-s) - var(--card-border-size)) 0 var(--margin-s);
+  padding: var(--margin-l) calc(var(--margin-l) - var(--card-border-size)) var(--margin-l) var(--margin-l);
   font-size: var(--text-font-size);
   color: var(--basic-text-color);
-  justify-content: center;
+  justify-content: space-between;
   transform: scale(1.01); /* trix pour eviter ligne 1px vide */
   font-family: var(--font-family2);
+  line-height: calc(var(--text-font-size)*1.3);
 }
 
 .project-legend-container h2 {
@@ -1191,8 +1212,7 @@ a.button:hover:after {
     flex: 1;
     width: 100%;
     height: auto;
-    justify-content: space-between;
-    padding: var(--margin-m) var(--margin-s) 0 var(--margin-s);
+    padding: var(--margin-l) var(--margin-s) 0 var(--margin-s);
   }
   
   .thumbnail-carousel {
