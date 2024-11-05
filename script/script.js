@@ -244,6 +244,8 @@ function initCardSwipe() {
         const totalSlides = 4;
         
         const handleTouchStart = (e) => {
+            console.log("touchay");
+            
             if (!e.target.closest('.thumbnail-carousel')) {
                 startX = e.touches[0].clientX;
                 startY = e.touches[0].clientY;       
