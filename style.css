@@ -115,13 +115,15 @@ h1,h2,h3,h4,h5,p,img, span, div {
   caret-color: transparent;
 }
 
+input, textarea {
+  caret-color: auto;
+}
+
 ul, li {
   padding: 0;
   margin: 0;
-  list-style: none;
+  list-style-type: none;
 }
-
-
 
 /****************** GLOBAL ******************/
 html, body {
@@ -488,10 +490,10 @@ h2 {
   flex-direction: column;
   background-color: transparent;
   padding-top: var(--margin-l);
+  gap: var(--margin-l)
 }
 
 #contact-section h2 {
-  margin-bottom: var(--margin-l);
   text-align: left;
   position: relative;
   left: calc(40% + var(--margin-l));
@@ -544,6 +546,7 @@ background-color: var(--color3);
   flex-direction: row;
   align-items: center;
   gap: var(--margin-xs);
+  white-space: nowrap;
 }
 
 #contact-section .contact-infos-container .detail-infos-container .info-wrapper svg.info-icon {
@@ -619,10 +622,11 @@ background-color: var(--color3);
   box-shadow: var(--basic-shadow);
   font-family: var(--font-family2);
   font-size: var(--text-font-size);
+  border-radius: 15px;
 }
 
 textarea.floating-input {
-  height: 12rem;
+  height: 16rem;
   overflow-y: auto;
 }
 
@@ -636,7 +640,8 @@ textarea.floating-input {
   pointer-events: none;
   transform-origin: left;
   translate: -.3em;
-  color: var(--color3)
+  color: var(--color3);
+  font-size: var(--text-font-size)
 }
 
 .floating-input::placeholder {
@@ -652,12 +657,13 @@ textarea.floating-input {
   border: 2px solid var(--color2);
 }
 
-.contact-form-container .button {
+#contact-section .button {
   color: var(--color2);
   border: 2px solid var(--color3);
   width: var(--bigger-btn-size);
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
+  position: relative;
+  left: calc(100% - var(--bigger-btn-size) - var(--margin-l));
 }
 
 /****************** SPLIDE ******************/
@@ -1121,10 +1127,6 @@ input[type=radio] {
   cursor: pointer;
 }
 
-.project-legend-container ul {
-  list-style-type: none;
-}
-
 a.button {
   display: flex;
   justify-content: center;
@@ -1133,7 +1135,7 @@ a.button {
   width: var(--classic-btn-size);
   padding: 12px 24px;
   margin: auto;
-  border-radius: 25px;
+  border-radius: 15px;
   font-family: var(--font-family1-serif);
   font-size: var(--btn-font-size);
   font-weight: bold;
@@ -1375,6 +1377,10 @@ a.button:hover:after {
   }
 
   #contact-section h2 {
+    left: 0;
+  }
+
+  #contact-section .button {
     left: 0;
   }
 
