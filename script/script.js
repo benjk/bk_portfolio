@@ -5,6 +5,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     const carouselArrows = document.querySelectorAll(".car-arrow");
     const mobileArrows = document.querySelectorAll('.mobile-carrow');
     const radiosCarousel = document.querySelectorAll('.radio-carousel');
+    const phoneLink = document.getElementById('phone-info');
 
     let mainCarousels;
     let thumbCarouselImgContainer;
@@ -24,6 +25,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
     track.innerHTML += track.innerHTML;
     const trackWidth = track.scrollWidth;
     document.documentElement.style.setProperty("--track-width", `${trackWidth/-2}px`);
+
+    // Call from Phone
+    if (!isPhone()) {
+        phoneLink.style.setProperty('pointer-events', 'none');
+    }
 
 
     Promise.all([

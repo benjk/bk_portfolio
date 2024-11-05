@@ -12,3 +12,7 @@ function capitalize(string) {
 function isMobile() {
     return window.innerWidth <= 1024
 }
+
+function isPhone() {
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
