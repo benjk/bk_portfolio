@@ -163,6 +163,8 @@ footer {
   padding: var(--margin-xs) var(--margin-s);
   display: flex;
   justify-content: center;
+  transform-style: preserve-3d;
+  font-family: var(--font-family2);
 }
 
 main {
@@ -181,6 +183,7 @@ main {
   overflow: hidden;
   font-family: var(--font-family1);
   gap: var(--margin-xl);
+  padding-bottom: var(--margin-xl);
 }
 
 section {
@@ -478,7 +481,11 @@ h2 {
 /****************** CONTACT ******************/
 
 #contact-section {
-  min-height: 600px;
+  width: 90%;
+  max-width: var(--section-max-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: transparent;
   padding-top: var(--margin-l);
 }
@@ -487,6 +494,90 @@ h2 {
   margin-bottom: var(--margin-l);
 }
 
+#contact-section .contact-container {
+  width: 100%;
+  height: 450px;
+  border: var(--card-border-size) solid var(--color3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#contact-section .contact-infos-container {
+  width: 35%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--margin-l);
+  background-color: var(--color3);
+  color: var(--color1);
+  font-size: var(--text-font-size);
+  font-family: var(--font-family2);
+}
+
+#contact-section .contact-form-container {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--margin-l);
+  padding: var(--margin-l);
+}
+
+.form-group {
+  --pad-input: .75rem;
+  position: relative;
+  font-family: var(--font-family2);
+  width: 100%;
+  color: var(--color3)
+}
+
+.floating-input {
+  padding: var(--pad-input);
+  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid var(--color3);
+  color: inherit;
+  width: 100%;
+  outline: none;
+}
+
+textarea.floating-input {
+  height: 12rem;
+  overflow-y: auto;
+}
+
+.floating-label {
+  position: absolute;
+  left: var(--pad-input);
+  top: var(--pad-input);
+  background: var(--color1);
+  padding-inline: .3em;
+  transition: transform 200ms;
+  pointer-events: none;
+  transform-origin: left;
+  translate: -.3em;
+  color: var(--color2)
+}
+
+.floating-input::placeholder {
+  opacity: 0;
+}
+.floating-input:focus + label,
+.floating-input:not(:placeholder-shown) + label {
+  transform: translateY(calc(-50% - var(--pad-input))) scale(.8);
+  color: var(--color2);
+}
+
+.floating-input:focus {
+  border: 2px solid var(--color2);;
+}
 
 /****************** SPLIDE ******************/
 #third-section {
@@ -1002,6 +1093,10 @@ a.button:hover:after {
 }
 
 @media screen and (max-width: 1024px) {
+  .section-wrapper {
+    padding-bottom: var(--margin-l);
+  }
+
   #first-section {
     height: var(--mobile-screen-height);
   }
@@ -1168,7 +1263,7 @@ a.button:hover:after {
     margin-bottom: var(--margin-l);
     gap: var(--margin-l);
   }
-
+  
   #second-section .pres-wrapper .pres-img-container {
     width: 100%;
     padding: 0 var(--margin-l);
@@ -1178,18 +1273,39 @@ a.button:hover:after {
     width: 100%;
     margin-left: 0;
   }
-
+  
   .pres-text-container .button {
     margin-top: var(--margin-l);
   }
-
+  
   .client-slide-track {
     gap: var(--margin-l);
     animation: scrollMob calc(var(--client-slide-speed)*0.75) linear infinite;
   }
-
+  
   @keyframes scrollMob {
     0% { transform: translateX(0); }
     100% { transform: translateX(calc(var(--track-width) - (var(--margin-l)/2)))}
+  }
+
+  /****************** SECOND SECTION ******************/
+  #contact-section {
+    min-height: 400px;
+  }
+
+  #contact-section .contact-container {
+    flex-direction: column;
+    min-height: 400px;
+    height: auto;
+  }
+  
+  #contact-section .contact-infos-container {
+    width: 100%;
+  }
+  
+  #contact-section .contact-form-container {
+    width: 100%;
+    gap: var(--margin-l);
+    padding: var(--margin-m);
   }
 }
