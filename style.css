@@ -1212,7 +1212,7 @@ a.button:hover:after {
     flex: 1;
     width: 100%;
     height: auto;
-    padding: var(--margin-l) var(--margin-s) 0 var(--margin-s);
+    padding: var(--margin-l) var(--margin-s) var(--margin-s) var(--margin-s);
   }
   
   .thumbnail-carousel {
