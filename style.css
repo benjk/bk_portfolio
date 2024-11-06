@@ -558,6 +558,7 @@ background-color: var(--color3);
   fill: var(--color1);
   stroke: var(--color1);
   max-height: calc(var(--main-network-icon-size)/2);
+  max-width: calc(var(--main-network-icon-size)/2);
 }
 
 .network-container  svg.network-icon {
