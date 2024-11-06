@@ -117,7 +117,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     window.addEventListener('scroll', handleMobileCarArrow);
 
     function handleMobileCarArrow() {
-        const topThreshold = window.innerHeight * 0.2;
+        const topThreshold = window.innerHeight * 0.45;
         const bottomThreshold = window.innerHeight * 0.55;
         const sectionPosition = projectsContainer.getBoundingClientRect();
         if (sectionPosition.top < topThreshold && sectionPosition.bottom > bottomThreshold) {
@@ -250,11 +250,9 @@ function initCardSwipe() {
         const totalSlides = 4;
         
         const handleTouchStart = (e) => {
-            console.log("touchay");
-            
             if (!e.target.closest('.thumbnail-carousel')) {
                 startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;       
+                startY = e.touches[0].clientY; 
             } else {
                 startX = null;
             }
