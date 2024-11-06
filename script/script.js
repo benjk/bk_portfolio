@@ -6,32 +6,28 @@ document.addEventListener( 'DOMContentLoaded', function () {
     const mobileArrows = document.querySelectorAll('.mobile-carrow');
     const radiosCarousel = document.querySelectorAll('.radio-carousel');
     const phoneLink = document.getElementById('phone-info');
-
+    
     let mainCarousels;
     let thumbCarouselImgContainer;
     let cards;
     let contactLinks;
     let projectsLinks;
     let secondLinks;
-
+    
+    let activeCard;
+    let scrollingLinkAnimation = null;
+    
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
     if (spanVersionning) {
         spanVersionning.textContent = "v1.0.2"
     }
-
-    // Customers carousel
-    const track = document.querySelector(".client-slide-track");
-    track.innerHTML += track.innerHTML;
-    const trackWidth = track.scrollWidth;
-    document.documentElement.style.setProperty("--track-width", `${trackWidth/-2}px`);
-
-    // Call from Phone
+    
+    // Call from Phone only
     if (!isPhone()) {
         phoneLink.style.setProperty('pointer-events', 'none');
     }
-
-
+    
     Promise.all([
         fetch('projects-data.json').then(response => response.json()),
         fetch('project-template.html').then(response => response.text())
@@ -108,30 +104,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
             contactLinks = document.querySelectorAll(".contact-link");
             projectsLinks = document.querySelectorAll(".projects-link");
             secondLinks = document.querySelectorAll(".second-link");
+            activeCard = document.querySelector('.card');
             
-            initializeSplideAndResize(data);
+            initSplide(data);
             initCardSwipe();
+            initScrollAnimation();
+    
+            window.addEventListener('resize', handleScreenSize);
+            handleScreenSize();
         });
     });
     
-    window.addEventListener('scroll', handleMobileCarArrow);
-
-    function handleMobileCarArrow() {
-        const topThreshold = window.innerHeight * 0.45;
-        const bottomThreshold = window.innerHeight * 0.55;
-        const sectionPosition = projectsContainer.getBoundingClientRect();
-        if (sectionPosition.top < topThreshold && sectionPosition.bottom > bottomThreshold) {
-            mobileArrows.forEach( arr => {
-                arr.style.opacity = "1"
-            })
-        } else {
-            mobileArrows.forEach( arr => {
-                arr.style.opacity = "0"
-            })
-        }        
-    }
-
-function waitForAllImages() {
+    function waitForAllImages() {
     const images = Array.from(document.querySelectorAll('img'));
     
     const promises = images.map(img => {
@@ -143,62 +127,229 @@ function waitForAllImages() {
                 img.onerror = reject;
             }
         });
-    });
-    
+    });   
     return Promise.all(promises);
-}
+    }
 
-function initializeSplideAndResize(data) {
-    mainCarousels.forEach((mainCarousel, index) => {
-        const startIndex = (data[index].images.length)
+    // INIT FUNCTIONS
+    function initScrollAnimation() {    
+    contactLinks.forEach( link => {
+        let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
         
-        var main = new Splide(`#main-carousel${index + 1}`, {
-            autoHeight: true,
-            type: 'fade',
-            rewind: true,
-            pagination: false,
-            arrows: false,
-            drag: false,
-            start: startIndex
+        link.addEventListener("click", () => {
+            let headerHeight = 0;
+            if (header) headerHeight = header.clientHeight;
+            scrollingLinkAnimation = gsap.to(window, {
+                duration: duration,
+                scrollTo: {
+                    y:"#contact-section", offsetY: headerHeight
+                },
+                onComplete: () => {
+                    setTimeout(() => {
+                        scrollingLinkAnimation = null;
+                    }, 50);
+                }
+            });
         });
-        
-        
-        var thumbnails = new Splide(`#thumbnail-carousel${index + 1}`, {
-            autoHeight: true,
-            autoWidth: true,
-            gap: 2,
-            rewind: true,
-            pagination: false,
-            isNavigation: true,
-            rewindByDrag: true,
-            start: startIndex
-        });
-        
-        main.sync(thumbnails);
-        main.mount();
-        thumbnails.mount();
-        
-    });
+    })
     
-    
-    // GESTION DES THUMBNAILS 
-    adjustCarouselSize()
-    checkOverflow()
-}
-
-
-function checkOverflow() {        
-    thumbCarouselImgContainer.forEach(cont => {
-        if (cont.clientWidth < cont.scrollWidth) {
-            cont.classList.add('overflow');            
-        } else {
-            cont.classList.remove('overflow');
+    projectsLinks.forEach( link => {
+        let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+        
+        link.addEventListener("click", () => {
+            let seuil = isMobile() ? "#third-section" : ".projects-container-global"
+            let headerHeight = 0;
+            if (header) headerHeight = header.clientHeight;
+            scrollingLinkAnimation = gsap.to(window, {
+                duration: duration,
+                scrollTo: {
+                    y: seuil, offsetY: headerHeight
+                },
+                onComplete: () => {
+                    setTimeout(() => {
+                        scrollingLinkAnimation = null;
+                    }, 50);                    }
+                });
+            });
+        })
+        
+        secondLinks.forEach( link => {
+            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
+            
+            link.addEventListener("click", () => {
+                let headerHeight = 0;
+                if (header) headerHeight = header.clientHeight;
+                gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
+                scrollingLinkAnimation = gsap.to(window, {
+                    duration: duration,
+                    scrollTo: {
+                        y:"#second-section", offsetY: headerHeight
+                    },
+                    onComplete: () => {
+                        setTimeout(() => {
+                            scrollingLinkAnimation = null;
+                        }, 50);                    }
+                    });
+                });
+            })
         }
-    });
-    
-}
+        
+    function initSplide(data) {
+            mainCarousels.forEach((mainCarousel, index) => {
+                const startIndex = (data[index].images.length)
+                
+                var main = new Splide(`#main-carousel${index + 1}`, {
+                    autoHeight: true,
+                    type: 'fade',
+                    rewind: true,
+                    pagination: false,
+                    arrows: false,
+                    drag: false,
+                    start: startIndex
+                });
+                
+                
+                var thumbnails = new Splide(`#thumbnail-carousel${index + 1}`, {
+                    autoHeight: true,
+                    autoWidth: true,
+                    gap: 2,
+                    rewind: true,
+                    pagination: false,
+                    isNavigation: true,
+                    rewindByDrag: true,
+                    start: startIndex
+                });
+                
+                main.sync(thumbnails);
+                main.mount();
+                thumbnails.mount();
+            });
+        }
+        
+    async function pauseVideoPlayer() {
+        const player = await document.querySelector('lite-youtube').getYTPlayer();
+        if (player && player.getPlayerState() == 1) {              
+            player.pauseVideo()
+        }
+        }
+        
+    function handleScreenSize() {
+        initClientTrackSize()
+        
+        // Carousel Size 
+        adjustCarouselSize()
+        
+        // Thumbnails Overflow
+        thumbCarouselImgContainer.forEach(cont => {
+            if (cont.clientWidth < cont.scrollWidth) {
+                cont.classList.add('overflow');            
+            } else {
+                cont.classList.remove('overflow');
+            }
+        });
 
-function adjustCarouselSize() {        
+        handleProjectsArrows()
+    }
+        
+    // SCREEN SIZE DEPENDANT FUNCTIONS
+
+    function initClientTrackSize() {
+    // Customers carousel
+    const track = document.querySelector(".client-slide-track");
+    track.innerHTML += track.innerHTML;
+    const trackWidth = track.scrollWidth;
+    document.documentElement.style.setProperty("--track-width", `${trackWidth/-2}px`);
+    }
+    
+    function handleProjectsArrows() {
+    
+    let hoveredCard = null;
+    let hoveredArrow = null;
+    
+    if (!isMobile()) {            
+        projectsContainer.addEventListener('mouseover', (event) => {
+            const card = event.target.closest('.card');
+            
+            if (!card || activeCard == card) return;
+            hoveredCard = card;
+            
+            switch (card.id) {
+                case "project-1":
+                if (activeCard && activeCard.id == "project-2") {
+                    hoveredArrow = carouselArrows[0];
+                } else if (activeCard && activeCard.id == "project-4") {
+                    hoveredArrow = carouselArrows[1];
+                }
+                break;
+                case "project-2":
+                if (activeCard && activeCard.id == "project-3") {
+                    hoveredArrow = carouselArrows[0];
+                } else if (activeCard && activeCard.id == "project-1") {
+                    hoveredArrow = carouselArrows[1];
+                }
+                break;
+                case "project-3":
+                if (activeCard && activeCard.id == "project-4") {
+                    hoveredArrow = carouselArrows[0];
+                } else if (activeCard && activeCard.id == "project-2") {
+                    hoveredArrow = carouselArrows[1];
+                }
+                break;
+                case "project-4":
+                if (activeCard && activeCard.id == "project-1") {
+                    hoveredArrow = carouselArrows[0];
+                } else if (activeCard && activeCard.id == "project-3") {
+                    hoveredArrow = carouselArrows[1];
+                }
+                break;
+            }
+            if (hoveredArrow) {
+                hoveredArrow.classList.add('hovered');
+                hoveredCard.addEventListener('mouseleave', (event) => {
+                    hoveredArrow.classList.remove("hovered");
+                });
+            }
+        });
+                    
+        cards.forEach( card => {
+            card.addEventListener('mouseover', (event) => {
+                switch (card.id)   {
+                    case "project-1":
+                    if (activeCard.id == "project-2") {
+                        carouselArrows[0].classList.add("hovered");
+                    } else if (activeCard.id == "project-4"){
+                        carouselArrows[1].classList.add("hovered");
+                    }
+                }
+                
+                
+            });
+        })
+
+        window.removeEventListener('scroll', handleProjectsArrows);
+    } else {
+    
+        window.addEventListener('scroll', mobileArrowsDisplay);
+    
+        function mobileArrowsDisplay() {
+            // Mobile Carousel Arrows
+            const topThreshold = window.innerHeight * 0.45;
+            const bottomThreshold = window.innerHeight * 0.55;
+            const sectionPosition = projectsContainer.getBoundingClientRect();
+            if (sectionPosition.top < topThreshold && sectionPosition.bottom > bottomThreshold) {
+                mobileArrows.forEach( arr => {
+                    arr.style.opacity = "1"
+                })
+            } else {
+                mobileArrows.forEach( arr => {
+                    arr.style.opacity = "0"
+                })
+            }
+        }
+    }
+    }
+    
+    function adjustCarouselSize() {        
     mainCarousels.forEach(mainCarousel => {    
         const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child lite-youtube');
         const imgs = mainCarousel.querySelectorAll('.splide__slide img');
@@ -228,10 +379,9 @@ function adjustCarouselSize() {
             })            
         }
     });
-}
-
-function initCardSwipe() {    
-    let activeCard = document.querySelector('.card');
+    }
+    
+    function initCardSwipe() {    
     radiosCarousel.forEach(radio => {
         if (radio.id == "item-1") {
             document.querySelector(`label[for="${radio.id}"]`).classList.add('is-active');
@@ -303,158 +453,23 @@ function initCardSwipe() {
         projectsContainer.addEventListener('touchend', handleTouchEnd, {passive: true});   
     } 
     
-    let scrollingLinkAnimation = null;
-    initializeAnimations();
+    function activateCardForItem(radioItem) {
+        cards.forEach(label => {
+            label.classList.remove('is-active');
+        });
+        
+        if (radioItem.checked) {
+            pauseVideoPlayer();
+            const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
+            
+            if (correspondingCard) {
+                correspondingCard.classList.add('is-active');
+                activeCard = correspondingCard;
+            }
+        }
+    }
+    }
+});
     
-    function initializeAnimations() {
-        let hoveredCard = null;
-        let hoveredArrow = null;
-        
-        if (!isMobile()) {            
-            projectsContainer.addEventListener('mouseover', (event) => {
-                const card = event.target.closest('.card');
-                
-                if (!card || activeCard == card) return;
-                hoveredCard = card;
-                
-                switch (card.id) {
-                    case "project-1":
-                    if (activeCard && activeCard.id == "project-2") {
-                        hoveredArrow = carouselArrows[0];
-                    } else if (activeCard && activeCard.id == "project-4") {
-                        hoveredArrow = carouselArrows[1];
-                    }
-                    break;
-                    case "project-2":
-                    if (activeCard && activeCard.id == "project-3") {
-                        hoveredArrow = carouselArrows[0];
-                    } else if (activeCard && activeCard.id == "project-1") {
-                        hoveredArrow = carouselArrows[1];
-                    }
-                    break;
-                    case "project-3":
-                    if (activeCard && activeCard.id == "project-4") {
-                        hoveredArrow = carouselArrows[0];
-                    } else if (activeCard && activeCard.id == "project-2") {
-                        hoveredArrow = carouselArrows[1];
-                    }
-                    break;
-                    case "project-4":
-                    if (activeCard && activeCard.id == "project-1") {
-                        hoveredArrow = carouselArrows[0];
-                    } else if (activeCard && activeCard.id == "project-3") {
-                        hoveredArrow = carouselArrows[1];
-                    }
-                    break;
-                }
-                if (hoveredArrow) {
-                    hoveredArrow.classList.add('hovered');
-                    hoveredCard.addEventListener('mouseleave', (event) => {
-                        hoveredArrow.classList.remove("hovered");
-                    });
-                }
-            });
-                        
-            cards.forEach( card => {
-                card.addEventListener('mouseover', (event) => {
-                    switch (card.id)   {
-                        case "project-1":
-                        if (activeCard.id == "project-2") {
-                            carouselArrows[0].classList.add("hovered");
-                        } else if (activeCard.id == "project-4"){
-                            carouselArrows[1].classList.add("hovered");
-                        }
-                    }
-                    
-                    
-                });
-            })
-        }
-        
-        contactLinks.forEach( link => {
-            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-            
-            link.addEventListener("click", () => {
-                let headerHeight = 0;
-                if (header) headerHeight = header.clientHeight;
-                scrollingLinkAnimation = gsap.to(window, {
-                    duration: duration,
-                    scrollTo: {
-                        y:"#contact-section", offsetY: headerHeight
-                    },
-                    onComplete: () => {
-                        setTimeout(() => {
-                            scrollingLinkAnimation = null;
-                        }, 50);
-                    }
-                });
-            });
-        })
-        
-        projectsLinks.forEach( link => {
-            let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-            
-            link.addEventListener("click", () => {
-                let seuil = isMobile() ? "#third-section" : ".projects-container-global"
-                let headerHeight = 0;
-                if (header) headerHeight = header.clientHeight;
-                scrollingLinkAnimation = gsap.to(window, {
-                    duration: duration,
-                    scrollTo: {
-                        y: seuil, offsetY: headerHeight
-                    },
-                    onComplete: () => {
-                        setTimeout(() => {
-                            scrollingLinkAnimation = null;
-                        }, 50);                    }
-                    });
-                });
-            })
-            
-            secondLinks.forEach( link => {
-                let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
-                
-                link.addEventListener("click", () => {
-                    let headerHeight = 0;
-                    if (header) headerHeight = header.clientHeight;
-                    gsap.to(window, {duration: duration, scrollTo:{y:"#second-section", offsetY: headerHeight}});
-                    scrollingLinkAnimation = gsap.to(window, {
-                        duration: duration,
-                        scrollTo: {
-                            y:"#second-section", offsetY: headerHeight
-                        },
-                        onComplete: () => {
-                            setTimeout(() => {
-                                scrollingLinkAnimation = null;
-                            }, 50);                    }
-                        });
-                    });
-                })
-            }
-            
-            function activateCardForItem(radioItem) {
-                cards.forEach(label => {
-                    label.classList.remove('is-active');
-                });
-                
-                if (radioItem.checked) {
-                    pauseVideoPlayer();
-                    const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
-                    
-                    if (correspondingCard) {
-                        correspondingCard.classList.add('is-active');
-                        activeCard = correspondingCard;
-                    }
-                }
-            }
-            
-            async function pauseVideoPlayer() {
-                const player = await document.querySelector('lite-youtube').getYTPlayer();
-                if (player && player.getPlayerState() == 1) {              
-                    player.pauseVideo()
-                }
-                
-            }
-        }
-    });
+
         
