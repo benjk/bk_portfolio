@@ -77,6 +77,8 @@
   --arrow-slide1: clamp(0.4rem, -0.138rem + 2.154vw, 1rem);
   --arrow-slide2: 0.25rem;
   --client-slide-speed: 20s;
+  --client-track-mobile-anim: scrollMob calc(var(--client-slide-speed)*0.75) linear infinite;
+  --client-track-anim: scroll var(--client-slide-speed) linear infinite;
 }
 
 @font-face {
@@ -463,7 +465,7 @@ h2 {
   align-items: center;
   gap: calc(var(--margin-l)*2);
   padding-right: var(--margin-l);
-  animation: scroll var(--client-slide-speed) linear infinite;
+  animation: var(--client-track-anim)
 }
 
 @keyframes scroll {
@@ -1369,7 +1371,7 @@ a.button:hover:after {
   
   .client-slide-track {
     gap: var(--margin-l);
-    animation: scrollMob calc(var(--client-slide-speed)*0.75) linear infinite;
+    animation: var(--client-track-mobile-anim);
   }
   
   @keyframes scrollMob {

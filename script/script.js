@@ -109,8 +109,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
             initSplide(data);
             initCardSwipe();
             initScrollAnimation();
-    
-            window.addEventListener('resize', handleScreenSize);
             handleScreenSize();
         });
     });
@@ -233,7 +231,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         }
         }
         
-    function handleScreenSize() {
+    function handleScreenSize() {        
         initClientTrackSize()
         
         // Carousel Size 
@@ -254,6 +252,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
     // SCREEN SIZE DEPENDANT FUNCTIONS
 
     function initClientTrackSize() {
+        const clientTrack = document.querySelector('.client-slide-track');
+        clientTrack.style.animation = 'none';
+        void clientTrack.offsetWidth;
+        clientTrack.style.transform = 'translateX(0)';
+
+    if (isMobile()) {
+        clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-mobile-anim");
+    } else {
+        clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-anim");
+    }
+
     // Customers carousel
     const track = document.querySelector(".client-slide-track");
     track.innerHTML += track.innerHTML;
