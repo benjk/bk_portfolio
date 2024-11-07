@@ -38,9 +38,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
             const images = [...project.images];
             const firstImage = images.shift();
             // Sur mobile on vire les logos ils genent l'affichage et n'apportent rien
-            if (!isMobile() || project.id != 3 && project.id != 4) {
+            if (!isSmallScreen() || project.id != 3 && project.id != 4) {
                 images.push(firstImage);
-                if (isMobile() && project.id == 2) {
+                if (isSmallScreen() && project.id == 2) {
                     const firstImage = images.shift();
                     images.push(firstImage);
                 }
@@ -55,7 +55,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             });
             
             let thumbHTML = ''
-            if ((project.id == 3 || project.id == 4) && !isMobile()) {
+            if ((project.id == 3 || project.id == 4) && !isSmallScreen()) {
                 images.pop();
                 images.forEach(image => {            
                     thumbHTML += `
@@ -105,9 +105,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
             projectsLinks = document.querySelectorAll(".projects-link");
             secondLinks = document.querySelectorAll(".second-link");
             activeCard = document.querySelector('.card');
+            activeCard.classList.add('is-active');
             
+            radiosCarousel.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    activateCardForItem(radio)
+                });
+            });
+      
             initSplide(data);
-            initCardSwipe();
             initScrollAnimation();
             handleScreenSize();
         });
@@ -155,7 +161,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             let duration = parseFloat(link.getAttribute('data-duration'))  || 0.5; 
             
             link.addEventListener("click", () => {
-                let seuil = isMobile() ? "#third-section" : ".projects-container-global"
+                let seuil = isSmallScreen() ? "#third-section" : ".projects-container-global"
                 let headerHeight = 0;
                 if (header) headerHeight = header.clientHeight;
                 scrollingLinkAnimation = gsap.to(window, {
@@ -240,19 +246,25 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 // Carousel Arrows
                 handleProjectsArrows();
+
+                if (isSmallScreen()) {
+                    initCardSwipe();
+                }
                 
                 window.addEventListener('orientationchange', checkOrientationChange);
                 window.addEventListener('resize', checkOrientationChange);
-
+                
                 function checkOrientationChange() {
                     const newIsPortrait = window.innerHeight > window.innerWidth;
                     if (newIsPortrait !== isPortrait) {
                         isPortrait = newIsPortrait;
                         console.log('Orientation changée:', isPortrait ? 'portrait' : 'paysage');
-
+                        
                         handleProjectsArrows();
                         adjustCarouselSize();
-                        //TODO Le track slide client
+                        if (isPortrait) {
+                            initCardSwipe();
+                        }
                     }
                 }
             }
@@ -261,16 +273,16 @@ document.addEventListener( 'DOMContentLoaded', function () {
             // SCREEN SIZE DEPENDANT FUNCTIONS
             
             function initClientTrackSize() {
-                const clientTrack = document.querySelector('.client-slide-track');
-                clientTrack.style.animation = 'none';
-                void clientTrack.offsetWidth;
-                clientTrack.style.transform = 'translateX(0)';
+                // const clientTrack = document.querySelector('.client-slide-track');
+                // clientTrack.style.animation = 'none';
+                // void clientTrack.offsetWidth;
+                // clientTrack.style.transform = 'translateX(0)';
                 
-                if (isMobile()) {
-                    clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-mobile-anim");
-                } else {
-                    clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-anim");
-                }
+                // if (isSmallScreen()) {
+                //     clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-mobile-anim");
+                // } else {
+                //     clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-anim");
+                // }
                 
                 // Customers carousel
                 const track = document.querySelector(".client-slide-track");
@@ -376,7 +388,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         cont.classList.remove('overflow');
                     }
                 });
-
+                
                 mainCarousels.forEach(mainCarousel => {    
                     const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child lite-youtube');
                     const imgs = mainCarousel.querySelectorAll('.splide__slide img');
@@ -409,90 +421,79 @@ document.addEventListener( 'DOMContentLoaded', function () {
             }
             
             function initCardSwipe() {    
-                radiosCarousel.forEach(radio => {
-                    if (radio.id == "item-1") {
-                        document.querySelector(`label[for="${radio.id}"]`).classList.add('is-active');
+                // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
+                let startX = 0;
+                let startY = 0;
+                let currentSlide = 1;
+                
+                const totalSlides = 4;
+                
+                const handleTouchStart = (e) => {
+                    if (!e.target.closest('.thumbnail-carousel')) {
+                        startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY; 
+                    } else {
+                        startX = null;
                     }
-                    radio.addEventListener('change', (event) => {
-                        activateCardForItem(radio)
-                    });
+                };
+                
+                const handleTouchEnd = (e) => {
+                    if (startX === null) return;
+                    
+                    const endX = e.changedTouches[0].clientX;
+                    const diffX = startX - endX;
+                    
+                    const endY = e.changedTouches[0].clientY;
+                    const diffY = startY - endY;
+                    
+                    
+                    if (Math.abs(diffX) > 40 && Math.abs(diffY) < 25) {
+                        if (diffX > 0) {
+                            nextSlide();
+                        } else {
+                            previousSlide();
+                        }
+                    }
+                };
+                
+                const nextSlide = () => {
+                    if (currentSlide < totalSlides) {
+                        currentSlide++;
+                    } else {
+                        currentSlide = 1
+                    }
+                    activeItem = document.getElementById(`item-${currentSlide}`);
+                    activeItem.checked = true;
+                    activateCardForItem(activeItem);
+                };
+                
+                const previousSlide = () => {
+                    if (currentSlide > 1) {
+                        currentSlide--;
+                    } else {
+                        currentSlide = totalSlides;
+                    }
+                    activeItem = document.getElementById(`item-${currentSlide}`);
+                    activeItem.checked = true;
+                    activateCardForItem(activeItem);
+                };
+                
+                projectsContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
+                projectsContainer.addEventListener('touchend', handleTouchEnd, {passive: true});   
+            } 
+            
+            function activateCardForItem(radioItem) {
+                cards.forEach(label => {
+                    label.classList.remove('is-active');
                 });
                 
-                // Idée: si swipe pas opti ajouter la durée du swipe à croiser avec la distance, le swipe doit être court
-                if (isMobile()) {       
-                    let startX = 0;
-                    let startY = 0;
-                    let currentSlide = 1;
+                if (radioItem.checked) {
+                    pauseVideoPlayer();
+                    const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
                     
-                    const totalSlides = 4;
-                    
-                    const handleTouchStart = (e) => {
-                        if (!e.target.closest('.thumbnail-carousel')) {
-                            startX = e.touches[0].clientX;
-                            startY = e.touches[0].clientY; 
-                        } else {
-                            startX = null;
-                        }
-                    };
-                    
-                    const handleTouchEnd = (e) => {
-                        if (startX === null) return;
-                        
-                        const endX = e.changedTouches[0].clientX;
-                        const diffX = startX - endX;
-                        
-                        const endY = e.changedTouches[0].clientY;
-                        const diffY = startY - endY;
-                        
-                        
-                        if (Math.abs(diffX) > 40 && Math.abs(diffY) < 25) {
-                            if (diffX > 0) {
-                                nextSlide();
-                            } else {
-                                previousSlide();
-                            }
-                        }
-                    };
-                    
-                    const nextSlide = () => {
-                        if (currentSlide < totalSlides) {
-                            currentSlide++;
-                        } else {
-                            currentSlide = 1
-                        }
-                        activeItem = document.getElementById(`item-${currentSlide}`);
-                        activeItem.checked = true;
-                        activateCardForItem(activeItem);
-                    };
-                    
-                    const previousSlide = () => {
-                        if (currentSlide > 1) {
-                            currentSlide--;
-                        } else {
-                            currentSlide = totalSlides;
-                        }
-                        activeItem = document.getElementById(`item-${currentSlide}`);
-                        activeItem.checked = true;
-                        activateCardForItem(activeItem);
-                    };
-                    
-                    projectsContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
-                    projectsContainer.addEventListener('touchend', handleTouchEnd, {passive: true});   
-                } 
-                
-                function activateCardForItem(radioItem) {
-                    cards.forEach(label => {
-                        label.classList.remove('is-active');
-                    });
-                    
-                    if (radioItem.checked) {
-                        pauseVideoPlayer();
-                        const correspondingCard = document.querySelector(`label[for="${radioItem.id}"]`);
-                        
-                        if (correspondingCard) {
-                            correspondingCard.classList.add('is-active');
-                            activeCard = correspondingCard;
-                        }
+                    if (correspondingCard) {
+                        correspondingCard.classList.add('is-active');
+                        activeCard = correspondingCard;
                     }
                 }
             }
