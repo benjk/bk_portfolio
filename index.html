@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png?v=2.0">
   <link rel="stylesheet" href="node_modules/lite-youtube-embed/src/lite-yt-embed.css" />
   <link href="node_modules/@splidejs/splide/dist/css/splide.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=1.0.14">
+  <link rel="stylesheet" href="style.css?v=1.0.15">
 </head>
 <body>
   <!-- <header class="header">
@@ -192,12 +192,12 @@
                       </div>
                       <div class="contact-form-container">
                         <div class="form-group">
-                          <input class="floating-input" type="text" id="contact" placeholder="Votre contact">
+                          <input class="floating-input" type="text" id="name" placeholder="Nom">
                           <label class="floating-label" for="name">Votre nom ou société</label>
                         </div>
                         <div class="form-group">
                           <input class="floating-input" type="text" id="contact" placeholder="Votre contact">
-                          <label class="floating-label" for="name">Mail ou téléphone</label>
+                          <label class="floating-label required" for="name">Mail ou téléphone</label>
                         </div>
                         <div class="form-group">
                           <input class="floating-input" type="text" id="object" placeholder="Objet" autocomplete="off">
@@ -205,11 +205,14 @@
                         </div>
                         <div class="form-group">
                           <textarea class="floating-input" id="message" placeholder="Message"></textarea>
-                          <label class="floating-label" for="message">Message</label>
+                          <label class="floating-label required" for="message">Message</label>
                         </div>
                       </div>
                     </div>
-                    <a class="button contact-link" data-duration="1">Envoyer</a>
+                    <div class="contact-form-msg-wrapper">
+                      <p class="error-msg">Ici les messages d'erreur du form !</p>
+                      <a class="button contact-link" data-duration="1">Envoyer</a>
+                    </div>
                   </section>
                 </div>
                 <footer>
