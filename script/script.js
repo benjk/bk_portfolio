@@ -6,6 +6,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     const mobileArrows = document.querySelectorAll('.mobile-carrow');
     const radiosCarousel = document.querySelectorAll('.radio-carousel');
     const phoneLink = document.getElementById('phone-info');
+    const clientSlideTrack = document.querySelector(".client-slide-track");
     
     let mainCarousels;
     let thumbCarouselImgContainer;
@@ -262,6 +263,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         
                         handleProjectsArrows();
                         adjustCarouselSize();
+                        refreshTrackSize();
                         if (isPortrait) {
                             initCardSwipe();
                         }
@@ -273,22 +275,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
             // SCREEN SIZE DEPENDANT FUNCTIONS
             
             function initClientTrackSize() {
-                // const clientTrack = document.querySelector('.client-slide-track');
-                // clientTrack.style.animation = 'none';
-                // void clientTrack.offsetWidth;
-                // clientTrack.style.transform = 'translateX(0)';
-                
-                // if (isSmallScreen()) {
-                //     clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-mobile-anim");
-                // } else {
-                //     clientTrack.style.animation = document.documentElement.style.getPropertyValue("--client-track-anim");
-                // }
-                
-                // Customers carousel
-                const track = document.querySelector(".client-slide-track");
-                track.innerHTML += track.innerHTML;
-                const trackWidth = track.scrollWidth;
+                clientSlideTrack.innerHTML += clientSlideTrack.innerHTML;
+                const trackWidth = clientSlideTrack.scrollWidth;
                 document.documentElement.style.setProperty("--track-width", `${trackWidth/-2}px`);
+            }
+
+            function refreshTrackSize() {
+                clientSlideTrack.style.transform = 'translateX(0)';
+                const newTrackWidth = clientSlideTrack.scrollWidth;
+                document.documentElement.style.setProperty("--track-width", `${newTrackWidth/-2}px`);
             }
             
             function handleProjectsArrows() {
@@ -296,7 +291,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 let hoveredCard = null;
                 let hoveredArrow = null;
                 
-                if (!isMobile()) {            
+                if (!isSmallScreen()) {            
                     projectsContainer.addEventListener('mouseover', (event) => {
                         const card = event.target.closest('.card');
                         
