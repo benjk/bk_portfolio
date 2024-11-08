@@ -19,16 +19,13 @@ function isPhone() {
 
 function checkFormValidity() {
     const errorMsg = document.querySelector(".error-msg");
-    errorMsg.style.opacity = 0;
-    const contactForm = document.getElementById("contact-form");
-    console.log("kakou");
-    
-
-    const contact = contactForm.querySelector("#contact");
-    console.log(contact.value.length);
-    
+    const submitBtn = document.querySelector("#contact-section .submit-btn");
+    const contactForm = document.getElementById("contact-form");    
+    const contact = contactForm.querySelector("#contact");    
     const message = contactForm.querySelector("#message");
 
+    errorMsg.style.opacity = 0;
+    
     if(message.value.length == 0) {
         message.focus();
         displayContactError("Je crois que tu as oublié de mettre un message !")
@@ -42,18 +39,54 @@ function checkFormValidity() {
         contact.focus();
         displayContactError("Il me faut un mail ou téléphone valide !")
     } else {
-        contactForm.submit();
-        displayContactError("Votre message a bien été envoyé !")
+        submitForm()
     }
-
+    
     function displayContactError(msg) {
         errorMsg.textContent = msg;
         errorMsg.style.opacity = 1;
     }
-
+    
     function validateContact(contact) {
         const email = /\S+@\S+\.\S+/;
         const phone = /^\d{10}$/
         return email.test(contact) || phone.test(contact);
     }
+    
+    function submitForm() {
+        errorMsg.classList.add('important');
+        var formData = new FormData(contactForm);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", contactForm.action, true);
+        xhr.send(formData);
+        loadingButtonAnimation(submitBtn);
+        xhr.onload = function(e) {
+            if (xhr.status === 200) {
+                displayContactError("Merci pour votre message ! Je l'ai bien reçu et le traite dans les plus brefs délais.");
+                contactForm.reset()
+            } else {
+                displayContactError("Erreur serveur : contactez directement contact@benkielinski.Fr")
+            }
+            stopLoadingButtonAnimation(submitBtn)
+        };
+    }
+
+    function loadingButtonAnimation(button) {
+        button.classList.add('loading');
+        var btnText = button.querySelector('span.btn-text');
+        var spinner = button.querySelector('span.loader');
+        btnText.style.visibility = "hidden"
+        spinner.classList.remove('gone');
+      }
+      
+      function stopLoadingButtonAnimation(button) {
+        if (button != null) {
+          button.classList.remove('loading');
+          button.classList.add('disabled');
+          var btnText = button.querySelector('span.btn-text');
+          var spinner = button.querySelector('span.loader');
+          btnText.style.visibility = "visible"
+          spinner.classList.add('gone');
+        }
+      }
 }

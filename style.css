@@ -11,6 +11,7 @@
 
   --primary: #383131;
   --secondary: #fff;
+  --secondary: #fff;
   --light-primary: #F7FCD1;
   --light-secondary: #E6E0D2;
   --color-on-primary: #fff;
@@ -61,8 +62,12 @@
   --text-font-size: clamp(0.8rem, 0.689rem + 0.356vw, 1rem);
   --project-text-font-size: clamp(0.8rem, 0.689rem + 0.356vw, 1rem);
   --btn-font-size: clamp(1rem, 0.88rem + 0.48vw, 1.3rem);
+  --important-msg-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
+
   --classic-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
   --bigger-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
+
+  --loader-height: 0.375em;
   
   /****************** SPACING ******************/
   --margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
@@ -119,6 +124,10 @@ ul, li {
   padding: 0;
   margin: 0;
   list-style-type: none;
+}
+
+.gone {
+  display: none !important;
 }
 
 /****************** GLOBAL ******************/
@@ -196,6 +205,125 @@ h2 {
   text-transform: uppercase;
   text-align: center;
   font-family: var(--font-family1);
+}
+
+a.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important;
+  width: var(--classic-btn-size);
+  padding: 12px 24px;
+  margin: auto;
+  border-radius: 15px;
+  font-family: var(--font-family2);
+  font-size: var(--text-font-size);
+  cursor: pointer;
+  transition: filter 0.3s ease, box-shadow 0.3s ease;
+  background-color: transparent;
+  box-shadow: var(--basic-shadow);
+  margin-bottom: var(--margin-m);
+  margin-top: var(--margin-m);
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+a.button:after {
+  background: #fff;
+  content: "";
+  height: 155px;
+  left: -75px;
+  opacity: .5;
+  position: absolute;
+  top: -50px;
+  transform: rotate(35deg);
+  width: 50px;
+  z-index: -10;
+  cursor: default;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+a.button:hover {
+  box-shadow: var(--strong-shadow);
+}
+
+a.button:hover:after {
+  left: 120%;
+  transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+a.button.disabled {
+  pointer-events: none;
+  cursor: default;
+  border-color: var(--color1) !important;
+  color: var(--color1) !important;
+}
+
+.custom-btn.loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.error-msg.important {
+  font-size: var(--important-msg-size) !important;
+}
+
+.loader {
+  color: inherit;
+  font-size: 10px;
+  display: inline-flex;
+  width: var(--loader-height);
+  height: var(--loader-height);
+  border-radius: 50%;
+  position: absolute;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.3s infinite linear;
+  transform: translateZ(0);
+}
+
+@keyframes mulShdSpin {
+  0%, 100% {
+      box-shadow: 0 -1.125em 0 0.075em, 0.75em -0.75em 0 0, 1.125em 0 0 -0.375em, 
+                  0.75em 0.75em 0 -0.375em, 0 1.125em 0 -0.375em, -0.75em 0.75em 0 -0.375em, 
+                  -1.125em 0 0 -0.375em, -0.75em -0.75em 0 0;
+  }
+  12.5% {
+      box-shadow: 0 -1.125em 0 0, 0.75em -0.75em 0 0.075em, 1.125em 0 0 0, 
+                  0.75em 0.75em 0 -0.375em, 0 1.125em 0 -0.375em, -0.75em 0.75em 0 -0.375em, 
+                  -1.125em 0 0 -0.375em, -0.75em -0.75em 0 -0.375em;
+  }
+  25% {
+      box-shadow: 0 -1.125em 0 -0.1875em, 0.75em -0.75em 0 0, 1.125em 0 0 0.075em, 
+                  0.75em 0.75em 0 0, 0 1.125em 0 -0.1875em, -0.75em 0.75em 0 -0.1875em, 
+                  -1.125em 0 0 -0.1875em, -0.75em -0.75em 0 -0.1875em;
+  }
+  37.5% {
+      box-shadow: 0 -1.125em 0 -0.375em, 0.75em -0.75em 0 -0.375em, 1.125em 0 0 0, 
+                  0.75em 0.75em 0 0.075em, 0 1.125em 0 0, -0.75em 0.75em 0 -0.375em, 
+                  -1.125em 0 0 -0.375em, -0.75em -0.75em 0 -0.375em;
+  }
+  50% {
+      box-shadow: 0 -1.125em 0 -0.375em, 0.75em -0.75em 0 -0.375em, 1.125em 0 0 -0.375em, 
+                  0.75em 0.75em 0 0, 0 1.125em 0 0.075em, -0.75em 0.75em 0 0, 
+                  -1.125em 0 0 -0.375em, -0.75em -0.75em 0 -0.375em;
+  }
+  62.5% {
+      box-shadow: 0 -1.125em 0 -0.375em, 0.75em -0.75em 0 -0.375em, 1.125em 0 0 -0.375em, 
+                  0.75em 0.75em 0 -0.375em, 0 1.125em 0 0, -0.75em 0.75em 0 0.075em, 
+                  -1.125em 0 0 0, -0.75em -0.75em 0 -0.375em;
+  }
+  75% {
+      box-shadow: 0 -1.125em 0 -0.375em, 0.75em -0.75em 0 -0.375em, 1.125em 0 0 -0.375em, 
+                  0.75em 0.75em 0 -0.375em, 0 1.125em 0 -0.375em, -0.75em 0.75em 0 0, 
+                  -1.125em 0 0 0.075em, -0.75em -0.75em 0 0;
+  }
+  87.5% {
+      box-shadow: 0 -1.125em 0 0, 0.75em -0.75em 0 -0.375em, 1.125em 0 0 -0.375em, 
+                  0.75em 0.75em 0 -0.375em, 0 1.125em 0 -0.375em, -0.75em 0.75em 0 0, 
+                  -1.125em 0 0 0.075em, -0.75em -0.75em 0 0;
+  }
 }
 
 /****************** FIRST SECTION ******************/
@@ -683,6 +811,7 @@ textarea.floating-input {
   margin-right: var(--margin-l);
   align-self: flex-end;
   justify-content: space-between;
+  gap: var(--margin-s);
 }
 
 #contact-section .contact-form-msg-wrapper .error-msg {
@@ -1166,53 +1295,6 @@ input[type=radio] {
   cursor: pointer;
 }
 
-a.button {
-  display: flex;
-  justify-content: center;
-  text-decoration: none !important;
-  text-align: center;
-  width: var(--classic-btn-size);
-  padding: 12px 24px;
-  margin: auto;
-  border-radius: 15px;
-  font-family: var(--font-family2);
-  font-size: var(--text-font-size);
-  cursor: pointer;
-  transition: filter 0.3s ease, box-shadow 0.3s ease;
-  background-color: transparent;
-  box-shadow: var(--basic-shadow);
-  margin-bottom: var(--margin-m);
-  margin-top: var(--margin-m);
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
-}
-
-a.button:after {
-  background: #fff;
-  content: "";
-  height: 155px;
-  left: -75px;
-  opacity: .5;
-  position: absolute;
-  top: -50px;
-  transform: rotate(35deg);
-  width: 50px;
-  z-index: -10;
-  cursor: default;
-  pointer-events: none;
-  will-change: opacity, transform;
-}
-
-a.button:hover {
-  box-shadow: var(--strong-shadow);
-}
-
-a.button:hover:after {
-  left: 120%;
-  transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
-}
-
 @media screen and (max-width: 1024px) {
   .section-wrapper {
     padding-bottom: var(--margin-l);
@@ -1452,7 +1534,6 @@ a.button:hover:after {
 
   #contact-section .contact-form-msg-wrapper {
     flex-direction: column;
-    gap: var(--margin-s);
     padding: 0 var(--margin-l);
     align-items: center;
     justify-content: center;
