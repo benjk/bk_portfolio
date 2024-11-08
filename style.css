@@ -491,7 +491,6 @@ h2 {
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  padding-top: var(--margin-l);
   gap: var(--margin-l)
 }
 
@@ -687,7 +686,7 @@ textarea.floating-input {
 }
 
 #contact-section .contact-form-msg-wrapper .error-msg {
-  opacity: 1;
+  opacity: 0;
   font-size: var(--text-font-size);
   color: var(--color2);
   will-change: opacity;
@@ -1426,7 +1425,8 @@ a.button:hover:after {
   #contact-section {
     min-height: 400px;
     align-items: center;
-    gap: var(--margin-m)
+    gap: var(--margin-m);
+    padding-top: var(--margin-l);
   }
 
   #contact-section h2 {
