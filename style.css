@@ -59,8 +59,8 @@
   --title2-font-size: clamp(1.9rem, 1.4rem + 1.6vw, 3.2rem);
   --title3-font-size: clamp(1.7rem, 1.5rem + 0.8vw, 2.4rem);
   --title4-font-size: clamp(1.35rem, 1.119rem + 0.738vw, 1.95rem);
-  --text-font-size: clamp(0.8rem, 0.689rem + 0.356vw, 1rem);
-  --project-text-font-size: clamp(0.8rem, 0.689rem + 0.356vw, 1rem);
+  --text-font-size: clamp(0.7rem, 0.486rem + 0.571vw, 1rem);
+  --project-text-font-size: clamp(0.7rem, 0.486rem + 0.571vw, 1rem);
   --btn-font-size: clamp(1rem, 0.88rem + 0.48vw, 1.3rem);
   --important-msg-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
 
@@ -1265,7 +1265,7 @@ input[type=radio] {
 .project-legend-container {
   display: flex;
   flex-direction: column;
-  padding: var(--margin-l) calc(var(--margin-l) - var(--card-border-size)) var(--margin-l) var(--margin-l);
+  padding: var(--margin-s) calc(var(--margin-l) - var(--card-border-size)) var(--margin-s) var(--margin-l);
   font-size: var(--project-text-font-size);
   color: var(--basic-text-color);
   justify-content: space-evenly;
