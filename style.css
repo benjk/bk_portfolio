@@ -175,6 +175,10 @@ footer {
   font-family: var(--font-family2);
 }
 
+footer a {
+  color: inherit;
+}
+
 main {
   min-height: 100vh;
   width: 100%;
@@ -192,6 +196,38 @@ main {
   font-family: var(--font-family2);
   gap: var(--margin-xl);
   padding-bottom: var(--margin-xl);
+}
+
+.mention-wrapper {
+  min-height: 100svh;
+  width: 100%;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-family2);
+  padding-top: var(--margin-xl);
+  padding-bottom: var(--margin-xl);
+  gap: var(--margin-xl);
+  font-size: var(--text-font-size);
+  color: var(--color3);
+  z-index: 10;
+}
+
+.mention-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-l);
+  max-width: var(--section-max-width);
+  padding-left: var(--margin-l);
+  padding-right: var(--margin-l);
+}
+
+.mention-container h3 {
+  color: var(--color2);
+  font-size: var(--title4-font-size);
+  text-transform: uppercase;
+  font-family: var(--font-family1-serif);
 }
 
 section {
