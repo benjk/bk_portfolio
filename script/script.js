@@ -99,24 +99,26 @@ document.addEventListener( 'DOMContentLoaded', function () {
         });
         
         waitForAllImages().then(() => {
-            mainCarousels = document.querySelectorAll('.main-carousel');
-            thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
-            cards = document.querySelectorAll('.card');
-            contactLinks = document.querySelectorAll(".contact-link");
-            projectsLinks = document.querySelectorAll(".projects-link");
-            secondLinks = document.querySelectorAll(".second-link");
-            activeCard = document.querySelector('.card');
-            activeCard.classList.add('is-active');
-            
-            radiosCarousel.forEach(radio => {
-                radio.addEventListener('change', (event) => {
-                    activateCardForItem(radio)
+            requestAnimationFrame(() => {
+                mainCarousels = document.querySelectorAll('.main-carousel');
+                thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
+                cards = document.querySelectorAll('.card');
+                contactLinks = document.querySelectorAll(".contact-link");
+                projectsLinks = document.querySelectorAll(".projects-link");
+                secondLinks = document.querySelectorAll(".second-link");
+                activeCard = document.querySelector('.card');
+                activeCard.classList.add('is-active');
+                initSplide(data);
+                
+                radiosCarousel.forEach(radio => {
+                    radio.addEventListener('change', (event) => {
+                        activateCardForItem(radio)
+                    });
                 });
+          
+                initScrollAnimation();
+                handleScreenSize();
             });
-      
-            initSplide(data);
-            initScrollAnimation();
-            handleScreenSize();
         });
     });
     

@@ -420,7 +420,6 @@ a.button.disabled {
   line-height: calc(var(--title1-font-size)*1.1);
   line-height: calc(var(--title1-font-size)*1.1);
   font-weight: normal;
-  font-family: var(--font-family2);
 }
 
 .typewriter {
