@@ -90,7 +90,7 @@
   src: url('assets/fonts/Capsuula.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 
 /**
