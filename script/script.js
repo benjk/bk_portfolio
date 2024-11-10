@@ -254,6 +254,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 window.addEventListener('orientationchange', checkOrientationChange);
                 window.addEventListener('resize', checkOrientationChange);
+                window.addEventListener('resize', checkCarouselArrows);
                 
                 function checkOrientationChange() {
                     const newIsPortrait = window.innerHeight > window.innerWidth;
@@ -268,6 +269,16 @@ document.addEventListener( 'DOMContentLoaded', function () {
                             initCardSwipe();
                         }
                     }
+                }
+
+                function checkCarouselArrows() {
+                    mainCarousels.forEach(mainCarousel => {    
+                        const thumbnailCarousel = mainCarousel.nextElementSibling
+                        if (checkCarouselOverflow(thumbnailCarousel)) {
+                            console.log("adjusting arrows");
+                            adjustCarouselSize();
+                        }
+                    });                    
                 }
             }
             

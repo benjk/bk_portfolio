@@ -17,6 +17,21 @@ function isPhone() {
     return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 }
 
+function checkCarouselOverflow(container) {
+    const tempElt = document.querySelector('#third-section h2');
+    const marginM = parseFloat(getComputedStyle(tempElt).marginBottom);
+    const parent = container.parentElement;
+
+    const leftArrow = container.querySelector(".splide__arrow--prev");
+    const rightArrow = container.querySelector(".splide__arrow--next");
+
+    const leftThresh = leftArrow.getBoundingClientRect().left + marginM;
+    const rightThresh = rightArrow.getBoundingClientRect().right + marginM;
+    const containerRect = parent.getBoundingClientRect();
+    
+    return leftThresh < containerRect.left || rightThresh > containerRect.right;
+}
+
 function checkFormValidity() {
     const errorMsg = document.querySelector(".error-msg");
     const submitBtn = document.querySelector("#contact-section .submit-btn");
