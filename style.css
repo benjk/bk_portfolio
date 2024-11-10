@@ -631,6 +631,10 @@ a.button.disabled {
   animation: var(--client-track-anim)
 }
 
+.client-slide-track img {
+  height: calc(var(--main-network-icon-size)*1.6);
+}
+
 @keyframes scroll {
 	0% { transform: translateX(0); }
 	100% { transform: translateX(calc(var(--track-width) - var(--margin-l)))}
