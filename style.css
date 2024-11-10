@@ -1626,6 +1626,10 @@ input[type=radio] {
     font-size: var(--tablet-text-font-size) !important;
     line-height: calc(var(--tablet-text-font-size)*1.3) !important;
   }
+
+  .mention-wrapper {
+    text-align: justify;
+  }
   
   .card{
     width: 65%;
