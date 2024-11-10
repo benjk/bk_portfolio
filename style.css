@@ -87,7 +87,7 @@
 
 @font-face {
   font-family: 'Capsuula';
-  src: url('assets/fonts/Capsuula.ttf') format('truetype');
+  src: url('assets/fonts/Capsuula.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
