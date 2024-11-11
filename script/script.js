@@ -98,15 +98,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
             projectsContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
         
+        projectsLinks = document.querySelectorAll(".projects-link");
+        secondLinks = document.querySelectorAll(".second-link");
+        contactLinks = document.querySelectorAll(".contact-link");
         initScrollAnimation();
         waitForAllImages().then(() => {
             requestAnimationFrame(() => {
                 mainCarousels = document.querySelectorAll('.main-carousel');
                 thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
                 cards = document.querySelectorAll('.card');
-                contactLinks = document.querySelectorAll(".contact-link");
-                projectsLinks = document.querySelectorAll(".projects-link");
-                secondLinks = document.querySelectorAll(".second-link");
                 activeCard = document.querySelector('.card');
                 activeCard.classList.add('is-active');
                 initSplide(data);
