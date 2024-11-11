@@ -127,7 +127,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         const promises = images.map(img => {
             return new Promise((resolve, reject) => {
-                if (img.complete) {
+                if (img.loading === 'lazy' && !img.complete && !img.isIntersecting) {
+                    resolve();
+                } else if (img.complete) {
                     resolve();
                 } else {
                     img.onload = resolve;
