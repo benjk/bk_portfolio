@@ -104,20 +104,20 @@ document.addEventListener( 'DOMContentLoaded', function () {
         initScrollAnimation();
         waitForAllImages().then(() => {
             requestAnimationFrame(() => {
-                mainCarousels = document.querySelectorAll('.main-carousel');
-                thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
-                cards = document.querySelectorAll('.card');
-                activeCard = document.querySelector('.card');
-                activeCard.classList.add('is-active');
-                initSplide(data);
-                
-                radiosCarousel.forEach(radio => {
-                    radio.addEventListener('change', (event) => {
-                        activateCardForItem(radio)
-                    });
+            mainCarousels = document.querySelectorAll('.main-carousel');
+            thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
+            cards = document.querySelectorAll('.card');
+            activeCard = document.querySelector('.card');
+            activeCard.classList.add('is-active');
+            initSplide(data);
+            
+            radiosCarousel.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    activateCardForItem(radio)
                 });
-          
-                handleScreenSize();
+            });
+      
+            handleScreenSize();
             });
         });
     });
@@ -127,6 +127,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         const promises = images.map(img => {
             return new Promise((resolve, reject) => {
+                if (img.loading === 'lazy' && !img.complete && !img.isIntersecting) {
+                    resolve();
+                } else 
                 if (img.complete) {
                     resolve();
                 } else {
