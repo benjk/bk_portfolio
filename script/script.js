@@ -21,7 +21,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
     if (spanVersionning) {
-        spanVersionning.textContent = "v1.0.2"
+        spanVersionning.textContent = "v1.2.0"
     }
     
     // Call from Phone only
