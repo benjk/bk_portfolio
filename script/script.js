@@ -21,7 +21,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
     if (spanVersionning) {
-        spanVersionning.textContent = "v1.0.2"
+        spanVersionning.textContent = "v2"
     }
     
     // Call from Phone only
@@ -98,6 +98,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             projectsContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
         
+        initScrollAnimation();
         waitForAllImages().then(() => {
             requestAnimationFrame(() => {
                 mainCarousels = document.querySelectorAll('.main-carousel');
@@ -116,7 +117,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     });
                 });
           
-                initScrollAnimation();
                 handleScreenSize();
             });
         });
@@ -127,9 +127,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         const promises = images.map(img => {
             return new Promise((resolve, reject) => {
-                if (img.loading === 'lazy' && !img.complete && !img.isIntersecting) {
-                    resolve();
-                } else if (img.complete) {
+                if (img.complete) {
                     resolve();
                 } else {
                     img.onload = resolve;
