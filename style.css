@@ -893,7 +893,7 @@ textarea.floating-input {
   width: 100%;
   height: 100vh;
   max-height: 100vh;
-  min-height: 750px;
+  min-height: 780px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1005,11 +1005,15 @@ textarea.floating-input {
 .thumbnail-carousel .splide__list li {
   flex: 0 0 auto;
   height: 100%;
+  width: fit-content;
+  visibility: visible;
 }
 
 .thumbnail-carousel .splide__list {
   justify-content: center;
   align-items: flex-start;
+  flex-direction: row;
+  visibility: visible;
 }
 
 .thumbnail-carousel .splide__list.overflow {
@@ -1060,6 +1064,7 @@ textarea.floating-input {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: var(--basic-shadow);
+  display: block;
 }
 
 .main-carousel lite-youtube {
@@ -1074,7 +1079,6 @@ textarea.floating-input {
   width: auto;
   height: 100%;
   object-fit: cover;
-  margin: auto;
 }
 
 .splide__slide {
@@ -1594,7 +1598,7 @@ input[type=radio] {
 }
 
 /* Pour les tablettes (entre 768px et 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+@media (min-width: 768px) and (max-width: 1024px) {
   :root {    
     /****************** SIZES ******************/
     --mobile-projects-height: 108rem;
