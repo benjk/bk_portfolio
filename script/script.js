@@ -21,7 +21,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
     if (spanVersionning) {
-        spanVersionning.textContent = "v1.2.0"
+        spanVersionning.textContent = "v4"
     }
     
     // Call from Phone only
@@ -98,14 +98,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
             projectsContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
         
+        projectsLinks = document.querySelectorAll(".projects-link");
+        secondLinks = document.querySelectorAll(".second-link");
+        contactLinks = document.querySelectorAll(".contact-link");
+        initScrollAnimation();
         waitForAllImages().then(() => {
             requestAnimationFrame(() => {
                 mainCarousels = document.querySelectorAll('.main-carousel');
                 thumbCarouselImgContainer = document.querySelectorAll('.thumbnail-carousel .splide__list');
                 cards = document.querySelectorAll('.card');
-                contactLinks = document.querySelectorAll(".contact-link");
-                projectsLinks = document.querySelectorAll(".projects-link");
-                secondLinks = document.querySelectorAll(".second-link");
                 activeCard = document.querySelector('.card');
                 activeCard.classList.add('is-active');
                 initSplide(data);
@@ -116,7 +117,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     });
                 });
           
-                initScrollAnimation();
                 handleScreenSize();
             });
         });
