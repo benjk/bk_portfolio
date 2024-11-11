@@ -23,12 +23,20 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png?v=2.0">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png?v=2.0">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png?v=2.0">
+  <link rel="preload" href="assets/img/intro-bg-large.webp" as="image" type="image/webp" media="(min-width: 1025px)">
+  <link rel="preload" href="assets/img/intro-bg-medium.webp" as="image" type="image/webp" media="(min-width: 768px) and (max-width: 1024px)">
+  <link rel="preload" href="assets/img/intro-bg-small.webp" as="image" type="image/webp" media="(max-width: 767px)">
   <link rel="preload" as="font" type="font/ttf" href="/assets/fonts/Capsuula.ttf" crossorigin/>
   <link rel="stylesheet" href="style.css?v=1.0.18">
 </head>
 <body>
   <main>
-    <img class="intro-bg" src="assets/img/intro-bg.jpg" alt="">
+    <img
+    class="intro-bg"
+    src="assets/img/intro-bg-small.webp" 
+    srcset="assets/img/intro-bg-small.webp 600w, assets/img/intro-bg-medium.webp 1024w, assets/img/intro-bg-large.webp 1920w" 
+    sizes="(max-width: 767px) 600px, (max-width: 1024px) 1024px, 1920px" 
+    alt="Background image">
     <div class="mention-wrapper">
         <h2>Mentions légales</h2>
         <div class="mention-container">
