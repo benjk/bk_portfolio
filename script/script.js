@@ -400,6 +400,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     }
 
                     //FIX FIrefox Li size
+                    let widthAdjusted = false;
                     if ((navigator.userAgent.indexOf('Firefox') > -1) || (navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') === -1)) {
                         console.log("Firefox or Safari detected");
                         const items = cont.querySelectorAll('li');
@@ -409,11 +410,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
                             const contWidth = item.clientWidth;
                             if (img && (imgWidth < contWidth)) {
                                 item.style.width = `${imgWidth}px`;
+                                widthAdjusted = true;
                             }
                         });
-                        console.log(cont);
-                        
-                        cont.parentElement.parentElement.querySelector('.splide__arrow--next').click();
+                        if (widthAdjusted) {
+                            cont.parentElement.parentElement.querySelector('.splide__arrow--next').click();
+                        }            
                     } 
                 });
                 
