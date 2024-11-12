@@ -589,6 +589,14 @@ a.button.disabled {
   cursor: pointer;
 }
 
+.pres-text-container .pres-text .pres-li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-xs);
+  margin-top: var(--margin-xs);
+}
+
+
 .pres-text-container .button {
   color: var(--color2);
   border: 2px solid var(--color3);
