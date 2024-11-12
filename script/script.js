@@ -21,7 +21,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
     if (spanVersionning) {
-        spanVersionning.textContent = "v4"
+        spanVersionning.textContent = "v4.2"
     }
     
     // Call from Phone only
@@ -116,7 +116,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         activateCardForItem(radio)
                     });
                 });
-          
+                
                 handleScreenSize();
             });
         });
@@ -127,6 +127,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
         
         const promises = images.map(img => {
             return new Promise((resolve, reject) => {
+                if (img.loading === 'lazy' && !img.complete && !img.isIntersecting) {
+                    resolve();
+                } else 
                 if (img.complete) {
                     resolve();
                 } else {
@@ -249,7 +252,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 // Carousel Arrows
                 handleProjectsArrows();
-
+                
                 if (isSmallScreen()) {
                     initCardSwipe();
                 }
@@ -272,7 +275,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         }
                     }
                 }
-
+                
                 function checkCarouselArrows() {
                     mainCarousels.forEach(mainCarousel => {    
                         const thumbnailCarousel = mainCarousel.nextElementSibling
@@ -292,7 +295,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 const trackWidth = clientSlideTrack.scrollWidth;
                 document.documentElement.style.setProperty("--track-width", `${trackWidth/-2}px`);
             }
-
+            
             function refreshTrackSize() {
                 clientSlideTrack.style.transform = 'translateX(0)';
                 const newTrackWidth = clientSlideTrack.scrollWidth;
@@ -395,6 +398,25 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     } else {
                         cont.classList.remove('overflow');
                     }
+
+                    //FIX FIrefox Li size
+                    let widthAdjusted = false;
+                    if ((navigator.userAgent.indexOf('Firefox') > -1) || (navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') === -1)) {
+                        console.log("Firefox or Safari detected");
+                        const items = cont.querySelectorAll('li');
+                        items.forEach(item => {
+                            const img = item.querySelector('img');
+                            const imgWidth = img.clientWidth*1.06;
+                            const contWidth = item.clientWidth;
+                            if (img && (imgWidth < contWidth)) {
+                                item.style.width = `${imgWidth}px`;
+                                widthAdjusted = true;
+                            }
+                        });
+                        if (widthAdjusted) {
+                            cont.parentElement.parentElement.querySelector('.splide__arrow--next').click();
+                        }            
+                    } 
                 });
                 
                 mainCarousels.forEach(mainCarousel => {    

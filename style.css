@@ -575,11 +575,9 @@ a.button.disabled {
   line-height: calc(var(--text-font-size)*1.3);
 }
 
-.pres-text-container span.important {
-  color: var(--color2)
-}
-
-.pres-text-container span.important {
+.pres-text-container .important {
+  color: var(--color2);
+  font-size: var(--text-font-size);
   font-weight: 500;
 }
 
@@ -588,6 +586,18 @@ a.button.disabled {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.pres-text-container .pres-text .title {
+  margin-bottom: 0.3rem;
+}
+
+.pres-text-container .pres-text .pres-li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--margin-xs);
+  text-align: start;
+}
+
 
 .pres-text-container .button {
   color: var(--color2);
@@ -893,7 +903,7 @@ textarea.floating-input {
   width: 100%;
   height: 100vh;
   max-height: 100vh;
-  min-height: 750px;
+  min-height: 780px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1006,11 +1016,15 @@ textarea.floating-input {
 .thumbnail-carousel .splide__list li {
   flex: 0 0 auto;
   height: 100%;
+  width: fit-content;
+  visibility: visible;
 }
 
 .thumbnail-carousel .splide__list {
   justify-content: center;
   align-items: flex-start;
+  flex-direction: row;
+  visibility: visible;
 }
 
 .thumbnail-carousel .splide__list.overflow {
@@ -1061,6 +1075,7 @@ textarea.floating-input {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: var(--basic-shadow);
+  display: block;
 }
 
 .main-carousel lite-youtube {
@@ -1075,7 +1090,6 @@ textarea.floating-input {
   width: auto;
   height: 100%;
   object-fit: cover;
-  margin: auto;
 }
 
 .splide__slide {
@@ -1595,7 +1609,7 @@ input[type=radio] {
 }
 
 /* Pour les tablettes (entre 768px et 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+@media (min-width: 768px) and (max-width: 1024px) {
   :root {    
     /****************** SIZES ******************/
     --mobile-projects-height: 108rem;
