@@ -206,7 +206,7 @@ main {
 }
 
 .mention-wrapper {
-  min-height: calc(100svh - var(--footer-height));
+  min-height: calc(100vh - var(--footer-height));
   width: 100%;
   position: relative;
   flex-direction: column;
@@ -417,13 +417,21 @@ a.button.disabled {
   text-align: center;
 }
 
-#first-section h1 {
+#first-section h2 {
   color: var(--color3);
   font-size: var(--title1-font-size);
   text-align: center;
   line-height: calc(var(--title1-font-size)*1.1);
   line-height: calc(var(--title1-font-size)*1.1);
   font-weight: normal;
+}
+
+#first-section h1 {
+  color: var(--color2);
+  font-size: var(--title2-font-size);
+  text-transform: uppercase;
+  text-align: center;
+  font-family: var(--font-family1);
 }
 
 .typewriter {
@@ -450,7 +458,7 @@ a.button.disabled {
 
 #first-section p {
   color: var(--color3);
-  font-size: calc(var(--text-font-size)*1.2);
+  font-size: calc(var(--text-font-size)*1.5);
 }
 
 #first-section p strong, #first-section p a {
@@ -1667,7 +1675,7 @@ input[type=radio] {
   }
   
   #first-section p {
-    font-size: calc(var(--tablet-text-font-size)* 1.2);
+    font-size: calc(var(--tablet-text-font-size)* 1.5);
   }
 
   a.button {
