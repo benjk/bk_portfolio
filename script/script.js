@@ -54,18 +54,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     </li>`;
             });
             
-            let thumbHTML = ''
-            if ((project.id == 3 || project.id == 4) && !isSmallScreen()) {
-                images.pop();
-                images.forEach(image => {            
-                    thumbHTML += `
-                    <li class="splide__slide">
-                        <img src="${image}" alt="">
-                    </li>`;
-                });
-            } else {
-                thumbHTML = mainImagesHTML;
-            }
+            thumbHTML = mainImagesHTML;
             
             if (project.video) {
                 thumbHTML = `
