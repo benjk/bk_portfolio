@@ -35,13 +35,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
     ]).then(([data, template]) => {
         
         data.forEach(project => {
-            // On passe l'image 1 en dernier
             const images = [...project.images];
-            const firstImage = images.shift();
             // Sur mobile on vire les logos ils genent l'affichage et n'apportent rien
-            if (!isSmallScreen() || project.id != 3 && project.id != 4) {
-                images.push(firstImage);
-                if (isSmallScreen() && project.id == 2) {
+            if (isSmallScreen()) {
+                if (project.id ==3 || project.id == 4) {
+                    images.shift();
+                } else {
                     const firstImage = images.shift();
                     images.push(firstImage);
                 }
@@ -69,15 +68,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
             }
             
             if (project.video) {
-                thumbHTML += `
+                thumbHTML = `
                     <li class="splide__slide">
                         <img src="${project.video.thumb}" alt="">
-                    </li>`;
+                    </li>` + thumbHTML;
                 
-                mainImagesHTML += `
+                mainImagesHTML = `
                     <li class="splide__slide">
                         <lite-youtube videoid="${project.video.src}" title="${project.video.title}" playlabel="${project.video.title}" js-api></lite-youtube>
-                    </li>`;
+                    </li>` + mainImagesHTML;
             }
             
             let infosProjectHTML = '';
@@ -206,7 +205,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             
             function initSplide(data) {
                 mainCarousels.forEach((mainCarousel, index) => {
-                    const startIndex = (data[index].images.length)
+                    const startIndex = 0;
                     
                     var main = new Splide(`#main-carousel${index + 1}`, {
                         autoHeight: true,
@@ -420,7 +419,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 });
                 
                 mainCarousels.forEach(mainCarousel => {    
-                    const activeImg = mainCarousel.querySelector('.splide__slide:last-child img, .splide__slide:last-child lite-youtube');
+                    const activeImg = mainCarousel.querySelector('.splide__slide:first-child img, .splide__slide:first-child lite-youtube');
                     const imgs = mainCarousel.querySelectorAll('.splide__slide img');
                     
                     if (activeImg) {
