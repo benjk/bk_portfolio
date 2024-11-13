@@ -397,7 +397,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     } else {
                         cont.classList.remove('overflow');
                     }
-
+                    
                     //FIX FIrefox Li size
                     let widthAdjusted = false;
                     if ((navigator.userAgent.indexOf('Firefox') > -1) || (navigator.userAgent.indexOf('Safari') > -1 && navigator.userAgent.indexOf('Chrome') === -1)) {
@@ -457,6 +457,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 const totalSlides = 4;
                 
+                const handleClickProjects = (e) => {
+                    const cardRect = activeCard.getBoundingClientRect();
+                    const clickX = e.clientX;
+                    
+                    if (clickX < cardRect.left) {
+                        previousSlide()
+                    } else if (clickX > cardRect.right) {
+                        nextSlide();
+                    }
+                };
+                
                 const handleTouchStart = (e) => {
                     if (!e.target.closest('.thumbnail-carousel')) {
                         startX = e.touches[0].clientX;
@@ -509,6 +520,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 projectsContainer.addEventListener('touchstart', handleTouchStart, {passive: true});
                 projectsContainer.addEventListener('touchend', handleTouchEnd, {passive: true});   
+                projectsContainer.addEventListener('click', handleClickProjects);   
             } 
             
             function activateCardForItem(radioItem) {
