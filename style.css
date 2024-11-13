@@ -1500,10 +1500,6 @@ input[type=radio] {
   #project-1 .thumbnail-carousel {
     height: 12%;
   }
-
-  #project-3 .splide-container {
-    height: 55%;
-  }
   
   #project-1.card .splide-container {
     border-bottom: 6px solid var(--proj1-color2)!important;

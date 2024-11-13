@@ -40,7 +40,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
             if (isSmallScreen()) {
                 if (project.id ==3 || project.id == 4) {
                     images.shift();
-                } else {
+                } else if (project.id == 2) {
+                    // Sur mobile on affiche en prio la version mobile
                     const firstImage = images.shift();
                     images.push(firstImage);
                 }
