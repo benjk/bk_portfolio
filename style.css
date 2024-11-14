@@ -64,8 +64,8 @@
   --project-text-font-size: clamp(0.7rem, 0.486rem + 0.571vw, 1rem);
   --important-msg-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
   
-  --classic-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
-  --bigger-btn-size: clamp(13rem, 12.143rem + 3.429vw, 16rem);
+  --classic-btn-size: clamp(13rem, 9.429rem + 9.524vw, 18rem);
+  --bigger-btn-size:clamp(13rem, 9.429rem + 9.524vw, 18rem);
   
   --loader-height: 0.375em;
   
@@ -262,7 +262,7 @@ a.button {
   margin: auto;
   border-radius: 15px;
   font-family: var(--font-family2);
-  font-size: var(--text-font-size);
+  font-size: calc(var(--text-font-size)*1.1);
   cursor: pointer;
   transition: filter 0.3s ease, box-shadow 0.3s ease;
   background-color: transparent;
@@ -272,6 +272,9 @@ a.button {
   overflow: hidden;
   position: relative;
   white-space: nowrap;
+  text-transform: uppercase;
+  font-family: var(--font-family1);
+  font-weight: bold !important;
 }
 
 a.button:after {
@@ -563,7 +566,7 @@ a.button.disabled {
 #second-section .pres-wrapper .pres-img-container {
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 42%;
 }
 
 .pres-img-container img {
@@ -571,7 +574,7 @@ a.button.disabled {
 }
 
 #second-section .pres-wrapper .pres-text-container {
-  width: 60%;
+  width: 58%;
   padding: 0 var(--margin-l);
   display: flex;
   flex-direction: column;
@@ -585,6 +588,7 @@ a.button.disabled {
   text-align: justify;
   text-justify: inter-word;
   line-height: calc(var(--text-font-size)*1.3);
+  padding-top: var(--margin-m)
 }
 
 .pres-text-container .important {
@@ -601,6 +605,11 @@ a.button.disabled {
 
 .pres-text-container .pres-text .title {
   margin-bottom: 0.3rem;
+  font-family: var(--font-family1);
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: calc(var(--text-font-size)*1.3);
+  text-align: center;
 }
 
 .pres-text-container .pres-text .pres-li {
@@ -617,6 +626,8 @@ a.button.disabled {
   width: var(--bigger-btn-size);
   margin-top: var(--margin-s);
   margin-bottom: 0;
+  font-family: var(--font-family1);
+  text-transform: uppercase;
 }
 
 #second-section .client-wrapper {
@@ -1367,6 +1378,12 @@ input[type=radio] {
   font-weight: normal;
 }
 
+.infos-project strong {
+  text-transform: uppercase;
+  font-family: var(--font-family1);
+  font-weight: bold;
+}
+
 .project-legend-container a.contact-link {
   text-decoration: underline;
   cursor: pointer;
@@ -1563,6 +1580,11 @@ input[type=radio] {
   
   .pres-text-container .pres-text {
     line-height: calc(var(--text-font-size)*1.5);
+    padding-top: 0;
+  }
+
+  .pres-text-container .pres-text .pres-li {
+    text-align: center;
   }
   
   .pres-text-container .button {
