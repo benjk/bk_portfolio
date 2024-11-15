@@ -56,7 +56,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
             });
             
             thumbHTML = mainImagesHTML;
-
+            
             if (project.gif) {
                 thumbHTML += `
                     <li class="splide__slide">
@@ -308,7 +308,23 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 let hoveredCard = null;
                 let hoveredArrow = null;
                 
-                if (!isSmallScreen()) {            
+                if (!isSmallScreen()) {
+                    // Animation automatique des arrows
+                    carouselArrows[0].classList.add('animated');
+                    carouselArrows[1].classList.add('animated');
+                    
+                    // Liste des événements à écouter
+                    const eventsToDetect = ['click', 'change', 'touchstart'];
+                    
+                    // Ajout d'écouteurs d'événements au conteneur
+                    eventsToDetect.forEach(eventType => {
+                        projectsContainer.addEventListener(eventType, (event) => {
+                            if (event.type !== 'scroll') {
+                                disableAnimation(carouselArrows);
+                            }
+                        });
+                    });
+                    
                     projectsContainer.addEventListener('mouseover', (event) => {
                         const card = event.target.closest('.card');
                         
@@ -430,6 +446,12 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         const thumbnailCarousel = activeImg.closest('.splide-container').querySelector('.thumbnail-carousel');
                         
                         if (thumbnailCarousel) {
+                            const insideCarouselArrows = thumbnailCarousel.querySelectorAll('.splide__arrow');
+                            
+                            if (mainWidth > thumbnailCarousel.style.width) {
+                                insideCarouselArrows[0].style.left = "0"
+                                insideCarouselArrows[1].style.right = "0"
+                            }
                             thumbnailCarousel.style.setProperty('width', `${mainWidth}px`, 'important');
                         }
                         

@@ -105,3 +105,9 @@ function checkFormValidity() {
         }
       }
 }
+
+function disableAnimation(elementTab) {
+    elementTab.forEach( element => {
+        element.classList.remove('animated');
+    })
+}

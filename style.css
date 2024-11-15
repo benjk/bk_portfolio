@@ -967,16 +967,24 @@ textarea.floating-input {
   stroke: var(--color3)
 }
 
+.car-left-arrow.animated {
+  animation: left-arrow-slide 2.4s ease-in-out infinite;
+}
+
 .car-left-arrow.hovered {
   filter: drop-shadow(var(--strong-shadow));
   cursor: pointer;
-  animation: left-arrow-slide 0.7s ease-in-out infinite;
+  animation: left-arrow-slide 1s ease-in-out infinite;
+}
+
+.car-right-arrow.animated {
+  animation: right-arrow-slide 2.4s ease-in-out infinite;
 }
 
 .car-right-arrow.hovered {
   filter: drop-shadow(var(--strong-shadow));
   cursor: pointer;
-  animation: right-arrow-slide 0.7s ease-in-out infinite;
+  animation: right-arrow-slide 1s ease-in-out infinite;
 }
 
 .car-left-arrow {
@@ -993,7 +1001,15 @@ textarea.floating-input {
     transform: translateX(var(--arrow-slide1));
   }
   
+  25% {
+    transform: translateX(calc(var(--arrow-slide2)*-1));
+  }
+
   50% {
+    transform:  translateX(var(--arrow-slide1));;
+  }
+
+  75% {
     transform: translateX(calc(var(--arrow-slide2)*-1));
   }
 }
@@ -1004,8 +1020,16 @@ textarea.floating-input {
   100% {
     transform: translateX(calc(var(--arrow-slide1)*-1));
   }
-  
+
+  25% {
+    transform: translateX(var(--arrow-slide2));
+  }
+
   50% {
+    transform:  translateX(calc(var(--arrow-slide1)*-1));
+  }
+
+  75% {
     transform: translateX(var(--arrow-slide2));
   }
 }
@@ -1198,6 +1222,10 @@ input[type=radio] {
   border: 2px solid white;
   box-shadow: var(--basic-shadow);
   transition: box-shadow 0.3s ease, transform 0.3s ease; 
+}
+
+.splide__arrow--prev {
+  left: calc(var(--margin-m)*-1)
 }
 
 .splide__arrow--prev {
