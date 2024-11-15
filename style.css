@@ -388,6 +388,7 @@ a.button.disabled {
 }
 
 .intro-bg {
+  background-image: url('assets/img/intro-bg-large.webp');
   position: fixed;
   left: 0;
   top: 0;
@@ -397,6 +398,9 @@ a.button.disabled {
   object-fit: cover;
   pointer-events: none;
   z-index: 0;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 #first-section {
@@ -1116,6 +1120,10 @@ textarea.floating-input {
 }
 
 @media screen and (min-width: 1024px) {
+  .intro-bg {
+    background-image: url('assets/img/intro-bg-small.webp');
+  }
+
   .card{
     max-width: 80vw;
   }
@@ -1774,6 +1782,10 @@ input[type=radio] {
     --margin-l: clamp(3.5rem, 2.923rem + 1.846vw, 5rem);
   }
   /* Styles pour les tablettes */
+  .intro-bg {
+    background-image: url('assets/img/intro-bg-medium.webp');
+  }
+
   .mention-wrapper, .pres-text, .contact-infos-container, .floating-input, .floating-label, .error-msg, .project-legend-container, .important {
     font-size: var(--tablet-text-font-size) !important;
     line-height: calc(var(--tablet-text-font-size)*1.3) !important;
