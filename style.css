@@ -926,15 +926,16 @@ textarea.floating-input {
 }
 
 #third-section .info-msg {
-  font-size: var(--title4-font-size);
+  font-size: calc(var(--title4-font-size)*0.7);
   font-family: var(--font-family1);
   margin-bottom: var(--margin-s);
   color: var(--color3);
   text-transform: uppercase;
   text-align: center;
+  cursor: pointer;
 }
 
-#third-section .info-msg:after {
+#third-section .info-msg:after, #third-section .info-msg:before {
   content: "*";
   color: var(--color2);
 }

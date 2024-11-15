@@ -277,16 +277,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 
                 function checkOrientationChange() {
                     const newIsPortrait = window.innerHeight > window.innerWidth;
-                    if (newIsPortrait !== isPortrait) {
+                    if (newIsPortrait !== isPortrait || (window.innerWidth <= 1024 && initialWidth > 1024)) {
                         isPortrait = newIsPortrait;
                         console.log('Orientation changée:', isPortrait ? 'portrait' : 'paysage');
                         
-                        handleProjectsArrows();
                         adjustCarouselSize();
                         refreshTrackSize();
-                        if (isPortrait) {
+                        if (isPortrait || window.innerWidth <= 1024) {
                             initCardSwipe();
-                            if (initialPortrait == false && initialWidth != 1024) {
+                            if (initialPortrait == false && initialWidth > 1024) {
                                 infoMsgProjects.classList.remove('gone')
                             }
                         } else {
