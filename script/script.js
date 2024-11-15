@@ -56,6 +56,18 @@ document.addEventListener( 'DOMContentLoaded', function () {
             });
             
             thumbHTML = mainImagesHTML;
+
+            if (project.gif) {
+                thumbHTML += `
+                    <li class="splide__slide">
+                        <img src="${project.gif.thumb}" alt="">
+                    </li>`;
+                
+                mainImagesHTML += `
+                    <li class="splide__slide">
+                        <img src="${project.gif.src}" alt="">
+                    </li>`;
+            }
             
             if (project.video) {
                 thumbHTML = `

@@ -32,11 +32,11 @@
         "description": "Histoires Wabi Sabi est un site web conçu pour la diffusion d'histoires audios.<br><br> Mon rôle ? Mettre en place une <strong>solution d'abonnement</strong> qui garantit un accès exclusif aux abonnés et un player personnalisé pour une écoute immersive. J'ai également développé un <strong>plugin personnalisé</strong> permettant une gestion autonome du contenu via <strong>WordPress</strong>, facilitant la publication régulière d’histoires inédites.<br><br>N'hésitez pas à <a target='blank' href='https://histoireswabisabi.com/'>visiter le site</a> et demandez un <a class='contact-link' data-duration='0.5'>accès invité</a> pour tester la plateforme.",
         "images": [
             "assets/img/projet2_thumb1.webp",
-            "assets/img/projet2_thumb2.webp",
-            "assets/img/projet2_thumb3.webp",
-            "assets/img/projet2_thumb4.webp",
-            "assets/img/projet2_thumb5.webp"
-        ],
+            "assets/img/projet2_thumb2.webp"        ],
+        "gif": {
+            "src": "assets/img/projet2_thumb3_gif.gif",
+            "thumb": "assets/img/projet2_thumb3.webp"
+        },
         "details": {
             "année": "2023",
             "client": "Particulier",
