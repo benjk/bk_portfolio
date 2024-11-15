@@ -1120,10 +1120,6 @@ textarea.floating-input {
 }
 
 @media screen and (min-width: 1024px) {
-  .intro-bg {
-    background-image: url('assets/img/intro-bg-small.webp');
-  }
-
   .card{
     max-width: 80vw;
   }
@@ -1460,6 +1456,10 @@ input[type=radio] {
 }
 
 @media screen and (max-width: 1024px), (orientation: portrait) {
+  .intro-bg {
+    background-image: url('assets/img/intro-bg-small.webp');
+  }
+  
   .section-wrapper {
     padding-bottom: var(--margin-l);
   }
