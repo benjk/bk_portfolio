@@ -10,7 +10,7 @@ function capitalize(string) {
 }
 
 function isSmallScreen() {
-    return window.innerWidth < 1024 || window.innerHeight > window.innerWidth
+    return window.innerWidth <= 1024 || window.innerHeight > window.innerWidth
 }
 
 function isPhone() {

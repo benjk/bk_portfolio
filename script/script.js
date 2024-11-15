@@ -256,7 +256,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
             }
             
             function handleScreenSize() {  
-                const initialPortrait = window.innerHeight > window.innerWidth; 
+                const initialWidth = window.innerWidth;
+                const initialPortrait = window.innerHeight > initialWidth; 
                 let isPortrait = initialPortrait;      
                 initClientTrackSize()
                 
@@ -285,7 +286,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         refreshTrackSize();
                         if (isPortrait) {
                             initCardSwipe();
-                            if (initialPortrait == false) {
+                            if (initialPortrait == false && initialWidth != 1024) {
                                 infoMsgProjects.classList.remove('gone')
                             }
                         } else {
