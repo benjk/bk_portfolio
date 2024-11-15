@@ -446,9 +446,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         const thumbnailCarousel = activeImg.closest('.splide-container').querySelector('.thumbnail-carousel');
                         
                         if (thumbnailCarousel) {
+                            // On replace les fleches si splide_track moins large
                             const insideCarouselArrows = thumbnailCarousel.querySelectorAll('.splide__arrow');
-                            
-                            if (mainWidth > thumbnailCarousel.style.width) {
+                            if (mainWidth*0.95 > thumbnailCarousel.querySelector('.splide__track').clientWidth) {  
                                 insideCarouselArrows[0].style.left = "0"
                                 insideCarouselArrows[1].style.right = "0"
                             }
