@@ -1152,10 +1152,6 @@ textarea.floating-input {
     margin-bottom: var(--margin-s) !important;
     margin-top: 0 !important;
   }
-  
-  .project-legend-container {
-    gap:var(--margin-s);
-  }
 }
 
 .splide {
@@ -1417,6 +1413,7 @@ input[type=radio] {
   font-family: var(--font-family2);
   line-height: calc(var(--project-text-font-size)*1.5);
   font-size: var(--project-text-font-size);
+  gap:var(--margin-s);
 }
 
 .splide__arrow--prev {
@@ -1757,7 +1754,7 @@ input[type=radio] {
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {    
     /****************** SIZES ******************/
-    --mobile-projects-height: 133rem;
+    --mobile-projects-height: 128rem;
     
     --main-network-icon-size: clamp(3rem, 2.4rem + 1.25vw, 3.2rem);
     
