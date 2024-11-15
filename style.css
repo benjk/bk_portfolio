@@ -130,6 +130,10 @@ ul, li {
   display: none !important;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 strong {
   font-weight: normal;
 }
@@ -921,12 +925,25 @@ textarea.floating-input {
   margin-top: var(--margin-l);
 }
 
+#third-section .info-msg {
+  font-size: var(--title4-font-size);
+  font-family: var(--font-family1);
+  margin-bottom: var(--margin-s);
+  color: var(--color3);
+  text-transform: uppercase;
+}
+
+#third-section .info-msg:after {
+  content: "*";
+  color: var(--color2);
+}
+
 .projects-container-global {
   position: relative;
   width: 100%;
   height: 100vh;
   max-height: 100vh;
-  min-height: 780px;
+  min-height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1060,6 +1077,19 @@ textarea.floating-input {
   height: 12%; /* Utilisez une valeur fixe pour le carrousel des miniatures */
 }
 
+#project-1 .main-carousel {
+  flex-direction: column;
+  gap: var(--margin-s)
+}
+
+#project-1 .main-carousel .splide__track {
+  height: auto;
+}
+
+#project-1 .main-carousel lite-youtube {
+  flex: 1;
+}
+
 .project-legend-container {
   width: 40%;
 }
@@ -1148,7 +1178,7 @@ textarea.floating-input {
   opacity: 0.6;
   justify-content: center !important;
   align-items: center !important;
-  display: flex !important;
+  display: flex;
 }
 
 .splide__slide.is-active {
@@ -1540,6 +1570,8 @@ input[type=radio] {
   
   #project-1 .main-carousel {
     height: 85%;
+    flex-direction: column;
+    gap: var(--margin-s)
   }
 
   #project-1 .thumbnail-carousel {
@@ -1675,7 +1707,7 @@ input[type=radio] {
 }
 
 /* Pour les tablettes (entre 768px et 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   :root {    
     /****************** SIZES ******************/
     --mobile-projects-height: 133rem;
@@ -1717,6 +1749,7 @@ input[type=radio] {
   }
   
   #contact-section .contact-form-container, #contact-section .contact-infos-container {
+    gap: var(--margin-m);
     gap: var(--margin-m);
   }
   

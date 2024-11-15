@@ -7,6 +7,9 @@ document.addEventListener( 'DOMContentLoaded', function () {
     const radiosCarousel = document.querySelectorAll('.radio-carousel');
     const phoneLink = document.getElementById('phone-info');
     const clientSlideTrack = document.querySelector(".client-slide-track");
+    const infoMsgProjects = document.querySelector("#third-section .info-msg");
+
+    let projectsData = null;
     
     let mainCarousels;
     let thumbCarouselImgContainer;
@@ -33,8 +36,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
         fetch('projects-data.json').then(response => response.json()),
         fetch('project-template.html').then(response => response.text())
     ]).then(([data, template]) => {
-        
-        data.forEach(project => {
+        projectsData = data;
+        projectsData.forEach(project => {
             const images = [...project.images];
             // Sur mobile on vire les logos ils genent l'affichage et n'apportent rien
             if (isSmallScreen()) {
@@ -69,16 +72,23 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     </li>`;
             }
             
+            let videmoMobile = ''
             if (project.video) {
-                thumbHTML = `
+                liteYtElt = `<lite-youtube videoid="${project.video.src}" title="${project.video.title}" playlabel="${project.video.title}" js-api ></lite-youtube>`
+                if (!isSmallScreen()) {
+                    thumbHTML = `
                     <li class="splide__slide">
-                        <img src="${project.video.thumb}" alt="">
+                    <img src="${project.video.thumb}" alt="">
                     </li>` + thumbHTML;
-                
-                mainImagesHTML = `
+                    
+                    mainImagesHTML = `
                     <li class="splide__slide">
-                        <lite-youtube videoid="${project.video.src}" title="${project.video.title}" playlabel="${project.video.title}" js-api></lite-youtube>
+                    ${liteYtElt}
                     </li>` + mainImagesHTML;
+                } else {
+                    videmoMobile = liteYtElt;
+                }
+
             }
             
             let infosProjectHTML = '';
@@ -87,14 +97,15 @@ document.addEventListener( 'DOMContentLoaded', function () {
                     <li class="infos-project">
                         <strong>${capitalize(key)}:</strong> ${value}
                     </li>`;
-            });            
+            });         
             
-            const cardHTML = template
+            let cardHTML = template
             .replace(new RegExp('{{id}}', 'g'), project.id)
             .replace(new RegExp('{{title}}', 'g'), project.title.toUpperCase())
             .replace('{{description}}', project.description)
             .replace('{{thumbnails}}', thumbHTML)
             .replace('{{mainImages}}', mainImagesHTML)
+            .replace('{{videoMobile}}', videmoMobile)
             .replace(new RegExp('{{infosProject}}', 'g'), infosProjectHTML)
             projectsContainer.insertAdjacentHTML('beforeend', cardHTML);
         });
@@ -110,7 +121,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 cards = document.querySelectorAll('.card');
                 activeCard = document.querySelector('.card');
                 activeCard.classList.add('is-active');
-                initSplide(data);
+                initSplide(projectsData);
                 
                 radiosCarousel.forEach(radio => {
                     radio.addEventListener('change', (event) => {
@@ -245,7 +256,8 @@ document.addEventListener( 'DOMContentLoaded', function () {
             }
             
             function handleScreenSize() {  
-                let isPortrait = window.innerHeight > window.innerWidth;      
+                const initialPortrait = window.innerHeight > window.innerWidth; 
+                let isPortrait = initialPortrait;      
                 initClientTrackSize()
                 
                 // Carousel Size 
@@ -273,6 +285,11 @@ document.addEventListener( 'DOMContentLoaded', function () {
                         refreshTrackSize();
                         if (isPortrait) {
                             initCardSwipe();
+                            if (initialPortrait == false) {
+                                infoMsgProjects.classList.remove('gone')
+                            }
+                        } else {
+                            infoMsgProjects.classList.add('gone')
                         }
                     }
                 }
