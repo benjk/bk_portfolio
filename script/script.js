@@ -8,7 +8,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
     const phoneLink = document.getElementById('phone-info');
     const clientSlideTrack = document.querySelector(".client-slide-track");
     const infoMsgProjects = document.querySelector("#third-section .info-msg");
-
+    
     let projectsData = null;
     
     let mainCarousels;
@@ -20,6 +20,24 @@ document.addEventListener( 'DOMContentLoaded', function () {
     
     let activeCard;
     let scrollingLinkAnimation = null;
+    
+    // Gestion du background
+    const bgDiv = document.querySelector('.intro-bg');
+    const img = document.getElementById("bg-image");
+    console.log(img);
+    console.log(bgDiv);
+    
+    function setBackgroundImage() {
+        bgDiv.style.backgroundImage = `url('${img.src}')`;
+        img.remove();  // Supprime l'image du DOM une fois qu'elle est utilisée
+        console.log("Image chargée et appliquée.");
+    }
+    
+    if (img.complete) {
+        setBackgroundImage();  // Si l'image est déjà chargée, applique immédiatement
+    } else {
+        img.onload = setBackgroundImage;  // Si l'image n'est pas encore chargée, attend qu'elle soit prête
+    }
     
     // Versionning
     const spanVersionning = document.querySelector("span#versionning");
@@ -88,7 +106,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
                 } else {
                     videmoMobile = liteYtElt;
                 }
-
+                
             }
             
             let infosProjectHTML = '';

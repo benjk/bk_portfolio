@@ -388,7 +388,6 @@ a.button.disabled {
 }
 
 .intro-bg {
-  background-image: url('assets/img/intro-bg-large.webp');
   position: fixed;
   left: 0;
   top: 0;
