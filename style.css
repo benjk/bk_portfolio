@@ -416,8 +416,6 @@ a.button.disabled {
   font-family: var(--font-family1);
 }
 
-
-
 #first-section .content-first-section {
   display: flex;
   flex-direction: column;
@@ -449,16 +447,19 @@ a.button.disabled {
   will-change: transform;
   box-sizing: content-box;
   width: fit-content;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .10em solid var(--color2); /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  animation: typing var(--typing-anim-delay) steps(20, end), blink-caret .75s step-end infinite;
+  max-width: 0;
+  overflow: hidden;
+  border-right: .10em solid var(--color2);
+  border-color: transparent;
+  white-space: nowrap;
+  animation: typing var(--typing-anim-delay) steps(20, end) 0.6s forwards, blink-caret .75s step-end infinite;
+  animation-delay: 0.6s;
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from { max-width: 0 }
+  to { max-width: 100% }
 }
 
 /* The typewriter cursor effect */
