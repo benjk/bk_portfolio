@@ -78,16 +78,32 @@ document.addEventListener( 'DOMContentLoaded', function () {
             
             thumbHTML = mainImagesHTML;
             
-            if (project.gif) {
-                thumbHTML += `
-                    <li class="splide__slide">
-                        <img src="${project.gif.thumb}" alt="">
-                    </li>`;
-                
-                mainImagesHTML += `
-                    <li class="splide__slide">
-                        <img src="${project.gif.src}" alt="">
-                    </li>`;
+            if (project.gifs) {
+                if (project.id ==1) {
+                    project.gifs.forEach(gif => {
+                        thumbHTML = `
+                            <li class="splide__slide">
+                                <img src="${gif.thumb}" alt="">
+                            </li>` + thumbHTML;
+                        
+                        mainImagesHTML = `
+                            <li class="splide__slide">
+                                <img src="${gif.src}" alt="">
+                            </li>` + mainImagesHTML;
+                    });
+                } else {
+                    project.gifs.forEach(gif => {
+                        thumbHTML += `
+                            <li class="splide__slide">
+                                <img src="${gif.thumb}" alt="">
+                            </li>`;
+                        
+                        mainImagesHTML += `
+                            <li class="splide__slide">
+                                <img src="${gif.src}" alt="">
+                            </li>`;
+                    });
+                }
             }
             
             let videmoMobile = ''
