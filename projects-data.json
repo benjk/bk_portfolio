@@ -12,19 +12,19 @@
         ],
         "gifs": [
             {
-                "src": "assets/img/puzzle.gif",
+                "src": "assets/img/projet1_thumb2_gif.gif",
                 "thumb": "assets/img/projet1_thumb2.webp"
             },
             {
-                "src": "assets/img/laby.gif",
+                "src": "assets/img/projet1_thumb4_gif.gif",
                 "thumb": "assets/img/projet1_thumb4.webp"
             },
             {
-                "src": "assets/img/select.gif",
+                "src": "assets/img/projet1_thumb8_gif.gif",
                 "thumb": "assets/img/projet1_thumb8.webp"
             },
             {
-                "src": "assets/img/cartelec.gif",
+                "src": "assets/img/projet1_thumb5_gif.gif",
                 "thumb": "assets/img/projet1_thumb5.webp"
             }
         ],
@@ -48,7 +48,7 @@
             "assets/img/projet2_thumb2.webp"        ],
             "gifs": [
                 {
-                    "src": "assets/img/wabisabi.gif",
+                    "src": "assets/img/projet2_thumb3_gif.gif",
                     "thumb": "assets/img/projet2_thumb3.webp"
                 }
             ],
